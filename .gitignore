@@ -1,0 +1,16 @@
+config/settings/db_password.py
+.DS_Store
+.idea/
+apps/.DS_Store
+apps/__pycache__/
+apps/carts/.DS_Store
+apps/carts/__pycache__/
+apps/orders/.DS_Store
+apps/orders/__pycache__/
+apps/products/.DS_Store
+apps/products/__pycache__/
+config/.DS_Store
+config/__pycache__/
+apps/accounts/__pycache__/
+apps/pages/__pycache__/
+
