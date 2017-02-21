@@ -191,7 +191,7 @@ class FilterMixin(object):
 		filter_class = self.filter_class
 		if filter_class:
 			f = filter_class(self.request.GET, queryset=qs)
-			context["object_list"] = f
+			context["object_list"] = f.qs
 		return context
 
 

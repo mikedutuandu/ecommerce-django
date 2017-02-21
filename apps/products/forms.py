@@ -20,8 +20,8 @@ class ProductFilterForm(forms.Form):
 		required=False)
 	# category_title = forms.ChoiceField(
 	# 	label='Category',
-	# 	choices=CAT_CHOICES, 
-	# 	widget=forms.CheckboxSelectMultiple, 
+	# 	choices=CAT_CHOICES,
+	# 	widget=forms.CheckboxSelectMultiple,
 	# 	required=False)
 	max_price = forms.DecimalField(decimal_places=2, max_digits=12, required=False)
 	min_price = forms.DecimalField(decimal_places=2, max_digits=12, required=False)
