@@ -169,9 +169,6 @@ class VariationListView(LoginRequiredMixin, ListView):
 		raise Http404
 
 
-
-
-
 class ProductListView(FilterMixin, ListView):
 	model = Product
 	queryset = Product.objects.all()
