@@ -39,7 +39,9 @@ class Product(models.Model):
 		ordering = ["-title"]
 
 	def __unicode__(self): #def __str__(self):
-		return self.title 
+		return self.title
+	def __str__(self):
+		return self.title
 
 	def get_absolute_url(self):
 		return reverse("product_detail", kwargs={"pk": self.pk})
@@ -63,6 +65,9 @@ class Variation(models.Model):
 
 	def __unicode__(self):
 		return self.title
+	def __str__(self):
+		return self.title
+
 
 	def get_price(self):
 		if self.sale_price is not None:
@@ -119,6 +124,8 @@ class ProductImage(models.Model):
 
 	def __unicode__(self):
 		return self.product.title
+	def __str__(self):
+		return self.product.title
 
 # Product Category
 
@@ -131,6 +138,8 @@ class Category(models.Model):
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
 	def __unicode__(self):
+		return self.title
+	def __str__(self):
 		return self.title
 
 
