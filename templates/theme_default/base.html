@@ -13,7 +13,7 @@
 
     <title>{% block head_title %}eCommerce 2{% endblock %}</title>
 
-    {% include 'head_css.html' %}
+    {% include 'theme_default/head_css.html' %}
 
       <style>
       {% block style %}{% endblock %}
@@ -24,7 +24,7 @@
   </head>
 
   <body>
-  {% include 'navbar.html' %}
+  {% include 'theme_default/navbar.html' %}
 
 {% if messages %}
 
@@ -53,7 +53,7 @@
 
     </div> <!-- /container -->
 
-    {% include "javascript.html" %}
+    {% include "theme_default/javascript.html" %}
     
     <script>
     $(document).ready(function(){

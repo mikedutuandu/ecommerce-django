@@ -18,7 +18,7 @@ def home(request):
 		"products2":products2
 	}
 
-	return render(request, "default/pages/home.html", context)
+	return render(request, "theme_default/pages/home.html", context)
 
 
 
@@ -52,7 +52,7 @@ def contact(request):
 		"title": title,
 		"title_align_center": title_align_center,
 	}
-	return render(request, "default/pages/forms.html", context)
+	return render(request, "theme_default/pages/forms.html", context)
 
 
 

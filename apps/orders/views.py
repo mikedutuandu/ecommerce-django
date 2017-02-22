@@ -16,7 +16,7 @@ from rest_framework.views import APIView
 from apps.carts.mixins import TokenMixin
 
 from .forms import AddressForm, UserAddressForm
-from .mixins import CartOrderMixin
+from .mixins import CartOrderMixin, UserCheckoutMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import UserAddress, UserCheckout, Order
 from .permissions import IsOwnerAndAuth
@@ -26,6 +26,27 @@ User = get_user_model()
 
 
 # API --------------------------------
+
+class UserCheckoutAPI(UserCheckoutMixin, APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, format=None):
+        data = self.get_checkout_data(user=request.user)
+        return Response(data)
+
+    def post(self, request, format=None):
+        data = {}
+        email = request.data.get("email")
+        if request.user.is_authenticated():
+            if email == request.user.email:
+                data = self.get_checkout_data(user=request.user, email=email)
+            else:
+                data = self.get_checkout_data(user=request.user)
+        elif email and not request.user.is_authenticated():
+            data = self.get_checkout_data(email=email)
+        else:
+            data = self.user_failure(message="Make sure you are authenticated or using a valid email.")
+        return Response(data)
 
 class OrderRetrieveAPIView(RetrieveAPIView):
     authentication_classes = [SessionAuthentication]
@@ -72,95 +93,27 @@ class UserAddressListAPIView(TokenMixin, ListAPIView):
 
 
 # WEB -----------------------------------------
-class UserCheckoutMixin(TokenMixin, object):
-    def user_failure(self, message=None):
-        data = {
-            "message": "There was an error. Please try again.",
-            "success": False
-        }
-        if message:
-            data["message"] = message
-        return data
-
-    def get_checkout_data(self, user=None, email=None):
-        if email and not user:
-            user_exists = User.objects.filter(email=email).count()
-            if user_exists != 0:
-                return self.user_failure(message="This user already exists, please login.")
-
-        data = {}
-        user_checkout = None
-        if user and not email:
-            if user.is_authenticated():
-                user_checkout = UserCheckout.objects.get_or_create(user=user, email=user.email)[
-                    0]  # (instance, created)
-
-        elif email:
-            try:
-                user_checkout = UserCheckout.objects.get_or_create(email=email)[0]
-                if user:
-                    user_checkout.user = user
-                    user_checkout.save()
-            except:
-                pass  # (instance, created)
-        else:
-            pass
-
-        if user_checkout:
-            data["success"] = True
-            data["braintree_id"] = user_checkout.get_braintree_id
-            data["user_checkout_id"] = user_checkout.id
-            data["user_checkout_token"] = self.create_token(data)
-
-            del data["braintree_id"]
-            del data["user_checkout_id"]
-            data["braintree_client_token"] = user_checkout.get_client_token()
-
-        return data
 
 
-class UserCheckoutAPI(UserCheckoutMixin, APIView):
-    permission_classes = [AllowAny]
-
-    def get(self, request, format=None):
-        data = self.get_checkout_data(user=request.user)
-        return Response(data)
-
-    def post(self, request, format=None):
-        data = {}
-        email = request.data.get("email")
-        if request.user.is_authenticated():
-            if email == request.user.email:
-                data = self.get_checkout_data(user=request.user, email=email)
-            else:
-                data = self.get_checkout_data(user=request.user)
-        elif email and not request.user.is_authenticated():
-            data = self.get_checkout_data(email=email)
-        else:
-            data = self.user_failure(message="Make sure you are authenticated or using a valid email.")
-        return Response(data)
 
 
-class OrderDetail(LoginRequiredMixin,DetailView):
+class OrderDetail(LoginRequiredMixin, DetailView):
     model = Order
-    template_name = "default/orders/order_detail.html"
-
-
+    template_name = "theme_default/orders/order_detail.html"
 
 
 class OrderList(LoginRequiredMixin, ListView):
     queryset = Order.objects.all()
-    template_name = "default/orders/order_list.html"
+    template_name = "theme_default/orders/order_list.html"
 
     def get_queryset(self):
-        user_check_id = self.request.user.id
-        user_checkout = UserCheckout.objects.get(id=user_check_id)
+        user_checkout = UserCheckout.objects.get(user=self.request.user)
         return super(OrderList, self).get_queryset().filter(user=user_checkout)
 
 
 class UserAddressCreateView(CreateView):
     form_class = UserAddressForm
-    template_name = "default/pages/forms.html"
+    template_name = "theme_default/pages/forms.html"
     success_url = "/checkout/address/"
 
     def get_checkout_user(self):
@@ -175,14 +128,11 @@ class UserAddressCreateView(CreateView):
 
 class AddressSelectFormView(CartOrderMixin, FormView):
     form_class = AddressForm
-    template_name = "default/orders/address_select.html"
+    template_name = "theme_default/orders/address_select.html"
 
     def dispatch(self, *args, **kwargs):
         b_address, s_address = self.get_addresses()
-        if b_address.count() == 0:
-            messages.success(self.request, "Please add a billing address before continuing")
-            return redirect("user_address_create")
-        elif s_address.count() == 0:
+        if s_address.count() == 0:
             messages.success(self.request, "Please add a shipping address before continuing")
             return redirect("user_address_create")
         else:
@@ -205,15 +155,12 @@ class AddressSelectFormView(CartOrderMixin, FormView):
         form = super(AddressSelectFormView, self).get_form(*args, **kwargs)
         b_address, s_address = self.get_addresses()
 
-        form.fields["billing_address"].queryset = b_address
         form.fields["shipping_address"].queryset = s_address
         return form
 
     def form_valid(self, form, *args, **kwargs):
-        billing_address = form.cleaned_data["billing_address"]
         shipping_address = form.cleaned_data["shipping_address"]
         order = self.get_order()
-        order.billing_address = billing_address
         order.shipping_address = shipping_address
         order.save()
         return super(AddressSelectFormView, self).form_valid(form, *args, **kwargs)

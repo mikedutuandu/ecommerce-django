@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "theme_default/base.html" %}
 
 
 <script>
@@ -133,7 +133,7 @@ Share<br/>
 	{% for product in related %}
 
 		<div class='col-xs-6'>
-			{% include "default/products/product_thumbnail.html" with product=product price="True" %}
+			{% include "theme_default/products/product_thumbnail.html" with product=product price="True" %}
 		</div>
 		{% cycle '' '</div><div class="row">' %}
 	{% endfor %}

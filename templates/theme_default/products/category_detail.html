@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "theme_default/base.html" %}
 
 
 
@@ -13,7 +13,7 @@
 
 
 	<div class='col-xs-4'>
-		{% include "default/products/product_thumbnail.html" with product=product price=True %}
+		{% include "theme_default/products/product_thumbnail.html" with product=product price=True %}
 	</div>
 	{% cycle '' '' '</div><div class="row">' %}
 

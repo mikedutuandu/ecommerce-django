@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "theme_default/base.html" %}
 {% load crispy_forms_tags %}
 
 
@@ -24,7 +24,7 @@
 Nothing found
 
 {% else %}
-{% include "default/products/products.html" with object_list=object_list %}
+{% include "theme_default/products/products.html" with object_list=object_list %}
 {% endif %}
 
 </div>

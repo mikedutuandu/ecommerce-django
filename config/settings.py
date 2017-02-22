@@ -61,6 +61,8 @@ INSTALLED_APPS = (
     'crispy_forms',
     'django_filters',
     'rest_framework',
+    'imagekit',
+    'el_pagination',
     #django allauth
     'allauth',
     'allauth.account',
@@ -235,7 +237,8 @@ BRAINTREE_PRIVATE = "d14ac944794c0df1c81991ecf49221ff"
 BRAINTREE_MERCHANT_ID = "n84nynknvzz3j3sz"
 BRAINTREE_ENVIRONEMNT = "Sandbox"
 
-
+#paging
+EL_PAGINATION_PER_PAGE = 10
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (

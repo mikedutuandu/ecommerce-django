@@ -14,3 +14,7 @@ config/__pycache__/
 apps/accounts/__pycache__/
 apps/pages/__pycache__/
 
+apps/carts/migrations/__pycache__/
+apps/orders/migrations/__pycache__/
+apps/products/migrations/__pycache__/
+

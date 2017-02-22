@@ -2,38 +2,41 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from apps.pages.views import home,contact
-from rest_framework_jwt.views import obtain_jwt_token,refresh_jwt_token
+from apps.pages.views import home, contact
+
+from apps.products.views import ProductDetailView, ProductListView, VariationListView, CategoryListView, \
+    CategoryDetailView
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 from apps.carts.views import (
-        CartAPIView,
-        CartView, 
-        CheckoutAPIView,
-        CheckoutFinalizeAPIView,
-        CheckoutView, 
-        CheckoutFinalView,
-        ItemCountView, 
-        )
+    CartAPIView,
+    CartView,
+    CheckoutAPIView,
+    CheckoutFinalizeAPIView,
+    CheckoutView,
+    CheckoutFinalView,
+    ItemCountView,
+)
 from apps.orders.views import (
-                    AddressSelectFormView, 
-                    UserAddressCreateView,
-                    UserAddressCreateAPIView,
-                    UserAddressListAPIView,
-                    UserCheckoutAPI,
-                    OrderList,
-                    OrderListAPIView, 
-                    OrderDetail,
-                    OrderRetrieveAPIView,
-                    )
+    AddressSelectFormView,
+    UserAddressCreateView,
+    UserAddressCreateAPIView,
+    UserAddressListAPIView,
+    UserCheckoutAPI,
+    OrderList,
+    OrderListAPIView,
+    OrderDetail,
+    OrderRetrieveAPIView,
+)
 
 from apps.products.views import (
-        APIHomeView,
-        CategoryListAPIView,
-        CategoryRetrieveAPIView,
-        ProductListAPIView,
-        ProductRetrieveAPIView,
+    APIHomeView,
+    CategoryListAPIView,
+    CategoryRetrieveAPIView,
+    ProductListAPIView,
+    ProductRetrieveAPIView,
 
-    )
+)
 
 urlpatterns = [
     # Examples:
@@ -42,12 +45,20 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^products/', include('apps.products.urls')),
-    url(r'^categories/', include('apps.products.urls_categories')),
+
+    url(r'^products/$', ProductListView.as_view(), name='products'),
+    url(r'^products/(?P<pk>\d+)/$', ProductDetailView.as_view(), name='product_detail'),
+    url(r'^products/(?P<pk>\d+)/inventory/$', VariationListView.as_view(), name='product_inventory'),
+
+    url(r'^categories/$', CategoryListView.as_view(), name='categories'),
+    url(r'^categories/(?P<slug>[\w-]+)/$', CategoryDetailView.as_view(), name='category_detail'),
+
     url(r'^orders/$', OrderList.as_view(), name='orders'),
     url(r'^orders/(?P<pk>\d+)/$', OrderDetail.as_view(), name='order_detail'),
+
     url(r'^cart/$', CartView.as_view(), name='cart'),
     url(r'^cart/count/$', ItemCountView.as_view(), name='item_count'),
+
     url(r'^checkout/$', CheckoutView.as_view(), name='checkout'),
     url(r'^checkout/address/$', AddressSelectFormView.as_view(), name='order_address'),
     url(r'^checkout/address/add/$', UserAddressCreateView.as_view(), name='user_address_create'),
@@ -55,8 +66,7 @@ urlpatterns = [
 
 ]
 
-
-#API Patterns
+# API Patterns
 urlpatterns += [
     url(r'^api/$', APIHomeView.as_view(), name='home_api'),
 
@@ -76,8 +86,6 @@ urlpatterns += [
     url(r'^api/products/(?P<pk>\d+)/$', ProductRetrieveAPIView.as_view(), name='products_detail_api'),
 ]
 
-
-
 if settings.DEBUG:
-	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

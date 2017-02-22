@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "theme_default/base.html" %}
 
 
 <script>
@@ -35,7 +35,7 @@ $(".item-qty").change(function(){
 
 			if (data.total_items == 0 ) {
 				$(".table").fadeOut()
-				var template = "{% include 'default/carts/empty_cart.html' %}";
+				var template = "{% include 'theme_default/carts/empty_cart.html' %}";
 				$(".main-content").html(template);
 
 			}
@@ -74,7 +74,7 @@ $(".item-qty").change(function(){
 
 {% if object.cartitem_set.count < 1 %}
 
-{% include "default/carts/empty_cart.html" %}
+{% include "theme_default/carts/empty_cart.html" %}
 {% else %}
 
 <div class='col-sm-8 col-sm-offset-2'>

@@ -1,4 +1,3 @@
-from django.core.exceptions import ImproperlyConfigured
 from django.contrib import messages
 from django.db.models import Q
 from django.http import Http404
@@ -113,16 +112,16 @@ class ProductRetrieveAPIView(generics.RetrieveAPIView):
 
 
 
-# WEB ---
+# WEB --------------------------------------------
 class CategoryListView(ListView):
 	model = Category
 	queryset = Category.objects.all()
-	template_name = "default/products/product_list.html"
+	template_name = "theme_default/products/product_list.html"
 
 
 class CategoryDetailView(DetailView):
 	model = Category
-	template_name = "default/products/category_detail.html"
+	template_name = "theme_default/products/category_detail.html"
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(CategoryDetailView, self).get_context_data(*args, **kwargs)
@@ -138,7 +137,7 @@ class CategoryDetailView(DetailView):
 class VariationListView(LoginRequiredMixin, ListView):
 	model = Variation
 	queryset = Variation.objects.all()
-	template_name = "default/products/variation_list.html"
+	template_name = "theme_default/products/variation_list.html"
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(VariationListView, self).get_context_data(*args, **kwargs)
@@ -173,7 +172,7 @@ class ProductListView(FilterMixin, ListView):
 	model = Product
 	queryset = Product.objects.all()
 	filter_class = ProductFilter
-	template_name = "default/products/product_list.html"
+	template_name = "theme_default/products/product_list.html"
 
 
 	def get_context_data(self, *args, **kwargs):
@@ -204,7 +203,7 @@ class ProductListView(FilterMixin, ListView):
 
 class ProductDetailView(DetailView):
 	model = Product
-	template_name = "default/products/product_detail.html"
+	template_name = "theme_default/products/product_detail.html"
 	def get_context_data(self, *args, **kwargs):
 		context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
 		instance = self.get_object()

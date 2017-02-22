@@ -19,18 +19,19 @@ if settings.DEBUG:
 
 class UserCheckout(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True) #not required
-	email = models.EmailField(unique=True) #--> required
 	braintree_id = models.CharField(max_length=120, null=True, blank=True)
 
 	def __unicode__(self): #def __str__(self):
-		return self.email
+		return self.user.email
+	def __str__(self): #def __str__(self):
+		return self.user.email
 
 	@property
 	def get_braintree_id(self,):
 		instance = self
 		if not instance.braintree_id:
 			result = braintree.Customer.create({
-			    "email": instance.email,
+			    "email": instance.user.email,
 			})
 			if result.is_success:
 				instance.braintree_id = result.customer.id
@@ -64,13 +65,15 @@ ADDRESS_TYPE = (
 
 class UserAddress(models.Model):
 	user = models.ForeignKey(UserCheckout)
-	type = models.CharField(max_length=120, choices=ADDRESS_TYPE)
+	type = models.CharField(max_length=120, choices=ADDRESS_TYPE,default='shipping')
 	street = models.CharField(max_length=120)
 	city = models.CharField(max_length=120)
 	state = models.CharField(max_length=120)
 	zipcode = models.CharField(max_length=120)
 
 	def __unicode__(self):
+		return self.street
+	def __str__(self):
 		return self.street
 
 	def get_address(self):
