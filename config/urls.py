@@ -41,7 +41,7 @@ urlpatterns = [
     url(r'^contact/$', contact, name='contact'),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^products/', include('apps.products.urls')),
     url(r'^categories/', include('apps.products.urls_categories')),
     url(r'^orders/$', OrderList.as_view(), name='orders'),

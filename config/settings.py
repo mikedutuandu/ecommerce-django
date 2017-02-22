@@ -29,9 +29,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'yourgmail@gmail.com'
-EMAIL_HOST_PASSWORD = 'yourpassword'
+EMAIL_HOST = 'smtp.sendgrid.com'
+EMAIL_HOST_USER = 'teamcfe' #hello@teamcfe.com
+EMAIL_MAIN = 'hello@teamcfe.com'
+EMAIL_HOST_PASSWORD = 'codeon2016'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -59,14 +60,20 @@ INSTALLED_APPS = (
     'corsheaders',
     'crispy_forms',
     'django_filters',
-    'registration',
     'rest_framework',
+    #django allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
     #my apps
     'apps.carts',
     'apps.pages',
     'apps.orders',
     'apps.products',
 )
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -171,11 +178,55 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", "media_roo
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 
-#DJANGO REGISTRATION REDUX SETTINGS
-ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_AUTO_LOGIN = True
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
+
+
+#DJANGO AllAUTH
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
+#django allauth
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+LOGIN_REDIRECT_URL = "/"
+
+SOCIALACCOUNT_PROVIDERS = {'facebook':
+       {'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time'],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC':  lambda request: 'en_US',
+        'VERIFIED_EMAIL': True,
+        'VERSION': 'v2.4'}}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 
 #Braintree Payments Details
