@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 
 from apps.orders.models import UserAddress, UserCheckout
-from apps.products.models import Variation
+from apps.products.models import Product
 
 
 from .models import CartItem, Cart
@@ -76,20 +76,6 @@ class CheckoutSerializer(TokenMixin, serializers.Serializer):
 	# 	raise serializers.ValidationError("This is not a valid token.")
 
 
-
-class CartVariationSerializer(serializers.ModelSerializer):
-	product = serializers.SerializerMethodField()
-	class Meta:
-		model = Variation
-		fields = [
-			"id",
-			"title",
-			"price",
-			"product",
-		]
-
-	def get_product(self, obj):
-		return obj.product.title
 
 
 

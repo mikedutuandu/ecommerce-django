@@ -1,22 +1,13 @@
 from rest_framework import serializers
 
 
-from .models import Category, Product, Variation
+from .models import Category, Product
 
-
-class VariationSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Variation
-		fields = [
-			"id",
-			"title",
-			"price",
-		]
 
 
 
 class ProductDetailUpdateSerializer(serializers.ModelSerializer):
-	variation_set = VariationSerializer(many=True, read_only=True)
+	# variation_set = VariationSerializer(many=True, read_only=True)
 	image = serializers.SerializerMethodField()
 	class Meta:
 		model = Product
@@ -49,7 +40,7 @@ class ProductDetailUpdateSerializer(serializers.ModelSerializer):
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
-	variation_set = VariationSerializer(many=True, read_only=True)
+	# variation_set = VariationSerializer(many=True, read_only=True)
 	image = serializers.SerializerMethodField()
 	class Meta:
 		model = Product
@@ -70,7 +61,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
 	url = serializers.HyperlinkedIdentityField(view_name='products_detail_api')
-	variation_set = VariationSerializer(many=True)
+	# variation_set = VariationSerializer(many=True)
 	image = serializers.SerializerMethodField()
 	class Meta:
 		model = Product

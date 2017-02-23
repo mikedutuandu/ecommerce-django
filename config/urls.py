@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from apps.pages.views import home, contact
 
-from apps.products.views import ProductDetailView, ProductListView, VariationListView, CategoryListView, \
+from apps.products.views import ProductDetailView, ProductListView, CategoryListView, \
     CategoryDetailView
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
@@ -48,7 +48,6 @@ urlpatterns = [
 
     url(r'^products/$', ProductListView.as_view(), name='products'),
     url(r'^products/(?P<pk>\d+)/$', ProductDetailView.as_view(), name='product_detail'),
-    url(r'^products/(?P<pk>\d+)/inventory/$', VariationListView.as_view(), name='product_inventory'),
 
     url(r'^categories/$', CategoryListView.as_view(), name='categories'),
     url(r'^categories/(?P<slug>[\w-]+)/$', CategoryDetailView.as_view(), name='category_detail'),

@@ -6,3 +6,4 @@
 -	items = models.ManyToManyField(Variation, through=CartItem)
 - self.subtotal = "%.2f" %(subtotal)
 -self.request.user.is_authenticated():
+-add many form: formset

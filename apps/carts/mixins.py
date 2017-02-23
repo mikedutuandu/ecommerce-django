@@ -4,8 +4,8 @@ import base64
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from rest_framework import status
-from .models import Cart, CartItem, Variation
-
+from .models import Cart, CartItem
+from apps.products.models import Product
 
 
 class CartUpdateAPIMixin(object):
@@ -18,7 +18,7 @@ class CartUpdateAPIMixin(object):
 			flash_message = ""
 			item_added = False
 			if item_id:
-				item_instance = get_object_or_404(Variation, id=item_id)
+				item_instance = get_object_or_404(Product, id=item_id)
 				qty = request.GET.get("qty", 1)
 				try:
 					if int(qty) < 1:

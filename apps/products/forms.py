@@ -3,7 +3,7 @@ from django import forms
 from django.forms.models import modelformset_factory
 
 
-from .models import Variation, Category
+from .models import  Category
 
 
 CAT_CHOICES = (
@@ -25,18 +25,3 @@ class ProductFilterForm(forms.Form):
 	# 	required=False)
 	max_price = forms.DecimalField(decimal_places=2, max_digits=12, required=False)
 	min_price = forms.DecimalField(decimal_places=2, max_digits=12, required=False)
-
-
-
-class VariationInventoryForm(forms.ModelForm):
-	class Meta:
-		model = Variation
-		fields = [
-			"price",
-			"sale_price",
-			"inventory",
-			"active",
-		]
-
-
-VariationInventoryFormSet = modelformset_factory(Variation, form=VariationInventoryForm, extra=3)

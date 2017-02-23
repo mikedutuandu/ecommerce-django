@@ -26,7 +26,7 @@ from rest_framework.views import APIView
 from apps.orders.mixins import CartOrderMixin
 from apps.orders.models import UserCheckout, Order, UserAddress
 from apps.orders.serializers import OrderSerializer, FinalizedOrderSerializer
-from apps.products.models import Variation
+from apps.products.models import Product
 
 
 from .mixins import TokenMixin, CartUpdateAPIMixin, CartTokenMixin
@@ -300,7 +300,7 @@ class CartView(SingleObjectMixin, View):
 		flash_message = ""
 		item_added = False
 		if item_id:
-			item_instance = get_object_or_404(Variation, id=item_id)
+			item_instance = get_object_or_404(Product, id=item_id)
 			qty = request.GET.get("qty", 1)
 			try:
 				if int(qty) < 1:
