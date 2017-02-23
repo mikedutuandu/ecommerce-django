@@ -24,7 +24,8 @@ from rest_framework.views import APIView
 
 
 from apps.orders.mixins import CartOrderMixin
-from apps.orders.models import UserCheckout, Order, UserAddress
+from apps.orders.models import UserCheckout, Order
+from apps.accounts.models import  UserAddress
 from apps.orders.serializers import OrderSerializer, FinalizedOrderSerializer
 from apps.products.models import Product
 
@@ -410,7 +411,7 @@ class CheckoutView(CartOrderMixin, DetailView):
 		user_checkout_id = request.session.get("user_checkout_id")
 		if user_checkout_id != None:
 			user_checkout = UserCheckout.objects.get(id=user_checkout_id)
-			if new_order.shipping_address == None:
+			if new_order.order_address == None:
 			 	return redirect("order_address")
 			new_order.user = user_checkout
 			new_order.save()

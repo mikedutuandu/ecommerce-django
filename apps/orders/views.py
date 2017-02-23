@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.http import Http404
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView, FormView
+from django.views.generic.edit import CreateView, FormView,View,TemplateResponseMixin,ContextMixin
 from django.views.generic.detail import DetailView
 from  django.views.generic.list import ListView
 # Create your views here.
@@ -18,7 +18,8 @@ from apps.carts.mixins import TokenMixin
 from .forms import AddressForm, UserAddressForm
 from .mixins import CartOrderMixin, UserCheckoutMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import UserAddress, UserCheckout, Order
+from .models import  UserCheckout, Order
+from apps.accounts.models import  UserAddress
 from .permissions import IsOwnerAndAuth
 from .serializers import UserAddressSerializer, OrderSerializer, OrderDetailSerializer
 
@@ -126,44 +127,19 @@ class UserAddressCreateView(CreateView):
         return super(UserAddressCreateView, self).form_valid(form, *args, **kwargs)
 
 
-class AddressSelectFormView(CartOrderMixin, FormView):
+class AddressSelectView(CartOrderMixin,TemplateResponseMixin,ContextMixin,View):
     form_class = AddressForm
     template_name = "theme_default/orders/address_select.html"
 
     def dispatch(self, *args, **kwargs):
-        b_address, s_address = self.get_addresses()
-        if s_address.count() == 0:
+        if self.request.user.useraddress == None:
             messages.success(self.request, "Please add a shipping address before continuing")
             return redirect("user_address_create")
         else:
-            return super(AddressSelectFormView, self).dispatch(*args, **kwargs)
+            return super(AddressSelectView, self).dispatch(*args, **kwargs)
 
-    def get_addresses(self, *args, **kwargs):
-        user_check_id = self.request.session.get("user_checkout_id")
-        user_checkout = UserCheckout.objects.get(id=user_check_id)
-        b_address = UserAddress.objects.filter(
-            user=user_checkout,
-            type='billing',
-        )
-        s_address = UserAddress.objects.filter(
-            user=user_checkout,
-            type='shipping',
-        )
-        return b_address, s_address
 
-    def get_form(self, *args, **kwargs):
-        form = super(AddressSelectFormView, self).get_form(*args, **kwargs)
-        b_address, s_address = self.get_addresses()
-
-        form.fields["shipping_address"].queryset = s_address
-        return form
-
-    def form_valid(self, form, *args, **kwargs):
-        shipping_address = form.cleaned_data["shipping_address"]
-        order = self.get_order()
-        order.shipping_address = shipping_address
-        order.save()
-        return super(AddressSelectFormView, self).form_valid(form, *args, **kwargs)
-
+    def post(self,request):
+        pass
     def get_success_url(self, *args, **kwargs):
         return "/checkout/"
