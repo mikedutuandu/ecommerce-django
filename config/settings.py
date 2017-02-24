@@ -255,7 +255,7 @@ REST_FRAMEWORK = {
 
 JWT_AUTH = {
     "JWT_RESPONSE_PAYLOAD_HANDLER": 
-            "config.utils.jwt_response_payload_handler",
+            "apps.accounts.api.jwt.jwt_response_payload_handler",
     "JWT_EXPIRATION_DELTA": datetime.timedelta(seconds=30000),
     "JWT_ALLOW_REFRESH": True, #False
 }
