@@ -13,7 +13,7 @@ from apps.carts.views import (
 )
 from apps.orders.views import (
     AddressSelectView,
-    UserAddressCreateView,
+    UserAddressUpdateView,
     OrderList,
     OrderDetail,
     CheckoutView,
@@ -43,7 +43,7 @@ urlpatterns = [
 
     url(r'^checkout/$', CheckoutView.as_view(), name='checkout'),
     url(r'^checkout/address/$', AddressSelectView.as_view(), name='order_address'),
-    url(r'^checkout/address/add/$', UserAddressCreateView.as_view(), name='user_address_create'),
+    url(r'^checkout/address/add/$', UserAddressUpdateView.as_view(), name='user_address_create'),
     url(r'^checkout/final/$', CheckoutFinalView.as_view(), name='checkout_final'),
 
 ]

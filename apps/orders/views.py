@@ -2,9 +2,10 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.http import Http404
 from django.shortcuts import render, redirect,reverse
-from django.views.generic.edit import CreateView, FormView,View,TemplateResponseMixin,ContextMixin
+from django.views.generic.edit import CreateView, UpdateView,View,TemplateResponseMixin,ContextMixin
 from django.views.generic.detail import DetailView
 from  django.views.generic.list import ListView
+from apps.accounts.models import UserAddress
 
 import braintree
 
@@ -117,33 +118,31 @@ class CheckoutFinalView(CartOrderMixin, View):
         return redirect("checkout")
 
 
-class UserAddressCreateView(CreateView):
+class UserAddressUpdateView(UpdateView):
     form_class = UserAddressForm
+    model = UserAddress
     template_name = "theme_default/pages/forms.html"
     success_url = "/checkout/address/"
 
+    def get_object(self):
+        return self.request.user.useraddress
     def get_checkout_user(self):
         user_check_id = self.request.session.get("user_checkout_id")
         user_checkout = UserCheckout.objects.get(id=user_check_id)
         return user_checkout
 
-    def form_valid(self, form, *args, **kwargs):
-        form.instance.user = self.get_checkout_user()
-        return super(UserAddressCreateView, self).form_valid(form, *args, **kwargs)
 
 
-class AddressSelectView(CartOrderMixin,TemplateResponseMixin,ContextMixin,View):
+
+class AddressSelectView(CartOrderMixin,View):
     template_name = "theme_default/orders/address_select.html"
 
     def dispatch(self, *args, **kwargs):
-        if self.request.user.useraddress == None:
-            messages.success(self.request, "Please add a shipping address before continuing")
-            return redirect("user_address_create")
-        else:
-            return super(AddressSelectView, self).dispatch(*args, **kwargs)
+        return super(AddressSelectView, self).dispatch(*args, **kwargs)
 
-
-    def post(self,request):
+    def get(self,request):
+        return render(request,self.template_name)
+    def post(self):
         pass
     def get_success_url(self, *args, **kwargs):
         return "/checkout/"

@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from imagekit.processors import ResizeToFill
 from imagekit.models import ImageSpecField
+from django.db.models.signals import post_save
+from config.utils import create_slug
 
 
 def upload_location(instance, filename):
@@ -28,12 +30,12 @@ class UserProfile(models.Model):
 
 class UserAddress(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    fullname = models.CharField(max_length=120)
-    phone = models.CharField(max_length=120)
-    city = models.CharField(max_length=120)
-    district = models.CharField(max_length=120)
-    wards = models.CharField(max_length=120)
-    street = models.CharField(max_length=120)
+    fullname = models.CharField(max_length=120,null=True)
+    phone = models.CharField(max_length=120,null=True)
+    city = models.CharField(max_length=120,null=True)
+    district = models.CharField(max_length=120,null=True)
+    wards = models.CharField(max_length=120,null=True)
+    street = models.CharField(max_length=120,null=True)
 
     def __unicode__(self):
         return self.street
@@ -43,3 +45,14 @@ class UserAddress(models.Model):
 
     def get_address(self):
         return "%s, %s, %s %s" % (self.street, self.wards, self.district, self.city)
+
+
+def post_save_user_receiver(sender, instance, *args, **kwargs):
+    user = instance
+    if UserProfile.objects.filter(user = user).count() == 0:
+        UserProfile.objects.create(user=instance).save()
+    if UserAddress.objects.filter(user=user).count() == 0:
+        UserAddress.objects.create(user=instance).save()
+
+
+post_save.connect(post_save_user_receiver, sender=User)
