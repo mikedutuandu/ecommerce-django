@@ -77,7 +77,7 @@ class OrderAddress(models.Model):
 		return self.street
 
 	def get_address(self):
-		return "%s, %s, %s %s" %(self.street, self.wards, self.district, self.city)
+		return "%s, %s, %s %s" %(self.street, self.district, self.wards, self.city)
 
 class UserCheckout(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True) #not required

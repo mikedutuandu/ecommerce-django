@@ -1,102 +1,28 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,reverse
 from django.views.generic.edit import CreateView, FormView,View,TemplateResponseMixin,ContextMixin
 from django.views.generic.detail import DetailView
 from  django.views.generic.list import ListView
-# Create your views here.
 
-from rest_framework.authentication import SessionAuthentication
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
-from rest_framework.views import APIView
+import braintree
 
-from apps.carts.mixins import TokenMixin
+from django.conf import settings
 
-from .forms import AddressForm, UserAddressForm
-from .mixins import CartOrderMixin, UserCheckoutMixin
+from .forms import UserAddressForm
+from .mixins import CartOrderMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import  UserCheckout, Order
-from apps.accounts.models import  UserAddress
-from .permissions import IsOwnerAndAuth
-from .serializers import UserAddressSerializer, OrderSerializer, OrderDetailSerializer
+from apps.carts.models import Cart
 
 User = get_user_model()
 
-
-# API --------------------------------
-
-class UserCheckoutAPI(UserCheckoutMixin, APIView):
-    permission_classes = [AllowAny]
-
-    def get(self, request, format=None):
-        data = self.get_checkout_data(user=request.user)
-        return Response(data)
-
-    def post(self, request, format=None):
-        data = {}
-        email = request.data.get("email")
-        if request.user.is_authenticated():
-            if email == request.user.email:
-                data = self.get_checkout_data(user=request.user, email=email)
-            else:
-                data = self.get_checkout_data(user=request.user)
-        elif email and not request.user.is_authenticated():
-            data = self.get_checkout_data(email=email)
-        else:
-            data = self.user_failure(message="Make sure you are authenticated or using a valid email.")
-        return Response(data)
-
-class OrderRetrieveAPIView(RetrieveAPIView):
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [IsOwnerAndAuth]
-    model = Order
-    queryset = Order.objects.all()
-    serializer_class = OrderDetailSerializer
-
-    def get_queryset(self, *args, **kwargs):
-        return Order.objects.filter(user__user=self.request.user)
-
-
-class OrderListAPIView(ListAPIView):
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [IsOwnerAndAuth]
-    model = Order
-    queryset = Order.objects.all()
-    serializer_class = OrderDetailSerializer
-
-    def get_queryset(self, *args, **kwargs):
-        return Order.objects.filter(user__user=self.request.user)
-
-
-class UserAddressCreateAPIView(CreateAPIView):
-    model = UserAddress
-    serializer_class = UserAddressSerializer
-
-
-class UserAddressListAPIView(TokenMixin, ListAPIView):
-    model = UserAddress
-    queryset = UserAddress.objects.all()
-    serializer_class = UserAddressSerializer
-
-    def get_queryset(self, *args, **kwargs):
-        user_checkout_token = self.request.GET.get("checkout_token")
-        user_checkout_data = self.parse_token(user_checkout_token)
-        user_checkout_id = user_checkout_data.get("user_checkout_id")
-        if self.request.user.is_authenticated():
-            return UserAddress.objects.filter(user__user=self.request.user)
-        elif user_checkout_id:
-            return UserAddress.objects.filter(user__id=int(user_checkout_id))
-        else:
-            return []
-
-
-# WEB -----------------------------------------
-
-
-
+if settings.DEBUG:
+	braintree.Configuration.configure(braintree.Environment.Sandbox,
+      merchant_id=settings.BRAINTREE_MERCHANT_ID,
+      public_key=settings.BRAINTREE_PUBLIC,
+      private_key=settings.BRAINTREE_PRIVATE)
 
 class OrderDetail(LoginRequiredMixin, DetailView):
     model = Order
@@ -110,6 +36,85 @@ class OrderList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         user_checkout = UserCheckout.objects.get(user=self.request.user)
         return super(OrderList, self).get_queryset().filter(user=user_checkout)
+
+
+class CheckoutView(CartOrderMixin, DetailView):
+    model = Cart
+    template_name = "theme_default/carts/checkout_view.html"
+
+    def get_object(self, *args, **kwargs):
+        cart = self.get_cart()
+        if cart == None:
+            return None
+        return cart
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(CheckoutView, self).get_context_data(*args, **kwargs)
+        user_can_continue = False
+        if self.request.user.is_authenticated():
+            user_can_continue = True
+            user_checkout, created = UserCheckout.objects.get_or_create(user=self.request.user)
+            user_checkout.save()
+            context["client_token"] = user_checkout.get_client_token()
+            self.request.session["user_checkout_id"] = user_checkout.id
+        else:
+            context["next_url"] = self.request.build_absolute_uri()
+
+        context["order"] = self.get_order()
+        context["user_can_continue"] = user_can_continue
+        return context
+
+    def get_success_url(self):
+        return reverse("checkout")
+
+    def get(self, request, *args, **kwargs):
+        get_data = super(CheckoutView, self).get(request, *args, **kwargs)
+        cart = self.get_object()
+        if cart == None:
+            return redirect("cart")
+        new_order = self.get_order()
+        user_checkout_id = request.session.get("user_checkout_id")
+        if user_checkout_id != None:
+            user_checkout = UserCheckout.objects.get(id=user_checkout_id)
+            if new_order.order_address == None:
+                return redirect("order_address")
+            new_order.user = user_checkout
+            new_order.save()
+        return get_data
+
+
+class CheckoutFinalView(CartOrderMixin, View):
+    def post(self, request, *args, **kwargs):
+        order = self.get_order()
+        order_total = order.order_total
+        nonce = request.POST.get("payment_method_nonce")
+        if nonce:
+            result = braintree.Transaction.sale({
+                "amount": order_total,
+                "payment_method_nonce": nonce,
+                "billing": {
+                    "postal_code": "%s" % (700000),
+
+                },
+                "options": {
+                    "submit_for_settlement": True
+                }
+            })
+            if result.is_success:
+                # result.transaction.id to order
+                order.mark_completed(order_id=result.transaction.id)
+                messages.success(request, "Thank you for your order.")
+                del request.session["cart_id"]
+                del request.session["order_id"]
+            else:
+                # messages.success(request, "There was a problem with your order.")
+                messages.success(request, "%s" % (result.message))
+                return redirect("checkout")
+
+        return redirect("order_detail", pk=order.pk)
+
+    def get(self, request, *args, **kwargs):
+        return redirect("checkout")
 
 
 class UserAddressCreateView(CreateView):
@@ -128,7 +133,6 @@ class UserAddressCreateView(CreateView):
 
 
 class AddressSelectView(CartOrderMixin,TemplateResponseMixin,ContextMixin,View):
-    form_class = AddressForm
     template_name = "theme_default/orders/address_select.html"
 
     def dispatch(self, *args, **kwargs):
