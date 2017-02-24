@@ -196,7 +196,8 @@ AUTHENTICATION_BACKENDS = (
 #django allauth
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_VERIFICATION = "optional"
-LOGIN_REDIRECT_URL = "/"
+
+ACCOUNT_ADAPTER = 'apps.accounts.allauth.AccountAdapter'
 
 SOCIALACCOUNT_PROVIDERS = {'facebook':
        {'METHOD': 'oauth2',
