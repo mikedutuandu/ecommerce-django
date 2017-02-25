@@ -1,0 +1,50 @@
+{% extends "theme_default/base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load account socialaccount %}
+
+
+<script>
+    {% block jquery %}
+        var clientToken = "{{ client_token }}";
+
+        braintree.setup(clientToken, "dropin", {
+            container: "payment-form"
+        });
+
+
+
+    {% endblock %}
+</script>
+
+{% block content %}
+
+
+
+
+        <div class='col-sm-4 col-sm-offset-4 text-center'>
+
+            {% include "theme_default/orders/order_summary_short.html" with order=order %}
+
+
+            <br/>
+        </div>
+
+                    <form id="checkout" method='POST' action="{% url 'checkout_final' %}">{% csrf_token %}
+                        <!-- <input type='hidden' name='payment_token' value='ABC' /> -->
+                        <div id="payment-form"></div>
+                        <p><b>
+                            <button type='submit'>Complete Order</button>
+                        </b>
+
+                        </p>
+                    </form>
+
+
+        </div>
+
+
+
+
+
+{% endblock %}

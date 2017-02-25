@@ -12,8 +12,6 @@ from apps.carts.views import (
     ItemCountView,
 )
 from apps.orders.views import (
-    AddressSelectView,
-    UserAddressUpdateView,
     OrderList,
     OrderDetail,
     CheckoutView,
@@ -42,8 +40,6 @@ urlpatterns = [
     url(r'^cart/count/$', ItemCountView.as_view(), name='item_count'),
 
     url(r'^checkout/$', CheckoutView.as_view(), name='checkout'),
-    url(r'^checkout/address/$', AddressSelectView.as_view(), name='order_address'),
-    url(r'^checkout/address/add/$', UserAddressUpdateView.as_view(), name='user_address_create'),
     url(r'^checkout/final/$', CheckoutFinalView.as_view(), name='checkout_final'),
 
 ]

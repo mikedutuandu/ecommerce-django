@@ -4,18 +4,6 @@
 {% load account socialaccount %}
 
 
-<script>
-    {% block jquery %}
-        var clientToken = "{{ client_token }}";
-
-        braintree.setup(clientToken, "dropin", {
-            container: "payment-form"
-        });
-
-
-
-    {% endblock %}
-</script>
 
 {% block content %}
 
@@ -36,20 +24,22 @@
             {% include "theme_default/orders/order_summary_short.html" with order=order %}
 
 
-            <p>
-                <a href='{% url "order_address" %}'>Change an Address</a>
-            </p>
             <br/>
 
-            <form id="checkout" method='POST' action="{% url 'checkout_final' %}">{% csrf_token %}
-                <!-- <input type='hidden' name='payment_token' value='ABC' /> -->
-                <div id="payment-form"></div>
-                <p><b>
-                    <button type='submit'>Complete Order</button>
-                </b>
-
-                </p>
+            <form method='POST' action='' novalidate>
+                {% csrf_token %}
+                {{ form.errors }}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input type='submit' class='btn btn-default' value='Create Post'/>
             </form>
+        </div>
+
 
 
         </div>

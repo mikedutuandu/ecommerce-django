@@ -1,8 +1,7 @@
 from apps.carts.models import Cart
 from .models import Order
 
-from apps.carts.mixins import TokenMixin
-from .models import UserAddress, UserCheckout, Order
+from .models import UserCheckout, Order
 from django.contrib.auth import get_user_model
 User = get_user_model()
 

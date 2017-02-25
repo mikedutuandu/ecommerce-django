@@ -4,6 +4,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect,reverse
 from django.views.generic.edit import CreateView, UpdateView,View,TemplateResponseMixin,ContextMixin
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import ModelFormMixin
 from  django.views.generic.list import ListView
 from apps.accounts.models import UserAddress
 
@@ -14,7 +15,7 @@ from django.conf import settings
 from .forms import UserAddressForm
 from .mixins import CartOrderMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import  UserCheckout, Order
+from .models import  UserCheckout, Order,OrderAddress
 from apps.carts.models import Cart
 
 User = get_user_model()
@@ -36,55 +37,72 @@ class OrderList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         user_checkout = UserCheckout.objects.get(user=self.request.user)
-        return super(OrderList, self).get_queryset().filter(user=user_checkout)
+        return super(OrderList, self).get_queryset().filter(user_checkout=user_checkout)
 
 
-class CheckoutView(CartOrderMixin, DetailView):
-    model = Cart
+class CheckoutView(CartOrderMixin, View):
     template_name = "theme_default/carts/checkout_view.html"
 
-    def get_object(self, *args, **kwargs):
-        cart = self.get_cart()
-        if cart == None:
-            return None
-        return cart
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(CheckoutView, self).get_context_data(*args, **kwargs)
+    def get_context(self):
         user_can_continue = False
+        context = {}
         if self.request.user.is_authenticated():
             user_can_continue = True
-            user_checkout, created = UserCheckout.objects.get_or_create(user=self.request.user)
-            user_checkout.save()
-            context["client_token"] = user_checkout.get_client_token()
-            self.request.session["user_checkout_id"] = user_checkout.id
-        else:
-            context["next_url"] = self.request.build_absolute_uri()
-
         context["order"] = self.get_order()
         context["user_can_continue"] = user_can_continue
+        context['form'] = UserAddressForm(instance=self.request.user.useraddress)
+        return context
+    def update_order_address(self):
+        order = self.get_order()
+        user_address = self.request.user.useraddress
+        order_address = OrderAddress.objects.create(
+            fullname=user_address.fullname,
+            city=user_address.city,
+            district=user_address.district,
+            wards=user_address.wards,
+            phone=user_address.phone,
+            street=user_address.street
+        )
+        order.order_address = order_address
+        order.save()
+    def get(self, request, *args, **kwargs):
+        context = self.get_context()
+        return render(request,self.template_name,context)
+
+    def post(self, request, *args, **kwargs):
+        context = self.get_context()
+        form = UserAddressForm(self.request.POST or None,self.request.FILES or None,instance=self.request.user.useraddress)
+        if form.is_valid():
+            form.save()
+            self.update_order_address()
+            context['form'] = form
+            return redirect('checkout_final')
+        else:
+            context['form'] = form
+        return render(request, self.template_name, context)
+
+
+class CheckoutFinalView(LoginRequiredMixin,CartOrderMixin, View):
+    template_name = "theme_default/carts/checkout_final_view.html"
+
+    def get_context(self):
+        context = {}
+        user_checkout, created = UserCheckout.objects.get_or_create(user=self.request.user)
+        user_checkout.save()
+        order = self.get_order()
+        order.user_checkout = user_checkout
+        order.save()
+        context["client_token"] = user_checkout.get_client_token()
+        context["order"] = self.get_order()
         return context
 
-    def get_success_url(self):
-        return reverse("checkout")
-
     def get(self, request, *args, **kwargs):
-        get_data = super(CheckoutView, self).get(request, *args, **kwargs)
-        cart = self.get_object()
-        if cart == None:
-            return redirect("cart")
-        new_order = self.get_order()
-        user_checkout_id = request.session.get("user_checkout_id")
-        if user_checkout_id != None:
-            user_checkout = UserCheckout.objects.get(id=user_checkout_id)
-            if new_order.order_address == None:
-                return redirect("order_address")
-            new_order.user = user_checkout
-            new_order.save()
-        return get_data
+        order = self.get_order()
+        if not order.order_address:
+            return redirect('checkout')
+        context= self.get_context()
+        return render(request,self.template_name,context)
 
-
-class CheckoutFinalView(CartOrderMixin, View):
     def post(self, request, *args, **kwargs):
         order = self.get_order()
         order_total = order.order_total
@@ -114,35 +132,7 @@ class CheckoutFinalView(CartOrderMixin, View):
 
         return redirect("order_detail", pk=order.pk)
 
-    def get(self, request, *args, **kwargs):
-        return redirect("checkout")
-
-
-class UserAddressUpdateView(UpdateView):
-    form_class = UserAddressForm
-    model = UserAddress
-    template_name = "theme_default/pages/forms.html"
-    success_url = "/checkout/address/"
-
-    def get_object(self):
-        return self.request.user.useraddress
-    def get_checkout_user(self):
-        user_check_id = self.request.session.get("user_checkout_id")
-        user_checkout = UserCheckout.objects.get(id=user_check_id)
-        return user_checkout
 
 
 
 
-class AddressSelectView(CartOrderMixin,View):
-    template_name = "theme_default/orders/address_select.html"
-
-    def dispatch(self, *args, **kwargs):
-        return super(AddressSelectView, self).dispatch(*args, **kwargs)
-
-    def get(self,request):
-        return render(request,self.template_name)
-    def post(self):
-        pass
-    def get_success_url(self, *args, **kwargs):
-        return "/checkout/"

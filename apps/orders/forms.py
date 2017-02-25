@@ -18,6 +18,12 @@ class UserAddressForm(forms.ModelForm):
 			'wards',
 			'street',
 		]
+	# def clean_fullname(self):
+	# 	pass
+	#     # data = self.cleaned_data['title']
+	#     # if "fred@example.com" != data:
+	#     raise forms.ValidationError("You have forgotten about Fred!")
+	#     # return data
 
 
 
