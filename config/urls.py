@@ -2,7 +2,6 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from apps.pages.views import home, contact
 
 from apps.products.views import ProductDetailView, ProductListView, CategoryListView, \
     CategoryDetailView
@@ -17,13 +16,14 @@ from apps.orders.views import (
     CheckoutView,
     CheckoutFinalView,
 )
+from apps.pages.views import (
+    HomeView
+)
 
 
 urlpatterns = [
     # Examples:
-    url(r'^$', home, name='home'),
-    url(r'^contact/$', contact, name='contact'),
-
+    url(r'^$', HomeView.as_view(), name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
 

@@ -30,7 +30,7 @@ class Product(models.Model):
     active = models.BooleanField(default=True)
     categories = models.ManyToManyField('Category', blank=True)
     default = models.ForeignKey('Category', related_name='default_category', null=True, blank=True)
-
+    hot = models.BooleanField(default=False)
     objects = ProductManager()
 
     class Meta:
@@ -58,7 +58,7 @@ class Product(models.Model):
 
     def get_html_price(self):
         if self.sale_price is not None:
-            html_text = "<span class='sale-price'>%s</span> <span class='og-price'>%s</span>" % (
+            html_text = "<span class='price'>%s</span> <span class='price-before-discount'>%s</span>" % (
             self.sale_price, self.price)
         else:
             html_text = "<span class='price'>%s</span>" % (self.price)
@@ -89,19 +89,31 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product)
     image = models.ImageField(upload_to=image_upload_to)
     image_thumb1 = ImageSpecField(source='image',
-                                  processors=[ResizeToFill(80, 80)],
+                                  processors=[ResizeToFill(41, 41)],
                                   format='JPEG',
                                   options={'quality': 100})
     image_thumb2 = ImageSpecField(source='image',
-                                  processors=[ResizeToFill(214, 214)],
+                                  processors=[ResizeToFill(68, 68)],
                                   format='JPEG',
                                   options={'quality': 100})
     image_thumb3 = ImageSpecField(source='image',
-                                  processors=[ResizeToFill(347, 347)],
+                                  processors=[ResizeToFill(90, 90)],
                                   format='JPEG',
                                   options={'quality': 100})
     image_thumb4 = ImageSpecField(source='image',
-                                  processors=[ResizeToFill(546, 546)],
+                                  processors=[ResizeToFill(150, 150)],
+                                  format='JPEG',
+                                  options={'quality': 100})
+    image_thumb5 = ImageSpecField(source='image',
+                                  processors=[ResizeToFill(189, 189)],
+                                  format='JPEG',
+                                  options={'quality': 100})
+    image_thumb6 = ImageSpecField(source='image',
+                                  processors=[ResizeToFill(317, 317)],
+                                  format='JPEG',
+                                  options={'quality': 100})
+    image_thumb7 = ImageSpecField(source='image',
+                                  processors=[ResizeToFill(700, 700)],
                                   format='JPEG',
                                   options={'quality': 100})
 

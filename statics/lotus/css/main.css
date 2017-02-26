@@ -559,7 +559,7 @@ img[src="assets/images/blank.gif"] {
   margin-top: 10px;
   margin-bottom: 20px;
 }
-.special-product .product:first-child {
+.special-product .product {
   margin-bottom: 20px;
 }
 
@@ -567,9 +567,7 @@ img[src="assets/images/blank.gif"] {
 .special-product .product .col {padding-right:0px}
 .special-product .product .btn-primary {background:none; padding:0px; color:#157ed2; text-decoration:underline; margin-top:5px;}
 
-.special-product .product:last-child {
-  margin-top: 20px;
-}
+
 .best-product .product:first-child {
   margin-bottom: 20px;
 }
