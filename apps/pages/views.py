@@ -18,7 +18,8 @@ def home(request):
 		"products2":products2
 	}
 
-	return render(request, "theme_default/pages/home.html", context)
+	# return render(request, "theme_default/pages/home.html", context)
+	return render(request, "theme_lotus/pages/home.html", context)
 
 
 
