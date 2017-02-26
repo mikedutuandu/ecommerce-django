@@ -19,9 +19,9 @@ def home(request):
 	}
 
 	# return render(request, "theme_default/pages/home.html", context)
-	# return render(request, "theme_lotus/pages/home.html", context)
+	return render(request, "theme_lotus/pages/home.html", context)
 	# return render(request, "theme_lotus/pages/detail.html", context)
-	return render(request, "theme_lotus/pages/products.html", context)
+	# return render(request, "theme_lotus/pages/products.html", context)
 
 
 
