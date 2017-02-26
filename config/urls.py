@@ -27,8 +27,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
 
-    url(r'^products/$', ProductListView.as_view(), name='products'),
-    url(r'^products/(?P<pk>\d+)/$', ProductDetailView.as_view(), name='product_detail'),
+    url(r'^san-pham/$', ProductListView.as_view(), name='products'),
+    url(r'^san-pham/(?P<slug>\d+)/$', ProductDetailView.as_view(), name='product_detail'),
 
     url(r'^categories/$', CategoryListView.as_view(), name='categories'),
     url(r'^categories/(?P<slug>[\w-]+)/$', CategoryDetailView.as_view(), name='category_detail'),

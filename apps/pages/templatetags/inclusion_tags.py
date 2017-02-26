@@ -13,4 +13,8 @@ def left_nav():
     categories = Category.objects.filter(active=True)
     return {'categories':categories}
 
+@register.inclusion_tag('theme_lotus/pages/inclusion_tags/_latest_post.html')
+def latest_post():
+    return {}
+
 

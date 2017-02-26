@@ -1,24 +1,22 @@
 {% load staticfiles %}
-<div class="col-xs-12 col-sm-12 col-md-3 sidebar">
-    <!-- ================================== TOP NAVIGATION ================================== -->
-    <div class="side-menu animate-dropdown">
-        <div class="head"><i class="icon fa fa-bars"></i> Categories</div>
-        <nav class="yamm megamenu-horizontal">
-            <ul class="nav">
+<!-- ================================== TOP NAVIGATION ================================== -->
+<div class="side-menu animate-dropdown">
+    <div class="head"><i class="icon fa fa-bars"></i> Categories</div>
+    <nav class="yamm megamenu-horizontal">
+        <ul class="nav">
 
-                {% for category in categories %}
-                    <li class="dropdown menu-item"><a href="#" class="dropdown-toggle"
-                                                      data-toggle="dropdown"><i
-                        class="icon fa fa-futbol-o"></i>{{ category.title }}</a>
-                {% endfor %}
+            {% for category in categories %}
+                <li class="dropdown menu-item"><a href="#" class="dropdown-toggle"
+                                                  data-toggle="dropdown"><i
+                    class="icon fa fa-futbol-o"></i>{{ category.title }}</a>
+            {% endfor %}
 
-            </ul>
-            <!-- /.nav -->
-        </nav>
-        <!-- /.megamenu-horizontal -->
-    </div>
-    <!-- /.side-menu -->
-    <!-- ================================== TOP NAVIGATION : END ================================== -->
-    <div class="app-img outer-bottom-xs"><img alt="app" src="{% static "lotus/images/app-img.jpg" %}"/>
-    </div>
+        </ul>
+        <!-- /.nav -->
+    </nav>
+    <!-- /.megamenu-horizontal -->
+</div>
+<!-- /.side-menu -->
+<!-- ================================== TOP NAVIGATION : END ================================== -->
+<div class="app-img outer-bottom-xs"><img alt="app" src="{% static "lotus/images/app-img.jpg" %}"/>
 </div>

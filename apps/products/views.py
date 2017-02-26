@@ -71,11 +71,11 @@ class ProductListView(FilterMixin, ListView):
 
 class ProductDetailView(DetailView):
 	model = Product
-	template_name = "theme_default/products/product_detail.html"
+	template_name = "theme_lotus/products/product_detail.html"
 	def get_context_data(self, *args, **kwargs):
 		context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
 		instance = self.get_object()
-		context["related"] = sorted(Product.objects.get_related(instance)[:6], key= lambda x: random.random())
+		context["related"] = sorted(Product.objects.get_related(instance)[:8], key= lambda x: random.random())
 		return context
 
 

@@ -5,7 +5,9 @@
     <div class="body-content outer-top-xs" id="top-banner-and-menu">
         <div class="container">
             <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
                 {% left_nav %}
+                </div>
 
                 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                     <div id="hero">
@@ -22,11 +24,8 @@
                                                                                    class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop
                                             Now</a></div>
                                     </div>
-                                    <!-- /.caption -->
                                 </div>
-                                <!-- /.container-fluid -->
                             </div>
-                            <!-- /.item -->
 
                             <div class="item"
                                  style="background-image: url({% static "lotus/images/sliders/02.jpg" %});">
@@ -40,14 +39,10 @@
                                                                                    class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop
                                             Now</a></div>
                                     </div>
-                                    <!-- /.caption -->
                                 </div>
-                                <!-- /.container-fluid -->
                             </div>
-                            <!-- /.item -->
 
                         </div>
-                        <!-- /.owl-carousel -->
                     </div>
                     <div class="info-boxes wow fadeInUp">
                         <div class="info-boxes-inner">
@@ -62,7 +57,6 @@
                                         <h6 class="text">30 Days Money Back Guarantee</h6>
                                     </div>
                                 </div>
-                                <!-- .col -->
 
                                 <div class="hidden-md col-sm-4 col-lg-4">
                                     <div class="info-box">
@@ -74,7 +68,6 @@
                                         <h6 class="text">Shipping on orders over $99</h6>
                                     </div>
                                 </div>
-                                <!-- .col -->
 
                                 <div class="col-md-6 col-sm-4 col-lg-4">
                                     <div class="info-box">
@@ -86,11 +79,8 @@
                                         <h6 class="text">Extra $5 off on all items </h6>
                                     </div>
                                 </div>
-                                <!-- .col -->
                             </div>
-                            <!-- /.row -->
                         </div>
-                        <!-- /.info-boxes-inner -->
 
                     </div>
                 </div>
@@ -99,96 +89,48 @@
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
-
-
                     {% hot_products %}
-
-                    <div class="sidebar-widget outer-bottom-xs wow fadeInUp">
-                        <h3 class="section-title">tab widget</h3>
-                        <div class="" style="padding-left:0">
-                            <div class="tab-pane m-t-20" id="recent">
-                                <div class="blog-post inner-bottom-30">
-                                    <img class="img-responsive" src="{% static "lotus/images/blog-post/blog_big_03.jpg"%}" alt="">
-                                    <h4><a href="blog-details.html">Simple Blog Post</a></h4>
-                                    <span class="review">6 Comments</span>
-                                    <span class="date-time">5/06/16</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-
-                                </div>
-                                <div class="blog-post">
-                                    <img class="img-responsive" src="{% static "lotus/images/blog-post/blog_big_03.jpg"%}" alt="">
-                                    <h4><a href="blog-details.html">Simple Blog Post</a></h4>
-                                    <span class="review">6 Comments</span>
-                                    <span class="date-time">10/07/16</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-
-                                </div>
-                                <div class="blog-post">
-                                    <img class="img-responsive" src="{% static "lotus/images/blog-post/blog_big_03.jpg"%}" alt="">
-                                    <h4><a href="blog-details.html">Simple Blog Post</a></h4>
-                                    <span class="review">6 Comments</span>
-                                    <span class="date-time">10/07/16</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% latest_post %}
                 </div>
-
                 <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
 
                     {% for section in sections %}
                         {% if section.products.count %}
-                        <section class="section featured-product wow fadeInUp">
-                            <h3 class="section-title">{{ section.cat }}</h3>
-                            <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                            <section class="section featured-product wow fadeInUp">
+                                <h3 class="section-title">{{ section.cat }}</h3>
+                                <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 
-                                {% for product in section.products %}
-                                    <div class="item item-carousel">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image"><a href="detail.html"><img
-                                                            src="{{ product.productimage_set.first.image_thumb5.url }}" alt=""></a></div>
-                                                    <!-- /.image -->
-
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="detail.html">{{ product.title }}</a>
-                                                    </h3>
-                                                    <div class="rating rateit-small"></div>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        {{ product.get_html_price }}
+                                    {% for product in section.products %}
+                                        <div class="item item-carousel">
+                                            <div class="products">
+                                                <div class="product">
+                                                    <div class="product-image">
+                                                        <div class="image"><a href="{{ product.get_absolute_url }}"><img
+                                                                src="{{ product.productimage_set.first.image_thumb5.url }}"
+                                                                alt=""></a></div>
+                                                        <div class="tag hot"><span>hot</span></div>
                                                     </div>
-                                                    <!-- /.product-price -->
 
+                                                    <div class="product-info text-left">
+                                                        <h3 class="name"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                                                        </h3>
+                                                        <div class="rating rateit-small"></div>
+                                                        <div class="description"></div>
+                                                        <div class="product-price">
+                                                            {{ product.get_html_price }}
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <!-- /.product-info -->
-
-                                                <!-- /.cart -->
                                             </div>
-                                            <!-- /.product -->
-
                                         </div>
-                                        <!-- /.products -->
-                                    </div>
-                                {% endfor %}
-                            </div>
-                            <!-- /.home-owl-carousel -->
-                        </section>
+                                    {% endfor %}
+                                </div>
+                            </section>
                         {% endif %}
                     {% endfor %}
 
 
-
-
                 </div>
-
             </div>
 
         </div>
