@@ -1,22 +1,15 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.http import Http404
 from django.shortcuts import render, redirect,reverse
 from django.views.generic.edit import CreateView, UpdateView,View,TemplateResponseMixin,ContextMixin
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import ModelFormMixin
 from  django.views.generic.list import ListView
-from apps.accounts.models import UserAddress
-
 import braintree
-
 from django.conf import settings
-
 from .forms import UserAddressForm
 from .mixins import CartOrderMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import  UserCheckout, Order,OrderAddress
-from apps.carts.models import Cart
 
 User = get_user_model()
 
@@ -36,8 +29,11 @@ class OrderList(LoginRequiredMixin, ListView):
     template_name = "theme_default/orders/order_list.html"
 
     def get_queryset(self):
-        user_checkout = UserCheckout.objects.get(user=self.request.user)
-        return super(OrderList, self).get_queryset().filter(user_checkout=user_checkout)
+        try:
+            user_checkout = UserCheckout.objects.get(user=self.request.user)
+            return super(OrderList, self).get_queryset().filter(user_checkout=user_checkout)
+        except:
+            return []
 
 
 class CheckoutView(CartOrderMixin, View):
@@ -48,9 +44,9 @@ class CheckoutView(CartOrderMixin, View):
         context = {}
         if self.request.user.is_authenticated():
             user_can_continue = True
+            context['form'] = UserAddressForm(instance=self.request.user.useraddress)
         context["order"] = self.get_order()
         context["user_can_continue"] = user_can_continue
-        context['form'] = UserAddressForm(instance=self.request.user.useraddress)
         return context
     def update_order_address(self):
         order = self.get_order()
@@ -87,19 +83,23 @@ class CheckoutFinalView(LoginRequiredMixin,CartOrderMixin, View):
 
     def get_context(self):
         context = {}
+        user_checkout = UserCheckout.objects.get(user=self.request.user)
+        context["client_token"] = user_checkout.get_client_token()
+        context["order"] = self.get_order()
+        return context
+
+    def update_user_checkout(self):
         user_checkout, created = UserCheckout.objects.get_or_create(user=self.request.user)
         user_checkout.save()
         order = self.get_order()
         order.user_checkout = user_checkout
         order.save()
-        context["client_token"] = user_checkout.get_client_token()
-        context["order"] = self.get_order()
-        return context
 
     def get(self, request, *args, **kwargs):
         order = self.get_order()
         if not order.order_address:
             return redirect('checkout')
+        self.update_user_checkout()
         context= self.get_context()
         return render(request,self.template_name,context)
 
@@ -121,7 +121,7 @@ class CheckoutFinalView(LoginRequiredMixin,CartOrderMixin, View):
             })
             if result.is_success:
                 # result.transaction.id to order
-                order.mark_completed(order_id=result.transaction.id)
+                order.mark_pending(order_id=result.transaction.id)
                 messages.success(request, "Thank you for your order.")
                 del request.session["cart_id"]
                 del request.session["order_id"]
@@ -129,6 +129,11 @@ class CheckoutFinalView(LoginRequiredMixin,CartOrderMixin, View):
                 # messages.success(request, "There was a problem with your order.")
                 messages.success(request, "%s" % (result.message))
                 return redirect("checkout")
+        else:
+            order.mark_pending()
+            messages.success(request, "Thank you for your order.")
+            del request.session["cart_id"]
+            del request.session["order_id"]
 
         return redirect("order_detail", pk=order.pk)
 

@@ -3,13 +3,11 @@ from django.db.models import Q
 from django.http import Http404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 import random
 from .mixins import FilterMixin
 from .filters import ProductFilter
 from .forms import  ProductFilterForm
-
 from .models import Product, Category
 
 

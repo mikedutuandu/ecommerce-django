@@ -53,10 +53,15 @@ def update_braintree_id(sender, instance, *args, **kwargs):
 post_save.connect(update_braintree_id, sender=UserCheckout)
 
 ORDER_STATUS_CHOICES = (
-	('created', 'Created'),
-	('paid', 'Paid'),
-	('shipped', 'Shipped'),
-	('refunded', 'Refunded'),
+
+	('draft', 'Draft'),
+	('pending', 'Pending'),
+	('completed', 'Completed'),
+)
+PAYMENT_METHOD_CHOICES = (
+
+	('order', 'Order'),
+	('braintree', 'Braintree')
 )
 
 class OrderAddress(models.Model):
@@ -76,13 +81,14 @@ class OrderAddress(models.Model):
 		return "%s, %s, %s %s" %(self.street, self.district, self.wards, self.city)
 
 class Order(models.Model):
-	status = models.CharField(max_length=120, choices=ORDER_STATUS_CHOICES, default='created')
+	status = models.CharField(max_length=120, choices=ORDER_STATUS_CHOICES, default='draft')
 	user_checkout = models.ForeignKey(UserCheckout, null=True)
 	cart = models.ForeignKey(Cart)
 	order_address = models.OneToOneField(OrderAddress,null=True)
 	shipping_total_price = models.DecimalField(max_digits=50, decimal_places=2, default=5.99)
 	order_total = models.DecimalField(max_digits=50, decimal_places=2, )
 	order_id = models.CharField(max_length=20, null=True, blank=True)
+	payment_method =models.CharField(max_length=120, choices=PAYMENT_METHOD_CHOICES, default='order')
 
 	def __unicode__(self):
 		return "Order_id: %s, Cart_id: %s"%(self.id, self.cart.id)
@@ -93,15 +99,16 @@ class Order(models.Model):
 	def get_absolute_url(self):
 		return reverse("order_detail", kwargs={"pk": self.pk})
 
-	def mark_completed(self, order_id=None):
-		self.status = "paid"
+	def mark_pending(self, order_id=None):
+		self.status = "pending"
 		if order_id and not self.order_id:
 			self.order_id = order_id
+			self.payment_method = "braintree"
 		self.save()
 
 	@property
 	def is_complete(self):
-		if self.status == "paid":
+		if self.status == "completed":
 			return True
 		return False
 
