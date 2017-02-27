@@ -40,7 +40,7 @@ class ProductListView(FilterMixin, ListView):
 	model = Product
 	queryset = Product.objects.all()
 	filter_class = ProductFilter
-	template_name = "theme_default/products/product_list.html"
+	template_name = "theme_lotus/products/product_list.html"
 
 
 	def get_context_data(self, *args, **kwargs):

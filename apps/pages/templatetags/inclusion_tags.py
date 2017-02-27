@@ -16,5 +16,12 @@ def left_nav():
 @register.inclusion_tag('theme_lotus/pages/inclusion_tags/_latest_post.html')
 def latest_post():
     return {}
+@register.inclusion_tag('theme_lotus/pages/inclusion_tags/_head_card.html')
+def head_card():
+    return {}
+@register.inclusion_tag('theme_lotus/pages/inclusion_tags/_head_search.html')
+def head_search():
+    categories = Category.objects.filter(active=True)
+    return {'categories':categories}
 
 

@@ -19,4 +19,7 @@ apps/orders/migrations/
 apps/products/migrations/
 apps/accounts/migrations/
 
+apps/pages/templatetags/__pycache__/
+
+
 
