@@ -64,6 +64,13 @@ class Product(models.Model):
         else:
             html_text = "<span class='price'>%s</span>" % (self.price)
         return mark_safe(html_text)
+    def get_html_price_on_detail(self):
+        if self.sale_price is not None:
+            html_text = "<span class='price'>%s</span> <span class='price-strike'>%s</span>" % (
+            self.sale_price, self.price)
+        else:
+            html_text = "<span class='price'>%s</span>" % (self.price)
+        return mark_safe(html_text)
 
     def add_to_cart(self):
         return "%s?item=%s&qty=1" % (reverse("cart"), self.id)
