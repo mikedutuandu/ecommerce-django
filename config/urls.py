@@ -3,7 +3,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from apps.products.views import ProductDetailView, ProductListView, CategoryListView, \
+from apps.products.views import ProductDetailView, ProductListView, \
     CategoryDetailView
 
 from apps.carts.views import (
@@ -30,8 +30,7 @@ urlpatterns = [
     url(r'^san-pham/$', ProductListView.as_view(), name='products'),
     url(r'^san-pham/(?P<slug>\d+)/$', ProductDetailView.as_view(), name='product_detail'),
 
-    url(r'^categories/$', CategoryListView.as_view(), name='categories'),
-    url(r'^categories/(?P<slug>[\w-]+)/$', CategoryDetailView.as_view(), name='category_detail'),
+    url(r'^loai-san-pham/(?P<slug>[\w-]+)/$', CategoryDetailView.as_view(), name='category_detail'),
 
     url(r'^orders/$', OrderList.as_view(), name='orders'),
     url(r'^orders/(?P<pk>\d+)/$', OrderDetail.as_view(), name='order_detail'),

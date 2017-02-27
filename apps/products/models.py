@@ -22,6 +22,7 @@ class ProductManager(models.Manager):
 class Product(models.Model):
     title = models.CharField(max_length=120)
     slug = models.SlugField(unique=True)
+    short_description = models.TextField(blank=True,null=True)
     description = models.TextField(blank=True, null=True)
     root_price = models.DecimalField(decimal_places=2, max_digits=20)
     price = models.DecimalField(decimal_places=2, max_digits=20)

@@ -20,8 +20,8 @@ def latest_post():
 def head_card():
     return {}
 @register.inclusion_tag('theme_lotus/pages/inclusion_tags/_head_search.html')
-def head_search():
+def head_search(request):
     categories = Category.objects.filter(active=True)
-    return {'categories':categories}
+    return {'categories':categories,'cat':request.GET.get('cat',''),'q':request.GET.get('q','')}
 
 

@@ -16,16 +16,9 @@ from .models import Product, Category
 
 
 
-
-class CategoryListView(ListView):
-	model = Category
-	queryset = Category.objects.all()
-	template_name = "theme_default/products/product_list.html"
-
-
 class CategoryDetailView(DetailView):
 	model = Category
-	template_name = "theme_default/products/category_detail.html"
+	template_name = "theme_lotus/products/product_list.html"
 
 	def get_context_data(self, *args, **kwargs):
 		context = super(CategoryDetailView, self).get_context_data(*args, **kwargs)
@@ -33,7 +26,7 @@ class CategoryDetailView(DetailView):
 		product_set = obj.product_set.all()
 		default_products = obj.default_category.all()
 		products = ( product_set | default_products ).distinct()
-		context["products"] = products
+		context["object_list"] = products
 		return context
 
 class ProductListView(FilterMixin, ListView):
