@@ -70,33 +70,34 @@
                                 <div class="category-product">
                                     <div class="row">
                                         {% for product in object_list %}
-                                        <div class="col-sm-6 col-md-4 wow fadeInUp">
-                                            <div class="products">
-                                                <div class="product">
-                                                    <div class="product-image">
-                                                        <div class="image"><a href="{{ product.get_absolute_url }}"><img
-                                                                src="{{ product.productimage_set.first.image_thumb7.url }}"
-                                                                alt=""></a></div>
-                                                        <!-- /.image -->
+                                            <div class="col-sm-6 col-md-4 wow fadeInUp">
+                                                <div class="products">
+                                                    <div class="product">
+                                                        <div class="product-image">
+                                                            <div class="image"><a href="{{ product.get_absolute_url }}"><img
+                                                                    src="{{ product.productimage_set.first.image_thumb7.url }}"
+                                                                    alt=""></a></div>
+                                                            <!-- /.image -->
 
-                                                        <div class="tag sale"><span>sale</span></div>
-                                                    </div>
-                                                    <!-- /.product-image -->
-
-                                                    <div class="product-info text-left">
-                                                        <h3 class="name"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="description"></div>
-                                                        <div class="product-price">
-                                                                {{ product.get_html_price }}
+                                                            <div class="tag sale"><span>sale</span></div>
                                                         </div>
+                                                        <!-- /.product-image -->
 
+                                                        <div class="product-info text-left">
+                                                            <h3 class="name"><a
+                                                                    href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                                                            </h3>
+                                                            <div class="rating rateit-small"></div>
+                                                            <div class="description"></div>
+                                                            <div class="product-price">
+                                                                {{ product.get_html_price }}
+                                                            </div>
+
+                                                        </div>
                                                     </div>
-                                                </div>
 
+                                                </div>
                                             </div>
-                                        </div>
                                         {% endfor %}
 
                                     </div>
@@ -107,81 +108,89 @@
                             <div class="tab-pane " id="list-container">
                                 <div class="category-product">
 
-                                         {% for product in object_list %}
-                                    <div class="category-product-inner wow fadeInUp">
-                                        <div class="products">
-                                            <div class="product-list product">
-                                                <div class="row product-list-row">
-                                                    <div class="col col-sm-4 col-lg-4">
-                                                        <div class="product-image">
-                                                            <div class="image"><img src="{{ product.productimage_set.first.image_thumb7.url }}"
-                                                                                    alt=""></div>
-                                                        </div>
-                                                        <!-- /.product-image -->
-                                                    </div>
-                                                    <!-- /.col -->
-                                                    <div class="col col-sm-8 col-lg-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price"><span
-                                                                    class="price"> $450.99 </span> <span
-                                                                    class="price-before-discount">$ 800</span></div>
-                                                            <!-- /.product-price -->
-                                                            <div class="description m-t-10">Suspendisse posuere arcu
-                                                                diam, id accumsan eros pharetra ac. Nulla enim risus,
-                                                                facilisis bibendum gravida eget, lacinia id purus.
-                                                                Suspendisse posuere arcu diam, id accumsan eros pharetra
-                                                                ac. Nulla enim risus, facilisis bibendum gravida eget.
+                                    {% for product in object_list %}
+                                        <div class="category-product-inner wow fadeInUp">
+                                            <div class="products">
+                                                <div class="product-list product">
+                                                    <div class="row product-list-row">
+                                                        <div class="col col-sm-4 col-lg-4">
+                                                            <div class="product-image">
+                                                                <div class="image"><img
+                                                                        src="{{ product.productimage_set.first.image_thumb7.url }}"
+                                                                        alt=""></div>
                                                             </div>
-                                                            <div class="cart clearfix animate-effect">
-                                                                <div class="action">
-                                                                    <ul class="list-unstyled">
-                                                                        <li class="add-cart-button btn-group">
-                                                                            <button class="btn btn-primary icon"
-                                                                                    data-toggle="dropdown"
-                                                                                    type="button"><i
-                                                                                    class="fa fa-shopping-cart"></i>
-                                                                            </button>
-                                                                            <button class="btn btn-primary cart-btn"
-                                                                                    type="button">Add to cart
-                                                                            </button>
-                                                                        </li>
-                                                                    </ul>
+                                                            <!-- /.product-image -->
+                                                        </div>
+                                                        <!-- /.col -->
+                                                        <div class="col col-sm-8 col-lg-8">
+                                                            <div class="product-info">
+                                                                <h3 class="name"><a
+                                                                        href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                                                                </h3>
+                                                                <div class="rating rateit-small"></div>
+                                                                <div class="product-price"><span
+                                                                        class="price"> $450.99 </span> <span
+                                                                        class="price-before-discount">$ 800</span></div>
+                                                                <!-- /.product-price -->
+                                                                <div class="description m-t-10">Suspendisse posuere arcu
+                                                                    diam, id accumsan eros pharetra ac. Nulla enim
+                                                                    risus,
+                                                                    facilisis bibendum gravida eget, lacinia id purus.
+                                                                    Suspendisse posuere arcu diam, id accumsan eros
+                                                                    pharetra
+                                                                    ac. Nulla enim risus, facilisis bibendum gravida
+                                                                    eget.
                                                                 </div>
-                                                                <!-- /.action -->
+                                                                <div class="cart clearfix animate-effect">
+                                                                    <div class="action">
+                                                                        <ul class="list-unstyled">
+                                                                            <li class="add-cart-button btn-group">
+                                                                                <button class="btn btn-primary icon"
+                                                                                        data-toggle="dropdown"
+                                                                                        type="button"><i
+                                                                                        class="fa fa-shopping-cart"></i>
+                                                                                </button>
+                                                                                <button class="btn btn-primary cart-btn"
+                                                                                        type="button">Add to cart
+                                                                                </button>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <!-- /.action -->
+                                                                </div>
+                                                                <!-- /.cart -->
+
                                                             </div>
-                                                            <!-- /.cart -->
-
+                                                            <!-- /.product-info -->
                                                         </div>
-                                                        <!-- /.product-info -->
+                                                        <!-- /.col -->
                                                     </div>
-                                                    <!-- /.col -->
+                                                    <!-- /.product-list-row -->
+                                                    <div class="tag sale"><span>sale</span></div>
                                                 </div>
-                                                <!-- /.product-list-row -->
-                                                <div class="tag sale"><span>sale</span></div>
+                                                <!-- /.product-list -->
                                             </div>
-                                            <!-- /.product-list -->
+                                            <!-- /.products -->
                                         </div>
-                                        <!-- /.products -->
-                                    </div>
 
-                                        {% endfor %}
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
                         <!-- /.tab-content -->
                         <div class="clearfix filters-container">
-                            {% show_pages %}
+                            {% get_pages %}
                             <div class="text-center">
                                 <div class="pagination-container">
                                     <ul class="list-inline list-unstyled">
-                                        <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li class="active"><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                                        <li class="prev"><a href="{{ pages.previous.path }}"><i
+                                                class="fa fa-angle-left"></i></a></li>
+                                        {% for page in pages %}
+                                            <li {% if page.is_current %}class="active" {% endif %}><a
+                                                    href="{{ page.path }}">{{ page.number }}</a></li>
+                                        {% endfor %}
+                                        <li class="next"><a href="{{ pages.next.path }}"><i
+                                                class="fa fa-angle-right"></i></a></li>
                                     </ul>
                                     <!-- /.list-inline -->
                                 </div>
