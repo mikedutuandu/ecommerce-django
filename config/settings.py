@@ -240,7 +240,9 @@ BRAINTREE_MERCHANT_ID = "n84nynknvzz3j3sz"
 BRAINTREE_ENVIRONEMNT = "Sandbox"
 
 #paging
-EL_PAGINATION_PER_PAGE = 10
+EL_PAGINATION_PER_PAGE = 1
+EL_PAGINATION_NEXT_LABEL = '<i class="fa fa-angle-right"></i>'
+EL_PAGINATION_PREVIOUS_LABEL = '<i class="fa fa-angle-left"></i>'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (

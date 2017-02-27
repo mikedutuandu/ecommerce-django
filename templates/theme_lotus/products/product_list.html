@@ -1,6 +1,8 @@
 {% extends "theme_lotus/layout.html" %}
 {% load staticfiles %}
 {% load inclusion_tags %}
+{% load el_pagination_tags %}
+
 {% block breakcrumb %}
     <div class="breadcrumb">
         <div class="container">
@@ -48,7 +50,7 @@
 
                     <div class="clearfix filters-container m-t-10">
                         <div class="row">
-                            <div class="col col-sm-6 col-md-6">
+                            <div class="col col-sm-12 col-md-12">
                                 <div class="filter-tabs">
                                     <ul id="filter-tabs" class="nav nav-tabs nav-tab-box nav-tab-fa-icon">
                                         <li class="active"><a data-toggle="tab" href="#grid-container"><i
@@ -57,28 +59,12 @@
                                                 class="icon fa fa-th-list"></i>List</a></li>
                                     </ul>
                                 </div>
-                                <!-- /.filter-tabs -->
+
                             </div>
-                            <!-- /.col -->
-                            <!-- /.col -->
-                            <div class="col col-sm-6 col-md-6 text-right">
-                                <div class="pagination-container">
-                                    <ul class="list-inline list-unstyled">
-                                        <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li class="active"><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                                    </ul>
-                                    <!-- /.list-inline -->
-                                </div>
-                                <!-- /.pagination-container --> </div>
-                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
                     </div>
                     <div class="search-result-container ">
+                        {% paginate object_list %}
                         <div id="myTabContent" class="tab-content category-list">
                             <div class="tab-pane active " id="grid-container">
                                 <div class="category-product">
@@ -186,7 +172,8 @@
                         </div>
                         <!-- /.tab-content -->
                         <div class="clearfix filters-container">
-                            <div class="text-right">
+                            {% show_pages %}
+                            <div class="text-center">
                                 <div class="pagination-container">
                                     <ul class="list-inline list-unstyled">
                                         <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
