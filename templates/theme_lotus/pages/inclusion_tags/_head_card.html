@@ -1,40 +1,68 @@
-        <div class="col-xs-12 col-sm-12 col-md-3 animate-dropdown top-cart-row">
-          <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+<div class="col-xs-12 col-sm-12 col-md-3 animate-dropdown top-cart-row">
+    <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
 
-          <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
-            <div class="items-cart-inner">
-              <div class="top-cart">  </div>
+    <div class="dropdown dropdown-cart"><a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+        <div class="items-cart-inner">
+            <div class="top-cart"></div>
 
-              <div class="total-price-basket"> <span class="lbl">2 items /</span> <span class="total-price"> <span class="sign">$</span><span class="value">600.00</span> </span> </div>
+            <div class="total-price-basket">
+                {% if cart %}
+                <span class="lbl">{{ cart.cartitem_set.count }} Sản phẩm/</span>
+                <span class="total-price">
+                      <span class="value">{{ cart.subtotal }}</span> </span>
+                      <span class="sign">VNĐ</span>
+                {% else %}
+                                <span class="lbl">0 Sản phẩm/</span>
+                <span class="total-price">
+                      <span class="value">0</span> </span>
+                      <span class="sign">VNĐ</span>
+                {% endif %}
             </div>
-            </a>
+        </div>
+    </a>
+
+        {% if cart %}
             <ul class="dropdown-menu">
-              <li>
-                <div class="cart-item product-summary">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <div class="image"> <a href="detail.html"><img src="assets/images/cart.jpg" alt=""></a> </div>
+                <li>
+                    <div class="cart-item product-summary">
+                        {% for cart_item in cart.cartitem_set.all %}
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="image"><a href="{{ cart_item.item.get_absolute_url }}"><img src="{{ cart_item.item.productimage_set.first.image_thumb1.url }}" alt=""> x {{ cart_item.quantity }}</a>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <h3 class="name"><a href="{{ cart_item.item.get_absolute_url }}">{{ cart_item.item.title }}</a></h3>
+                                <div class="price">{{ cart_item.line_item_total }} VNĐ</div>
+                            </div>
+                            <div class="col-xs-1 action"><a href="#"><i class="fa fa-trash"></i></a></div>
+                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-xs-7">
-                      <h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
-                      <div class="price">$600.00</div>
-                    </div>
-                    <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
-                  </div>
-                </div>
-                <!-- /.cart-item -->
-                <div class="clearfix"></div>
-                <hr>
-                <div class="clearfix cart-total">
-                  <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>$600.00</span> </div>
-                  <div class="clearfix"></div>
-                  <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
-                <!-- /.cart-total-->
+                    <!-- /.cart-item -->
+                    <div class="clearfix"></div>
+                    <hr>
+                    <div class="clearfix cart-total">
+                        <div class="pull-right"><span class="text">Sub Total :</span><span class='price'>{{ cart.subtotal }} VNĐ</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <a href="{% url "checkout" %}" class="btn btn-upper btn-primary btn-block m-t-20">Thanh toán</a></div>
+                    <!-- /.cart-total-->
 
-              </li>
+                </li>
             </ul>
-            <!-- /.dropdown-menu-->
-          </div>
-          <!-- /.dropdown-cart -->
 
-          <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= --> </div>
+        {% else %}
+            <ul class="dropdown-menu">
+                <li>
+                    Không có sản phẩm nào trong giỏ hàng
+
+                </li>
+            </ul>
+        {% endif %}
+        <!-- /.dropdown-menu-->
+    </div>
+    <!-- /.dropdown-cart -->
+
+    <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= -->
+</div>
