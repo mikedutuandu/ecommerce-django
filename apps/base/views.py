@@ -7,7 +7,7 @@ from .forms import ContactForm
 
 
 class HomeView(View):
-    template_name = "theme_lotus/pages/home.html"
+    template_name = "theme_lotus/base/home.html"
     def get(self, request, *args, **kwargs):
         context = {}
         context['sections'] = []
@@ -51,4 +51,4 @@ def contact(request):
         "title": title,
         "title_align_center": title_align_center,
     }
-    return render(request, "theme_default/pages/forms.html", context)
+    return render(request, "theme_default/base/forms.html", context)

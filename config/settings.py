@@ -71,7 +71,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.google',
     #my apps
     'apps.carts',
-    'apps.pages',
+    'apps.base',
     'apps.orders',
     'apps.products',
     'apps.accounts',
