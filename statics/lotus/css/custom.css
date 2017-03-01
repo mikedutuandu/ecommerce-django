@@ -37,3 +37,6 @@
 .body-content .social-sign-in .twitter-sign-in a:hover {
     background-color: #22aadf !important;
 }
+.shopping-cart .shopping-cart-table {
+     margin-bottom: 0px !important;
+}
