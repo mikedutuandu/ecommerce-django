@@ -29,7 +29,7 @@ class ItemCountView(View):
 
 class CartView(SingleObjectMixin, View):
 	model = Cart
-	template_name = "theme_default/carts/view.html"
+	template_name = "theme_lotus/carts/view.html"
 
 	def get_object(self, *args, **kwargs):
 		self.request.session.set_expiry(0)

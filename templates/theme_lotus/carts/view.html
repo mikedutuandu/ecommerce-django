@@ -1,0 +1,123 @@
+{% extends "theme_lotus/layout.html" %}
+{% load staticfiles %}
+{% load inclusion_tags %}
+{% block breakcrumb %}
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Clothing</a></li>
+                    <li class='active'>Floral Print Buttoned</li>
+                </ul>
+            </div><!-- /.breadcrumb-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb -->
+{% endblock breakcrumb %}
+{% block content %}
+
+    <div class="body-content outer-top-xs">
+        <div class="container">
+            <div class="">
+                <div class="shopping-cart">
+                    <div class="shopping-cart-table ">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="cart-romove item">Remove</th>
+                                    <th class="cart-description item">Image</th>
+                                    <th class="cart-product-name item">Product Name</th>
+                                    <th class="cart-qty item">Quantity</th>
+                                    <th class="cart-sub-total item">Subtotal</th>
+                                    <th class="cart-total last-item">Grandtotal</th>
+                                </tr>
+                                </thead><!-- /thead -->
+                                <tfoot>
+                                <tr>
+                                    <td colspan="7">
+                                        <div class="shopping-cart-btn">
+							<span class="">
+								<a href="{% url 'products' %}" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
+							</span>
+                                        </div><!-- /.shopping-cart-btn -->
+                                    </td>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+
+                                {% for cart_item in object.cartitem_set.all %}
+                                    <tr>
+                                        <td class="romove-item"><a href="{{ cart_item.remove }}" title="cancel"
+                                                                   class="icon"><i
+                                                class="fa fa-trash-o"></i></a></td>
+                                        <td class="cart-image">
+                                            <a class="entry-thumbnail" href="{{ cart_item.item.get_absolute_url }}">
+                                                <img src="{{ cart_item.item.productimage_set.first.image_thumb4.url }}"
+                                                     alt="">
+                                            </a>
+                                        </td>
+                                        <td class="cart-product-name-info">
+                                            <h4 class='cart-product-description'><a
+                                                    href="{{ cart_item.item.get_absolute_url }}">{{ cart_item.item.title }}</a>
+                                            </h4>
+                                        </td>
+
+                                        <td class="cart-product-quantity">
+                                            <div class="quant-input">
+                                                <div class="arrows">
+                                                    <div class="arrow plus gradient"><span class="ir"><i
+                                                            class="icon fa fa-sort-asc"></i></span></div>
+                                                    <div class="arrow minus gradient"><span class="ir"><i
+                                                            class="icon fa fa-sort-desc"></i></span></div>
+                                                </div>
+                                                <input type="text" value="{{ cart_item.quantity }}">
+                                            </div>
+                                        </td>
+                                        <td class="cart-product-sub-total"><span
+                                                class="cart-sub-total-price">{{ cart_item.item.get_price }} VNĐ</span>
+                                        </td>
+                                        <td class="cart-product-grand-total"><span
+                                                class="cart-grand-total-price">{{ cart_item.line_item_total }} VNĐ</span>
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+
+                                </tbody><!-- /tbody -->
+                            </table><!-- /table -->
+                        </div>
+                    </div><!-- /.shopping-cart-table -->
+
+
+                    <div class="col-md-offset-8 col-md-4 col-sm-12 cart-shopping-total">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <div class="cart-sub-total">
+                                        Subtotal<span class="inner-left-md">{{ object.subtotal }} VNĐ</span>
+                                    </div>
+                                    <div class="cart-grand-total">
+                                        Grand Total<span class="inner-left-md">{{ object.total }} VNĐ</span>
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead><!-- /thead -->
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="cart-checkout-btn pull-right">
+                                        <button type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody><!-- /tbody -->
+                        </table><!-- /table -->
+                    </div><!-- /.cart-shopping-total -->            </div><!-- /.shopping-cart -->
+            </div> <!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.body-content -->
+
+{% endblock content %}
