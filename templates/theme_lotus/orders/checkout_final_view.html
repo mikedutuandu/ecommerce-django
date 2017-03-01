@@ -1,0 +1,96 @@
+{% extends "theme_lotus/layout.html" %}
+{% load staticfiles %}
+{% load inclusion_tags %}
+{% block breakcrumb %}
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Clothing</a></li>
+                    <li class='active'>Floral Print Buttoned</li>
+                </ul>
+            </div><!-- /.breadcrumb-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb -->
+{% endblock breakcrumb %}
+{% block content %}
+
+    <div class="body-content">
+        <div class="container">
+            <div class="checkout-box ">
+                <div class="row">
+
+                   <div class="col-md-8">
+                        <div class="panel-group checkout-steps" id="accordion">
+                            <!-- checkout-step-01  -->
+                            <div class="panel panel-default checkout-step-01">
+
+                                <!-- panel-heading -->
+                                <div class="panel-heading">
+                                    <h4 class="unicase-checkout-title">
+                                        <a data-toggle="collapse" class="" data-parent="#accordion" href="#collapseOne">
+                                            <span>+</span> Đặt hàng
+                                        </a>
+                                    </h4>
+                                </div>
+                                <!-- panel-heading -->
+
+                                <div id="collapseOne" class="panel-collapse collapse in">
+
+                                    <!-- panel-body  -->
+                                    <div class="panel-body">
+
+                                        <div class="row">
+
+                                            <!-- already-registered-login -->
+                                            <div class="col-md-12 col-sm-12 already-registered-login">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                                <form class="register-form" method="POST" role="form">
+                                                     {% csrf_token %}
+
+                                                    <button type="submit"
+                                                            class="btn-upper btn btn-primary checkout-page-button">Đặt hàng
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <!-- already-registered-login -->
+
+                                        </div>
+                                    </div>
+                                    <!-- panel-body  -->
+
+                                </div><!-- row -->
+                            </div>
+
+
+                        </div><!-- /.checkout-steps -->
+                    </div>
+
+                    <div class="col-md-4">
+                        <!-- checkout-progress-sidebar -->
+                        <div class="checkout-progress-sidebar ">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
+                                    </div>
+                                    <div class="">
+                                        <ul class="nav nav-checkout-progress list-unstyled">
+                                            <li><a href="#">Billing Address</a></li>
+                                            <li><a href="#">Shipping Address</a></li>
+                                            <li><a href="#">Shipping Method</a></li>
+                                            <li><a href="#">Payment Method</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- checkout-progress-sidebar -->                </div>
+                </div><!-- /.row -->
+            </div><!-- /.checkout-box -->
+
+        </div><!-- /.container -->
+    </div><!-- /.body-content -->
+
+{% endblock content %}

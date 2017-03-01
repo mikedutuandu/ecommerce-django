@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect,reverse
 from django.views.generic.edit import CreateView, UpdateView,View,TemplateResponseMixin,ContextMixin
 from django.views.generic.detail import DetailView
 from  django.views.generic.list import ListView
+from  django.views.generic.base import TemplateView
 import braintree
 from django.conf import settings
 from .forms import UserAddressForm
@@ -37,7 +38,7 @@ class OrderList(LoginRequiredMixin, ListView):
 
 
 class CheckoutView(CartOrderMixin, View):
-    template_name = "theme_default/carts/checkout_view.html"
+    template_name = "theme_lotus/orders/checkout_view.html"
 
     def get_context(self):
         user_can_continue = False
@@ -79,7 +80,7 @@ class CheckoutView(CartOrderMixin, View):
 
 
 class CheckoutFinalView(LoginRequiredMixin,CartOrderMixin, View):
-    template_name = "theme_default/carts/checkout_final_view.html"
+    template_name = "theme_lotus/orders/checkout_final_view.html"
 
     def get_context(self):
         context = {}
@@ -135,8 +136,10 @@ class CheckoutFinalView(LoginRequiredMixin,CartOrderMixin, View):
             del request.session["cart_id"]
             del request.session["order_id"]
 
-        return redirect("order_detail", pk=order.pk)
+        return redirect("checkout_success")
 
+class CheckoutSuccessView(TemplateView):
+    template_name = "theme_lotus/orders/checkout_success_view.html"
 
 
 

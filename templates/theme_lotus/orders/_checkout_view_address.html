@@ -1,0 +1,50 @@
+<div class="col-md-8">
+                        <div class="panel-group checkout-steps" id="accordion">
+                            <!-- checkout-step-01  -->
+                            <div class="panel panel-default checkout-step-01">
+
+                                <!-- panel-heading -->
+                                <div class="panel-heading">
+                                    <h4 class="unicase-checkout-title">
+                                        <a data-toggle="collapse" class="" data-parent="#accordion" href="#collapseOne">
+                                            <span>+</span> Địa chỉ giao hàng
+                                        </a>
+                                    </h4>
+                                </div>
+                                <!-- panel-heading -->
+
+                                <div id="collapseOne" class="panel-collapse collapse in">
+
+                                    <!-- panel-body  -->
+                                    <div class="panel-body">
+                                        <div class="row">
+
+                                            <!-- already-registered-login -->
+                                            <div class="col-md-12 col-sm-12 already-registered-login">
+                                                <form class="register-form" method="POST" role="form">
+                                                     {% csrf_token %}
+
+
+                                                    {% for field in form %}
+                                                            <div class="form-group">
+                                                                {{ field.errors }}
+                                                                {{ field.label_tag }}
+                                                                {{ field }}
+                                                            </div>
+                                                        {% endfor %}
+                                                    <button type="submit"
+                                                            class="btn-upper btn btn-primary checkout-page-button">Giao đến địa chỉ này                                                    </button>
+                                                </form>
+                                            </div>
+                                            <!-- already-registered-login -->
+
+                                        </div>
+                                    </div>
+                                    <!-- panel-body  -->
+
+                                </div><!-- row -->
+                            </div>
+
+
+                        </div><!-- /.checkout-steps -->
+                    </div>

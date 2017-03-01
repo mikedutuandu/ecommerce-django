@@ -25,12 +25,12 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th class="cart-romove item">Remove</th>
-                                    <th class="cart-description item">Image</th>
-                                    <th class="cart-product-name item">Product Name</th>
-                                    <th class="cart-qty item">Quantity</th>
-                                    <th class="cart-sub-total item">Subtotal</th>
-                                    <th class="cart-total last-item">Grandtotal</th>
+                                    <th class="cart-romove item">Xoá</th>
+                                    <th class="cart-description item">Hình sản phẩm</th>
+                                    <th class="cart-product-name item">Tên sản phẩm</th>
+                                    <th class="cart-qty item">Số lượng</th>
+                                    <th class="cart-sub-total item">Giá 1 sản phẩm</th>
+                                    <th class="cart-total last-item">Tổng tiền</th>
                                 </tr>
                                 </thead><!-- /thead -->
                                 <tfoot>
@@ -38,7 +38,7 @@
                                     <td colspan="7">
                                         <div class="shopping-cart-btn">
 							<span class="">
-								<a href="{% url 'products' %}" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
+								<a href="{% url 'products' %}" class="btn btn-upper btn-primary outer-left-xs">TIẾP TỤC MUA</a>
 							</span>
                                         </div><!-- /.shopping-cart-btn -->
                                     </td>
@@ -96,10 +96,13 @@
                             <tr>
                                 <th>
                                     <div class="cart-sub-total">
-                                        Subtotal<span class="inner-left-md">{{ object.subtotal }} VNĐ</span>
+                                        Tông tiền<span class="inner-left-md">{{ object.subtotal }} VNĐ</span>
+                                    </div>
+                                      <div class="cart-sub-total">
+                                        Phí vận chuyển<span class="inner-left-md">0 VNĐ</span>
                                     </div>
                                     <div class="cart-grand-total">
-                                        Grand Total<span class="inner-left-md">{{ object.total }} VNĐ</span>
+                                        Thành tiền<span class="inner-left-md">{{ object.total }} VNĐ</span>
                                     </div>
                                 </th>
                             </tr>
@@ -108,8 +111,7 @@
                             <tr>
                                 <td>
                                     <div class="cart-checkout-btn pull-right">
-                                        <button type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT
-                                        </button>
+                                        <a href="{% url 'checkout' %}" class="btn btn-primary checkout-btn">THANH TOÁN</a>
                                     </div>
                                 </td>
                             </tr>

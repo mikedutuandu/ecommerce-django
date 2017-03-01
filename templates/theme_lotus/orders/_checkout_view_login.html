@@ -1,0 +1,66 @@
+<div class="col-md-8">
+                        <div class="panel-group checkout-steps" id="accordion">
+                            <!-- checkout-step-01  -->
+                            <div class="panel panel-default checkout-step-01">
+
+                                <!-- panel-heading -->
+                                <div class="panel-heading">
+                                    <h4 class="unicase-checkout-title">
+                                        <a data-toggle="collapse" class="" data-parent="#accordion" href="#collapseOne">
+                                            <span>+</span> Đăng nhập
+                                        </a>
+                                    </h4>
+                                </div>
+                                <!-- panel-heading -->
+
+                                <div id="collapseOne" class="panel-collapse collapse in">
+
+                                    <!-- panel-body  -->
+                                    <div class="panel-body">
+                                        <div class="row">
+
+                                            <!-- already-registered-login -->
+                                            <div class="col-md-12 col-sm-12 already-registered-login">
+                                                <div class="social-sign-in outer-top-xs text-center">
+                                                    <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i>
+                                                        Đăng nhập bằng Facebook</a>
+                                                    <a href="#" class="twitter-sign-in"><i class="fa fa-google"></i>
+                                                        Đăng nhập bằng Google</a>
+                                                </div>
+                                                <form class="register-form" method="POST" role="form"
+                                                      action="{% url 'account_login' %}">
+                                                     {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputEmail1">Email
+                                                            <span>*</span></label>
+                                                        <input type="email"
+                                                               class="form-control unicase-form-control text-input"
+                                                               id="id_login" name="login"
+                                                               placeholder="" required="required">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputPassword1">Password
+                                                            <span>*</span></label>
+                                                        <input type="password"
+                                                               class="form-control unicase-form-control text-input"
+                                                               id="id_password" name="password" placeholder="" required="required">
+                                                        <a href="#" class="forgot-password">Forgot your Password?</a>
+                                                    </div>
+                                                    <button type="submit"
+                                                            class="btn-upper btn btn-primary checkout-page-button">Đăng
+                                                        nhập
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <!-- already-registered-login -->
+
+                                        </div>
+                                    </div>
+                                    <!-- panel-body  -->
+
+                                </div><!-- row -->
+                            </div>
+
+
+                        </div><!-- /.checkout-steps -->
+                    </div>
