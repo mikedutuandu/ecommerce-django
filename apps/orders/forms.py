@@ -23,7 +23,7 @@ class UserAddressForm(forms.ModelForm):
 							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input', 'placeholder': ''}),
 							label='Phường/Xã')
 	street = forms.CharField(required=True,
-							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input', 'placeholder': ''}),
+							widget=forms.Textarea(attrs={'class': 'form-control unicase-form-control text-input', 'rows': '2'}),
 							 label='Địa chỉ')
 	class Meta:
 		model = UserAddress

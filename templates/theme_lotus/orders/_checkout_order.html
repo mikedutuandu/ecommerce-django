@@ -1,0 +1,44 @@
+<div class="col-md-4">
+    <!-- checkout-progress-sidebar -->
+    <div class="checkout-progress-sidebar ">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="unicase-checkout-title">Đơn Hàng ({{ order.cart.cartitem_set.count }} sản phẩm)</h4>
+                </div>
+                <div class="">
+                    <ul class="nav nav-checkout-progress list-unstyled">
+                        <li>
+                            <div class="cart-item product-summary">
+                                {% for cart_item in order.cart.cartitem_set.all %}
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                      {{ cart_item.quantity }} x <a href="{{ cart_item.item.get_absolute_url }}">{{ cart_item.item.title }}</a>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="price">{{ cart_item.item.get_price }} VNĐ</div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <hr>
+                            <div class="clearfix cart-total">
+                                <div class="pull-right"><span class="text">Phí vận chuyển : </span><span class="price">0 VNĐ</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="clearfix cart-total">
+                                <div class="pull-right"><span class="text"><strong>Thành tiền</strong> : </span><span class="price">5.00 VNĐ</span>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- checkout-progress-sidebar -->                </div>

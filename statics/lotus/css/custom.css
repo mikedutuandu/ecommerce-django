@@ -57,3 +57,22 @@
         margin-bottom: 10px;
     }
 }
+.success-order {
+    background: #58b712;
+    font-size: 19px;
+    color: #fff;
+    border: none;
+    text-align: center;
+    font-weight: 400;
+    position: relative;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+}
+.wrap-success-order{
+    border-color: #ddd;
+    border: 1px solid #ddd;
+    padding: 20px;
+}

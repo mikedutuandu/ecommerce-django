@@ -30,7 +30,7 @@
                                 <div class="panel-heading">
                                     <h4 class="unicase-checkout-title">
                                         <a data-toggle="collapse" class="" data-parent="#accordion" href="#collapseOne">
-                                            <span>+</span> Đặt hàng
+                                            <span>+</span> Hoàn tất đơn hàng
                                         </a>
                                     </h4>
                                 </div>
@@ -45,7 +45,16 @@
 
                                             <!-- already-registered-login -->
                                             <div class="col-md-12 col-sm-12 already-registered-login">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                                <p><strong><u> THỜI GIAN DỰ KIẾN GIAO HÀNG:</u> </strong></p>
+                                                <p>Dự kiến giao hàng vào Thứ tư, 08/03/2017 - Thứ năm, 09/03/2017: Miễn Phí</p>
+                                                <hr>
+                                                <p><strong><u> ĐỊA CHỈ GIAO HÀNG:</u> </strong></p>
+                                                <p>{{ order.order_address.fullname }}</p>
+                                                <p>Địa chỉ: {{ order.order_address.get_address }}</p>
+                                                <p>Điện thoại: {{ order.order_address.phone }}</p>
+                                                <hr>
+                                                <p><strong><u> HÌNH THỨC THANH TOÁN:</u> </strong></p>
+                                                <P>Thanh toán tiền mặt khi nhận hàng</P>
                                                 <form class="register-form" method="POST" role="form">
                                                      {% csrf_token %}
 
@@ -67,26 +76,7 @@
                         </div><!-- /.checkout-steps -->
                     </div>
 
-                    <div class="col-md-4">
-                        <!-- checkout-progress-sidebar -->
-                        <div class="checkout-progress-sidebar ">
-                            <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
-                                    </div>
-                                    <div class="">
-                                        <ul class="nav nav-checkout-progress list-unstyled">
-                                            <li><a href="#">Billing Address</a></li>
-                                            <li><a href="#">Shipping Address</a></li>
-                                            <li><a href="#">Shipping Method</a></li>
-                                            <li><a href="#">Payment Method</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- checkout-progress-sidebar -->                </div>
+                     {% include 'theme_lotus/orders/_checkout_order.html' %}
                 </div><!-- /.row -->
             </div><!-- /.checkout-box -->
 

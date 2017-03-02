@@ -80,7 +80,8 @@ class CheckoutView(CartOrderMixin, View):
 
 
 class CheckoutFinalView(LoginRequiredMixin,CartOrderMixin, View):
-    template_name = "theme_lotus/orders/checkout_final_view.html"
+    template_name_confirm = "theme_lotus/orders/checkout_final_view.html"
+    template_name_success = "theme_lotus/orders/checkout_success_view.html"
 
     def get_context(self):
         context = {}
@@ -102,7 +103,8 @@ class CheckoutFinalView(LoginRequiredMixin,CartOrderMixin, View):
             return redirect('checkout')
         self.update_user_checkout()
         context= self.get_context()
-        return render(request,self.template_name,context)
+        return render(request,self.template_name_confirm,context)
+
 
     def post(self, request, *args, **kwargs):
         order = self.get_order()
@@ -122,7 +124,7 @@ class CheckoutFinalView(LoginRequiredMixin,CartOrderMixin, View):
             })
             if result.is_success:
                 # result.transaction.id to order
-                order.mark_pending(order_id=result.transaction.id)
+                order.mark_status(order_id=result.transaction.id)
                 messages.success(request, "Thank you for your order.")
                 del request.session["cart_id"]
                 del request.session["order_id"]
@@ -131,15 +133,13 @@ class CheckoutFinalView(LoginRequiredMixin,CartOrderMixin, View):
                 messages.success(request, "%s" % (result.message))
                 return redirect("checkout")
         else:
-            order.mark_pending()
+            order.mark_status()
             messages.success(request, "Thank you for your order.")
             del request.session["cart_id"]
             del request.session["order_id"]
 
-        return redirect("checkout_success")
+        return render(request,self.template_name_success,{'order':order})
 
-class CheckoutSuccessView(TemplateView):
-    template_name = "theme_lotus/orders/checkout_success_view.html"
 
 
 

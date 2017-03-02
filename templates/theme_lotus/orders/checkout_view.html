@@ -20,37 +20,16 @@
         <div class="container">
             <div class="checkout-box ">
                 <div class="row">
-
                     {% if user_can_continue == False %}
                         {% include 'theme_lotus/orders/_checkout_view_login.html' %}
                     {% else %}
                         {% include 'theme_lotus/orders/_checkout_view_address.html' %}
                     {% endif %}
 
-                    <div class="col-md-4">
-                        <!-- checkout-progress-sidebar -->
-                        <div class="checkout-progress-sidebar ">
-                            <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
-                                    </div>
-                                    <div class="">
-                                        <ul class="nav nav-checkout-progress list-unstyled">
-                                            <li><a href="#">Billing Address</a></li>
-                                            <li><a href="#">Shipping Address</a></li>
-                                            <li><a href="#">Shipping Method</a></li>
-                                            <li><a href="#">Payment Method</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- checkout-progress-sidebar -->                </div>
-                </div><!-- /.row -->
-            </div><!-- /.checkout-box -->
-
-        </div><!-- /.container -->
-    </div><!-- /.body-content -->
+                    {% include 'theme_lotus/orders/_checkout_order.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock content %}

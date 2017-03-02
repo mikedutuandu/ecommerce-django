@@ -15,7 +15,6 @@ from apps.orders.views import (
     OrderDetail,
     CheckoutView,
     CheckoutFinalView,
-CheckoutSuccessView
 )
 from apps.base.views import (
     HomeView
@@ -41,7 +40,6 @@ urlpatterns = [
 
     url(r'^dat-hang/$', CheckoutView.as_view(), name='checkout'),
     url(r'^thanh-toan/$', CheckoutFinalView.as_view(), name='checkout_final'),
-    url(r'^dat-hang-thanh-cong/$', CheckoutSuccessView.as_view(), name='checkout_success'),
 
 ]
 
