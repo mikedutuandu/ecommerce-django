@@ -1,4 +1,4 @@
-.detail-head-description{
+.detail-head-description {
     color: #666666;
     font-size: 14px;
     font-weight: bold;
@@ -7,12 +7,11 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-
-
 .body-content .social-sign-in .facebook-sign-in {
     background-color: #3d5c98;
     margin-right: 10px;
 }
+
 .body-content .social-sign-in a, .body-content .sign-in-page .social-sign-in a:hover, .body-content .social-sign-in a:focus {
     border-radius: 3px;
     padding: 14px 30px;
@@ -20,9 +19,11 @@
     display: inline-block;
     text-align: center;
 }
-.body-content .social-sign-in .twitter-sign-in {
-    background-color: #22aadf;
+
+.body-content .social-sign-in .google-sign-in {
+    background-color: #df4a32;
 }
+
 .body-content .social-sign-in a, .body-content .sign-in-page .social-sign-in a:hover, .body-content .social-sign-in a:focus {
     border-radius: 3px;
     padding: 14px 30px;
@@ -30,13 +31,29 @@
     display: inline-block;
     text-align: center;
 }
-.body-content .social-sign-in a{
+
+.body-content .social-sign-in a {
     color: #fff !important;
     text-decoration: none !important;
- }
-.body-content .social-sign-in .twitter-sign-in a:hover {
-    background-color: #22aadf !important;
 }
+
+.body-content a.facebook-sign-in:hover, .body-content a.facebook-sign-in:active, .body-content a.facebook-sign-in:focus {
+    background-color: #2d4373 !important;
+}
+
+.body-content a.google-sign-in:hover, .body-content a.google-sign-in:active, .body-content a.google-sign-in:focus {
+    background-color: #c63923 !important;
+}
+
 .shopping-cart .shopping-cart-table {
-     margin-bottom: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+@media only screen and (max-width: 480px) {
+    .body-content .social-sign-in a {
+        width: 100%;
+    }
+    .body-content .social-sign-in a {
+        margin-bottom: 10px;
+    }
 }

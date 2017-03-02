@@ -15,10 +15,52 @@
     </div><!-- /.breadcrumb -->
 {% endblock breakcrumb %}
 {% block content %}
-
-    <div class="body-content">
+  <div class="body-content">
         <div class="container">
-            Dat hang thanh cong
+            <div class="checkout-box ">
+                <div class="row">
+
+                   <div class="col-md-12">
+                        <div class="panel-group checkout-steps" id="accordion">
+                            <!-- checkout-step-01  -->
+                            <div class="panel panel-default checkout-step-01">
+
+                                <!-- panel-heading -->
+                                <div class="panel-heading">
+                                    <h4 class="unicase-checkout-title">
+                                        <a data-toggle="collapse" class="" data-parent="#accordion" href="#collapseOne">
+                                            <span>+</span> Đặt hàng thành công
+                                        </a>
+                                    </h4>
+                                </div>
+                                <!-- panel-heading -->
+
+                                <div id="collapseOne" class="panel-collapse collapse in">
+
+                                    <!-- panel-body  -->
+                                    <div class="panel-body" style="min-height:300px;">
+
+                                        <div class="row">
+
+                                            <!-- already-registered-login -->
+                                            <div class="col-md-12 col-sm-12 already-registered-login">
+                                                Bạn đã đặt hàng thành công
+                                            </div>
+                                            <!-- already-registered-login -->
+
+                                        </div>
+                                    </div>
+                                    <!-- panel-body  -->
+
+                                </div><!-- row -->
+                            </div>
+
+
+                        </div><!-- /.checkout-steps -->
+                    </div>
+
+                </div><!-- /.row -->
+            </div><!-- /.checkout-box -->
 
         </div><!-- /.container -->
     </div><!-- /.body-content -->
