@@ -48,9 +48,10 @@
                     </div>
 
                     {% if object_list.count > 0 %}
+                         {% paginate object_list %}
                         <div class="clearfix filters-container m-t-10">
                             <div class="row">
-                                <div class="col col-sm-12 col-md-12">
+                                <div class="col col-sm-6 col-md-6">
                                     <div class="filter-tabs">
                                         <ul id="filter-tabs" class="nav nav-tabs nav-tab-box nav-tab-fa-icon">
                                             <li class="active"><a data-toggle="tab" href="#grid-container"><i
@@ -61,6 +62,22 @@
                                     </div>
 
                                 </div>
+                                <div class="col col-sm-6 col-md-6 text-right">
+
+                                    {% get_pages %}
+                                    <div class="pagination-container">
+                                        <ul class="list-inline list-unstyled">
+                                            <li class="prev"><a href="{{ pages.previous.path }}"><i
+                                                    class="fa fa-angle-left"></i></a></li>
+                                            {% for page in pages %}
+                                                <li {% if page.is_current %}class="active" {% endif %}><a
+                                                        href="{{ page.path }}">{{ page.number }}</a></li>
+                                            {% endfor %}
+                                            <li class="next"><a href="{{ pages.next.path }}"><i
+                                                    class="fa fa-angle-right"></i></a></li>
+                                        </ul>
+                                    </div>
+              <!-- /.pagination-container --> </div>
                             </div>
                         </div>
 
@@ -76,7 +93,6 @@
                     {% endif %}
                     {% if object_list.count > 0 %}
                         <div class="search-result-container ">
-                            {% paginate object_list %}
                             <div id="myTabContent" class="tab-content category-list">
                                 <div class="tab-pane active " id="grid-container">
                                     <div class="category-product">
@@ -164,7 +180,7 @@
 
                             <div class="clearfix filters-container">
                                 {% get_pages %}
-                                <div class="text-center">
+                                <div class="text-right">
                                     <div class="pagination-container">
                                         <ul class="list-inline list-unstyled">
                                             <li class="prev"><a href="{{ pages.previous.path }}"><i
