@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'imagekit',
     'el_pagination',
+    'debug_toolbar',
     #django allauth
     'allauth',
     'allauth.account',
@@ -88,6 +89,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 # CORS_ORIGIN_WHITELIST = (
@@ -232,6 +234,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+#debug toolbar
+INTERNAL_IPS =['127.0.0.1']
 
 #Braintree Payments Details
 BRAINTREE_PUBLIC = "qn3p5n7njksw47r3"
