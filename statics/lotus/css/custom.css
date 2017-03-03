@@ -144,3 +144,6 @@
     font-size: 13px !important;
     background: #c7003d;
 }
+.top-bar .cnt-account ul > li {
+    padding: 0px !important;
+}
