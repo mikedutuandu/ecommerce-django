@@ -128,3 +128,19 @@
   padding-right: 4px;
   font-family: FontAwesome;
 }
+
+.dropdown-menu {
+    min-width: 218px !important;
+}
+.top-bar .cnt-block .list-inline > li {
+     margin-right: 0px !important;
+}
+.top-bar .dropdown-menu>li>a {
+    padding: 10px 15px !important;
+    font-size: 13px;
+}
+.top-bar {
+    padding: 0px;
+    font-size: 13px !important;
+    background: #c7003d;
+}
