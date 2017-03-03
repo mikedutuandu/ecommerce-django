@@ -9,18 +9,18 @@ User = get_user_model()
 
 class UserAddressForm(forms.ModelForm):
 	fullname = forms.CharField(required=True,
-							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input', 'placeholder': ''}),label='Họ tên')
+							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input'}),label='Họ tên')
 	phone = forms.IntegerField(required=True,
-							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input', 'placeholder': ''}),
+							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input'}),
 							   label='Điện thoại di động')
 	city = forms.CharField(required=True,
-							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input', 'placeholder': ''}),
+							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input'}),
 						   label='Tỉnh/Thành phố')
 	district = forms.CharField(required=True,
-							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input', 'placeholder': ''}),
+							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input'}),
 							   label='Quận/Huyện')
 	wards = forms.CharField(required=True,
-							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input', 'placeholder': ''}),
+							widget=forms.TextInput(attrs={'class': 'form-control unicase-form-control text-input'}),
 							label='Phường/Xã')
 	street = forms.CharField(required=True,
 							widget=forms.Textarea(attrs={'class': 'form-control unicase-form-control text-input', 'rows': '2'}),
