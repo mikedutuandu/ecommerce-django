@@ -1,0 +1,60 @@
+{% extends "theme_lotus/layout.html" %}
+{% load staticfiles %}
+{% load inclusion_tags %}
+{% load socialaccount %}
+
+{% block breakcrumb %}
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Clothing</a></li>
+                    <li class='active'>Floral Print Buttoned</li>
+                </ul>
+            </div><!-- /.breadcrumb-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb -->
+{% endblock breakcrumb %}
+{% block content %}
+
+    <div class="body-content">
+        <div class="container">
+            <div class="sign-in-page">
+                <div class="row">
+                    <!-- Sign-in -->
+                    <div class="col-md-offset-3 col-md-6 col-sm-6 sign-in">
+                        <h4 class="">Đăng nhập</h4>
+                        <div class="social-sign-in outer-top-xs">
+                                     <a href="{% provider_login_url "facebook" method="oauth2" %}" class="facebook-sign-in"><i class="fa fa-facebook"></i>
+                                                    Đăng nhập bằng Facebook</a>
+                                                    <a href="{% provider_login_url "google" method="oauth2" %}" class="google-sign-in"><i class="fa fa-google"></i>
+                                                        Đăng nhập bằng Google</a>
+                        </div>
+                        <form class="register-form outer-top-xs" role="form">
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
+                                <input type="email" class="form-control unicase-form-control text-input"
+                                       id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
+                                <input type="password" class="form-control unicase-form-control text-input"
+                                       id="exampleInputPassword1">
+                            </div>
+                            <div class="radio outer-xs">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Giử trạng thái đăng nhập!
+                                </label>
+                                <a href="#" class="forgot-password pull-right">Quên mật khẩu?</a>
+                            </div>
+                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Đăng nhập</button>
+                        </form>
+                    </div>
+                    <!-- Sign-in -->
+
+            </div><!-- /.sigin-in-->
+        </div><!-- /.container -->
+    </div>
+
+{% endblock content %}

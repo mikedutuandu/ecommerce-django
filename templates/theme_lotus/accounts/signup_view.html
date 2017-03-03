@@ -1,0 +1,67 @@
+{% extends "theme_lotus/layout.html" %}
+{% load staticfiles %}
+{% load inclusion_tags %}
+{% load socialaccount %}
+
+{% block breakcrumb %}
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Clothing</a></li>
+                    <li class='active'>Floral Print Buttoned</li>
+                </ul>
+            </div><!-- /.breadcrumb-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb -->
+{% endblock breakcrumb %}
+{% block content %}
+
+    <div class="body-content">
+        <div class="container">
+            <div class="sign-in-page">
+                <div class="row">
+                    <!-- Sign-in -->
+                    <div class="col-md-offset-3 col-md-6 col-sm-6 create-new-account">
+                        <h4 class="checkout-subtitle">Đăng ký tài khoản</h4>
+                        <form class="register-form outer-top-xs" role="form">
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
+                                <input type="email" class="form-control unicase-form-control text-input"
+                                       id="exampleInputEmail2">
+                            </div>
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
+                                <input type="email" class="form-control unicase-form-control text-input"
+                                       id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
+                                <input type="email" class="form-control unicase-form-control text-input"
+                                       id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
+                                <input type="email" class="form-control unicase-form-control text-input"
+                                       id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">Confirm Password
+                                    <span>*</span></label>
+                                <input type="email" class="form-control unicase-form-control text-input"
+                                       id="exampleInputEmail1">
+                            </div>
+                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Đăng ký
+                            </button>
+                        </form>
+
+
+                    </div>
+                    <!-- Sign-in -->
+
+                </div><!-- /.sigin-in-->
+            </div><!-- /.container -->
+        </div>
+
+{% endblock content %}

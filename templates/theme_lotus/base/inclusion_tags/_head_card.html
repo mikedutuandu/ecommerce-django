@@ -7,15 +7,12 @@
 
             <div class="total-price-basket">
                 {% if cart %}
-                <span class="lbl">{{ cart.cartitem_set.count }} Sản phẩm/</span>
+                <span class="lbl">{{ cart.cartitem_set.count }} Sản phẩm /</span>
                 <span class="total-price">
                       <span class="value">{{ cart.subtotal }}</span> </span>
                       <span class="sign">VNĐ</span>
                 {% else %}
-                                <span class="lbl">0 Sản phẩm/</span>
-                <span class="total-price">
-                      <span class="value">0</span> </span>
-                      <span class="sign">VNĐ</span>
+                                <span class="lbl">0 Sản phẩm</span>
                 {% endif %}
             </div>
         </div>

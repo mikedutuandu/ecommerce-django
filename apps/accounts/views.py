@@ -1,50 +1,9 @@
-from django.contrib.auth import (
-    authenticate,
-    get_user_model,
-    login,
-    logout,
-    )
-from django.shortcuts import render, redirect
-from .forms import UserLoginForm, UserRegisterForm
-
-def login_view(request):
-    next = request.GET.get('next')
-    title = "Login"
-    form = UserLoginForm(request.POST or None)
-    if form.is_valid():
-        username = form.cleaned_data.get("username")
-        password = form.cleaned_data.get('password')
-        user = authenticate(username=username, password=password)
-        login(request, user)
-        if next:
-            return redirect(next)
-        return redirect("/")
-    return render(request, "accounts/form.html", {"form":form, "title": title})
-
-
-def register_view(request):
-    next = request.GET.get('next')
-    title = "Register"
-    form = UserRegisterForm(request.POST or None)
-    if form.is_valid():
-        user = form.save(commit=False)
-        password = form.cleaned_data.get('password')
-        user.set_password(password)
-        user.save()
-        new_user = authenticate(username=user.username, password=password)
-        login(request, new_user)
-        if next:
-            return redirect(next)
-        return redirect("/")
-    return render(request, "accounts/form.html", {
-        "form": form,
-        "title": title
-    })
-
-
-def logout_view(request):
-    logout(request)
-    return redirect("/")
+from allauth.account.views import LogoutView,LoginView,SignupView
 
 
 
+class LoginCustom(LoginView):
+    template_name = 'theme_lotus/accounts/login_view.html'
+
+class SignupCustom(SignupView):
+    template_name = 'theme_lotus/accounts/signup_view.html'
