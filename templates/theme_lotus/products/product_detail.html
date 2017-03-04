@@ -73,20 +73,6 @@
                             <div class='col-sm-6 col-md-7 product-info-block'>
                                 <div class="product-info">
                                     <h1 class="name">{{ object.title }}</h1>
-
-                                    <div class="rating-reviews m-t-20">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <div class="rating rateit-small"></div>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div class="reviews">
-                                                    <a href="#" class="lnk">(13 Đánh giá)</a>
-                                                </div>
-                                            </div>
-                                        </div><!-- /.row -->
-                                    </div><!-- /.rating-reviews -->
-
                                     <div class="stock-container info-container m-t-10">
                                         <div class="row">
                                             <div class="col-sm-2">
@@ -103,7 +89,7 @@
                                     </div><!-- /.stock-container -->
 
                                     <div class="description-container m-t-20">
-                                       {{ object.short_description }}
+                                        {{ object.short_description }}
                                     </div><!-- /.description-container -->
 
                                     <div class="price-container info-container m-t-20">
@@ -112,7 +98,7 @@
 
                                             <div class="col-sm-6">
                                                 <div class="price-box">
-                                                   {{ object.get_html_price_on_detail }}
+                                                    {{ object.get_html_price_on_detail }}
                                                 </div>
                                             </div>
 
@@ -122,31 +108,33 @@
                                     <div class="quantity-container info-container" data-cart="">
                                         <div class="row">
                                             <form id='add-form' method='GET' action="{% url 'cart' %}">
-                                            <div class="col-sm-2">
-                                                <span class="label">SỐ LƯỢNG :</span>
-                                            </div>
+                                                <div class="col-sm-2">
+                                                    <span class="label">SỐ LƯỢNG :</span>
+                                                </div>
 
-                                            <div class="col-sm-2">
-                                                <div class="cart-quantity">
-                                                    <div class="quant-input">
-                                                        <div class="arrows">
-                                                            <div class="arrow plus gradient"><span class="ir"><i
-                                                                    class="icon fa fa-sort-asc"></i></span></div>
-                                                            <div class="arrow minus gradient"><span class="ir"><i
-                                                                    class="icon fa fa-sort-desc"></i></span></div>
+                                                <div class="col-sm-2">
+                                                    <div class="cart-quantity">
+                                                        <div class="quant-input">
+                                                            <div class="arrows">
+                                                                <div class="arrow plus gradient"><span class="ir"><i
+                                                                        class="icon fa fa-sort-asc"></i></span></div>
+                                                                <div class="arrow minus gradient"><span class="ir"><i
+                                                                        class="icon fa fa-sort-desc"></i></span></div>
+                                                            </div>
+                                                            <input class='form-control qty' type='text' name='qty'
+                                                                   value='1'/>
                                                         </div>
-                                                        <input class='form-control qty' type='text' name='qty' value='1' />
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-sm-7">
-                                                		<input type="hidden" name='item' value='{{ object.id }}' />
+                                                <div class="col-sm-7">
+                                                    <input type="hidden" name='item' value='{{ object.id }}'/>
 
-                                                <a href="#" class="btn btn-primary"><i
-                                                        class="fa fa-shopping-cart inner-right-vs"></i> THÊM VÀO GIỎ HÀNG</a>
+                                                    <a href="#" class="btn btn-primary"><i
+                                                            class="fa fa-shopping-cart inner-right-vs"></i> THÊM VÀO GIỎ
+                                                        HÀNG</a>
 
-                                            </div>
+                                                </div>
                                             </form>
 
                                         </div><!-- /.row -->
@@ -166,7 +154,7 @@
 
                                     <div id="description" class="tab-pane in active">
                                         <div class="product-tab">
-                                             <h4 class="title detail-head-description">MÔ TẢ SẢN PHẨM</h4>
+                                            <h4 class="title detail-head-description">MÔ TẢ SẢN PHẨM</h4>
                                             <p class="text">{{ object.description|safe }}</p>
                                         </div>
                                     </div><!-- /.tab-pane -->
@@ -177,70 +165,7 @@
                     </div>
 
 
-                    <div class="product-tabs inner-bottom-xs  wow fadeInUp">
-                        <div class="row">
-
-                            <div class="col-sm-12">
-
-                                <div class="tab-content">
-
-                                    <div id="review" class="tab-pane active">
-                                        <div class="product-tab">
-
-                                            <div class="product-reviews">
-                                                <h4 class="title">KHÁCH HÀNG NHẬN XÉT </h4>
-
-                                                <div class="reviews">
-                                                    <div class="review">
-                                                        <div class="review-title"><span class="summary">We love this product</span><span
-                                                                class="date"><i class="fa fa-calendar"></i><span>1 days ago</span></span>
-                                                        </div>
-                                                        <div class="text">"Lorem ipsum dolor sit amet, consectetur
-                                                            adipiscing elit.Aliquam suscipit."
-                                                        </div>
-                                                    </div>
-
-                                                </div><!-- /.reviews -->
-                                            </div><!-- /.product-reviews -->
-
-
-                                            <div class="product-add-review">
-                                                <h4 class="title">Ghi nhận xét của bạn</h4>
-
-                                                <div class="review-form">
-                                                    <div class="form-container">
-                                                        <form role="form" class="cnt-form">
-
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <textarea class="form-control txt txt-review"
-                                                                                  id="exampleInputReview" rows="4"
-                                                                                  placeholder=""></textarea>
-                                                                    </div><!-- /.form-group -->
-                                                                </div>
-                                                            </div><!-- /.row -->
-
-                                                            <div class="action text-right">
-                                                                <button class="btn btn-primary btn-upper">
-                                                                    Gửi nhận xét
-                                                                </button>
-                                                            </div><!-- /.action -->
-
-                                                        </form><!-- /.cnt-form -->
-                                                    </div><!-- /.form-container -->
-                                                </div><!-- /.review-form -->
-
-                                            </div><!-- /.product-add-review -->
-
-                                        </div><!-- /.product-tab -->
-                                    </div><!-- /.tab-pane -->
-
-
-                                </div><!-- /.tab-content -->
-                            </div><!-- /.col -->
-                        </div><!-- /.row -->
-                    </div>
+                    {% include "theme_lotus/products/_product_detail_comment.html" with comments=object.comments content_type=object.get_content_type object_id=object.id %}
 
 
                     <section class="section featured-product wow fadeInUp">
@@ -263,7 +188,9 @@
                                             </div>
 
                                             <div class="product-info text-left">
-                                                <h3 class="name"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h3>
+                                                <h3 class="name"><a
+                                                        href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                                                </h3>
                                                 <div class="rating rateit-small"></div>
                                                 <div class="description"></div>
 

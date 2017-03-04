@@ -1,0 +1,96 @@
+<div class="product-tabs inner-bottom-xs  wow fadeInUp">
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div class="tab-content">
+
+                <div id="review" class="tab-pane active">
+                    <div class="product-tab">
+
+                        <div class="product-reviews">
+                            <h4 class="title">KHÁCH HÀNG NHẬN XÉT </h4>
+
+                            <div class="reviews">
+                                <div class="review">
+                                    {% for comment in comments %}
+                                        <div class="row">
+                                            <div class="col-md-2" style="text-align: center;">
+                                                <p>
+                                                    <img src="http://themesground.com/Lotus/V1/HTML/assets/images/testimonials/member3.png"
+                                                         alt="Responsive image" class="img-rounded img-responsive"></p>
+                                                <p><strong>{{ user.username }}</strong></p>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="review-title"><span
+                                                        class="summary">{{ comment.title }}</span><span
+                                                        class="date"><i
+                                                        class="fa fa-calendar"></i><span>{{ comment.timestamp|timesince }} ago</span></span>
+                                                </div>
+                                                <div class="text">"{{ comment.content }}"
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    {% if comments.count == 0 %}
+                                        Không có nhận xét
+                                    {% endif %}
+
+                                </div>
+
+                            </div><!-- /.reviews -->
+                        </div><!-- /.product-reviews -->
+
+
+                        <div class="product-add-review">
+                            {% if user.is_authenticated %}
+                                <h4 class="title">Ghi nhận xét của bạn:</h4>
+
+                                <div class="review-form">
+                                    <div class="form-container">
+                                        <form role="form" class="cnt-form" method="POST"
+                                              action="{% url 'create_comment' %}">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <input type="hidden" name="content_type" value="{{ content_type }}">
+                                                <input type="hidden" name="object_id" value="{{ object_id }}">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputName">Tiêu đề: <span
+                                                                class="astk">*</span></label>
+                                                        <input type="text" class="form-control txt"
+                                                               name="title" required="required">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputName">Nội dung: <span
+                                                                class="astk">*</span></label>
+                                                        <textarea class="form-control txt txt-review"
+                                                                  name="content" rows="4"
+                                                                  required="required"></textarea>
+                                                    </div><!-- /.form-group -->
+                                                    <div class="action text-right">
+                                                        <button type="submit" class="btn btn-primary btn-upper">
+                                                            Gửi nhận xét
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div><!-- /.row -->
+
+                                            <!-- /.action -->
+
+                                        </form><!-- /.cnt-form -->
+                                    </div><!-- /.form-container -->
+                                </div><!-- /.review-form -->
+                            {% endif %}
+
+
+                        </div><!-- /.product-add-review -->
+
+                    </div><!-- /.product-tab -->
+                </div><!-- /.tab-pane -->
+
+
+            </div><!-- /.tab-content -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div>

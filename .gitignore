@@ -28,3 +28,5 @@ apps/base/__pycache__/admin.cpython-34.pyc
 apps/base/__pycache__/forms.cpython-34.pyc
 apps/base/__pycache__/models.cpython-34.pyc
 apps/base/__pycache__/views.cpython-34.pyc
+apps/comments/__pycache__/
+apps/comments/migrations/

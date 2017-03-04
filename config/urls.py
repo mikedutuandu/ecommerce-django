@@ -19,6 +19,7 @@ from apps.orders.views import (
 from apps.base.views import (
     HomeView
 )
+from apps.comments.views import CreateCommentView
 
 from allauth.account.views import LogoutView
 from apps.accounts.views import LoginCustomView,SignupCustomView,UserAddressView,UserProfileView
@@ -36,6 +37,8 @@ urlpatterns = [
     url(r'^dia-chi-cua-toi/$', UserAddressView.as_view(), name='user_address'),
     url(r'^thong-tin-tai-khoan/$', UserProfileView.as_view(), name='user_profile'),
     url(r'^thoat-tai-khoan/$', LogoutView.as_view(), name='logout_custom'),
+
+    url(r'^nhan-xet/$', CreateCommentView.as_view(), name='create_comment'),
 
     url(r'^san-pham/$', ProductListView.as_view(), name='products'),
     url(r'^san-pham/(?P<slug>\d+)/$', ProductDetailView.as_view(), name='product_detail'),

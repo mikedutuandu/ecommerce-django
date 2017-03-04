@@ -1,6 +1,7 @@
 <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
 
     <div class="search-area" data-search="">
+
         <form method="GET" action="{% url "products" %}">
             <div class="control-group">
                 <ul class="categories-filter animate-dropdown">
@@ -14,9 +15,8 @@
                         </ul>
                     </li>
                 </ul>
-            {{ request }}
-                <input type="hidden" class="filter-by-cat" name="cat" value="{{ cat }}"/>
-                <input class="search-field" name="q" placeholder="Tìm kiếm sản phẩm..." value="{{ q }}"/>
+                <input type="hidden" class="filter-by-cat" name="cat" value="{{ request.GET.cat }}"/>
+                <input class="search-field" name="q" placeholder="Tìm kiếm sản phẩm..." value="{{ request.GET.q }}"/>
                 <a class="search-button" href="#"></a></div>
         </form>
     </div>

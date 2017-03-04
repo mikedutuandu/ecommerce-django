@@ -7,6 +7,8 @@ from imagekit.models import ImageSpecField
 from django.db.models.signals import pre_save
 from config.utils import create_slug
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.contenttypes.models import ContentType
+from apps.comments.models import Comment
 
 
 
@@ -79,6 +81,18 @@ class Product(models.Model):
 
     def remove_from_cart(self):
         return "%s?item=%s&qty=1&delete=True" % (reverse("cart"), self.id)
+
+    @property
+    def get_content_type(self):
+        instance = self
+        content_type = ContentType.objects.get_for_model(instance.__class__)
+        return content_type
+    @property
+    def comments(self):
+        instance = self
+        qs = Comment.objects.filter_by_instance(instance)
+        return qs
+
 
 
 
