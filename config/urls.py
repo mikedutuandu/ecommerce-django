@@ -28,7 +28,9 @@ urlpatterns = [
     # Examples:
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^tai-khoan/', include('allauth.urls')),
+
     url(r'^dang-nhap/$', LoginCustomView.as_view(), name='login_custom'),
     url(r'^dang-ky/$', SignupCustomView.as_view(), name='signup_custom'),
     url(r'^dia-chi-cua-toi/$', UserAddressView.as_view(), name='user_address'),

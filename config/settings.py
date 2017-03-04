@@ -64,6 +64,8 @@ INSTALLED_APPS = (
     'imagekit',
     'el_pagination',
     'debug_toolbar',
+    'ckeditor',
+    'ckeditor_uploader',
     #django allauth
     'allauth',
     'allauth.account',
@@ -245,6 +247,19 @@ BRAINTREE_ENVIRONEMNT = "Sandbox"
 
 #paging
 EL_PAGINATION_PER_PAGE = 2
+
+#django ckeditor
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        # 'height': 300,
+        # 'width': 300,
+    },
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (

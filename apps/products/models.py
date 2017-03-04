@@ -6,6 +6,8 @@ from imagekit.processors import ResizeToFill, Thumbnail
 from imagekit.models import ImageSpecField
 from django.db.models.signals import pre_save
 from config.utils import create_slug
+from ckeditor_uploader.fields import RichTextUploadingField
+
 
 
 class ProductManager(models.Manager):
@@ -23,7 +25,7 @@ class Product(models.Model):
     title = models.CharField(max_length=120)
     slug = models.SlugField(unique=True)
     short_description = models.TextField(blank=True,null=True)
-    description = models.TextField(blank=True, null=True)
+    description = RichTextUploadingField()
     root_price = models.DecimalField(decimal_places=2, max_digits=20)
     price = models.DecimalField(decimal_places=2, max_digits=20)
     sale_price = models.DecimalField(decimal_places=2, max_digits=20, null=True, blank=True)
