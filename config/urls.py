@@ -21,7 +21,7 @@ from apps.base.views import (
 )
 
 from allauth.account.views import LogoutView
-from apps.accounts.views import LoginCustom,SignupCustom
+from apps.accounts.views import LoginCustomView,SignupCustomView,UserAddressView
 
 
 urlpatterns = [
@@ -29,8 +29,9 @@ urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tai-khoan/', include('allauth.urls')),
-    url(r'^dang-nhap/$', LoginCustom.as_view(), name='login_custom'),
-    url(r'^dang-ky/$', SignupCustom.as_view(), name='signup_custom'),
+    url(r'^dang-nhap/$', LoginCustomView.as_view(), name='login_custom'),
+    url(r'^dang-ky/$', SignupCustomView.as_view(), name='signup_custom'),
+    url(r'^dia-chi-cua-toi/$', UserAddressView.as_view(), name='user_address'),
     url(r'^thoat-tai-khoan/$', LogoutView.as_view(), name='logout_custom'),
 
     url(r'^san-pham/$', ProductListView.as_view(), name='products'),
