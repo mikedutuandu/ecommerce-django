@@ -22,12 +22,14 @@ if settings.DEBUG:
 
 class OrderDetail(LoginRequiredMixin, DetailView):
     model = Order
-    template_name = "theme_default/orders/order_detail.html"
+    slug_url_kwarg = 'order_number'
+    slug_field = 'order_number'
+    template_name = "theme_lotus/orders/order_detail_view.html"
 
 
 class OrderList(LoginRequiredMixin, ListView):
-    queryset = Order.objects.all()
-    template_name = "theme_default/orders/order_list.html"
+    queryset = Order.objects.all().exclude(status='draft')
+    template_name = "theme_lotus/orders/order_list_view.html"
 
     def get_queryset(self):
         try:

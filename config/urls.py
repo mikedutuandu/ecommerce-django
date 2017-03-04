@@ -39,7 +39,7 @@ urlpatterns = [
     url(r'^loai-san-pham/(?P<slug>[\w-]+)/$', CategoryDetailView.as_view(), name='category_detail'),
 
     url(r'^danh-sach-don-hang/$', OrderList.as_view(), name='orders'),
-    url(r'^chi-tiet-don-hang/(?P<pk>\d+)/$', OrderDetail.as_view(), name='order_detail'),
+    url(r'^chi-tiet-don-hang/(?P<order_number>\d+)/$', OrderDetail.as_view(), name='order_detail'),
 
     url(r'^gio-hang/$', CartView.as_view(), name='cart'),
     url(r'^gio-hang/so-luong/$', ItemCountView.as_view(), name='item_count'),

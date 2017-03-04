@@ -103,7 +103,7 @@ class Order(models.Model):
         ordering = ['-id']
 
     def get_absolute_url(self):
-        return reverse("order_detail", kwargs={"pk": self.pk})
+        return reverse("order_detail", kwargs={"order_number": self.order_number})
 
     def mark_status(self, order_id=None):
         self.order_number = self.id + 1000000

@@ -21,11 +21,11 @@
                                 <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span
                                         class="value">Chào tuấn,Tài khoản và đơn hàng </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Đơn hàng của tôi</a></li>
+                                    <li><a href="{% url 'orders' %}">Đơn hàng của tôi</a></li>
                                     <li><a href="#">Tài khoản của tôi</a></li>
                                     <li><a href="#">Địa chỉ của tôi</a></li>
                                     <li>
-                                        <a href="#">Thoát tài khoản</a>
+                                        <a href="{% url 'logout_custom' %}">Thoát tài khoản</a>
                                     </li>
                                 </ul>
                             </li>

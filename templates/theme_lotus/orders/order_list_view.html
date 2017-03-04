@@ -1,0 +1,107 @@
+{% extends "theme_lotus/layout.html" %}
+{% load staticfiles %}
+{% load inclusion_tags %}
+{% block breakcrumb %}
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Clothing</a></li>
+                    <li class='active'>Floral Print Buttoned</li>
+                </ul>
+            </div><!-- /.breadcrumb-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb -->
+{% endblock breakcrumb %}
+{% block content %}
+
+    <div class="body-content">
+        <div class="container">
+            <div class="checkout-box ">
+                <div class="row">
+                    <div class="col-md-3">
+                        <!-- checkout-progress-sidebar -->
+                        <div class="checkout-progress-sidebar ">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="unicase-checkout-title">Tài khoản của tôi</h4>
+                                    </div>
+                                    <div class="">
+                                        <ul class="nav nav-checkout-progress list-unstyled">
+                                            <li><a href="#">Thông tin tài khoản</a></li>
+                                            <li><a href="#">Đơn hàng của tôi</a></li>
+                                            <li><a href="#">Địa chỉ của tôi</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- checkout-progress-sidebar -->                </div>
+                    <div class="col-md-9">
+                        <div class="panel-group checkout-steps" id="accordion">
+                            <!-- checkout-step-01  -->
+                            <div class="panel panel-default checkout-step-01">
+
+                                <!-- panel-heading -->
+                                <div class="panel-heading">
+                                    <h4 class="unicase-checkout-title">
+                                        <a data-toggle="collapse" class="" data-parent="#accordion" href="#collapseOne">
+                                            <span>+</span>Đơn hàng của tôi
+                                        </a>
+                                    </h4>
+                                </div>
+                                <!-- panel-heading -->
+
+                                <div id="collapseOne" class="panel-collapse collapse in">
+
+                                    <!-- panel-body  -->
+                                    <div class="panel-body">
+                                        <div class="row">
+
+                                            <!-- guest-login -->
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-list-order">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="text-left">Mã đơn hàng</th>
+                                                            <th class="text-left">Ngày mua</th>
+                                                            <th class="text-left">Tổng tiền</th>
+                                                            <th class="text-left">Trạng thái</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for order in object_list %}
+                                                        <tr>
+                                                            <td><a href="{{ order.get_absolute_url }}">{{ order.order_number }}</a></td>
+                                                            <td>02/03/2017</td>
+                                                            <td>16.840.000 ₫</td>
+                                                            <td>Giao hàng thành công</td>
+
+                                                        </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!-- guest-login -->
+
+                                        </div>
+                                    </div>
+                                    <!-- panel-body  -->
+
+                                </div><!-- row -->
+                            </div>
+
+
+                        </div><!-- /.checkout-steps -->
+                    </div>
+
+                </div><!-- /.row -->
+            </div><!-- /.checkout-box -->
+        </div><!-- /.container -->
+    </div>
+
+{% endblock content %}

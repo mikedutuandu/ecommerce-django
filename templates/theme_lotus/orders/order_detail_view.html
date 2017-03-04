@@ -1,0 +1,154 @@
+{% extends "theme_lotus/layout.html" %}
+{% load staticfiles %}
+{% load inclusion_tags %}
+{% block breakcrumb %}
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Clothing</a></li>
+                    <li class='active'>Floral Print Buttoned</li>
+                </ul>
+            </div><!-- /.breadcrumb-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb -->
+{% endblock breakcrumb %}
+{% block content %}
+
+    <div class="body-content">
+        <div class="container">
+            <div class="checkout-box ">
+                <div class="row">
+                    <div class="col-md-3">
+                        <!-- checkout-progress-sidebar -->
+                        <div class="checkout-progress-sidebar ">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="unicase-checkout-title">Tài khoản của tôi</h4>
+                                    </div>
+                                    <div class="">
+                                        <ul class="nav nav-checkout-progress list-unstyled">
+                                            <li><a href="#">Thông tin tài khoản</a></li>
+                                            <li><a href="#">Đơn hàng của tôi</a></li>
+                                            <li><a href="#">Địa chỉ của tôi</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- checkout-progress-sidebar -->                </div>
+                    <div class="col-md-9">
+                        <div class="panel-group checkout-steps" id="accordion">
+                            <!-- checkout-step-01  -->
+                            <div class="panel panel-default checkout-step-01">
+
+                                <!-- panel-heading -->
+                                <div class="panel-heading">
+                                    <h4 class="unicase-checkout-title">
+                                        <a data-toggle="collapse" class="" data-parent="#accordion" href="#collapseOne">
+                                            <span>+</span>đơn hàng #{{ object.order_number }}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <!-- panel-heading -->
+
+                                <div id="collapseOne" class="panel-collapse collapse in">
+
+                                    <!-- panel-body  -->
+                                    <div class="panel-body">
+                                        <div class="row">
+
+                                            <!-- already-registered-login -->
+                                            <div class="col-md-4 col-sm-12">
+                                                <p><strong><u> PHƯƠNG THỨC VẬN CHUYỂN:</u> </strong></p>
+                                                <p>Dự kiến giao hàng vào Thứ tư, 08/03/2017 - Thứ năm, 09/03/2017: Miễn
+                                                    Phí</p>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12">
+                                                <p><strong><u> ĐỊA CHỈ NGƯỜI NHẬN:</u> </strong></p>
+                                                <p>dinh van tuan</p>
+                                                <p>Địa chỉ: duong khac tran, phuong 5, phu nhuan hcm</p>
+                                                <p>Điện thoại: 16657918579</p>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12">
+                                                <p><strong><u> PHƯƠNG THỨC THANH TOÁN:</u> </strong></p>
+                                                <p>Thanh toán tiền mặt khi nhận hàng</p>
+                                            </div>
+                                            <!-- already-registered-login -->
+
+                                        </div>
+                                        <div class="row">
+
+                                            <!-- guest-login -->
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-list-order">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="text-left">Sản phẩm</th>
+                                                            <th class="text-left">Giá</th>
+                                                            <th class="text-left">Số lượng</th>
+                                                            <th class="text-left">Tạm tính</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for cart_item in object.cart.cartitem_set.all %}
+                                                            <tr>
+                                                                <td class="col-md-6">
+                                                                    <img src="{{ cart_item.item.productimage_set.first.image_thumb2.url }}">
+                                                                    <a href="">{{ cart_item.item.title }}</a>
+                                                                </td>
+                                                                <td class="col-md-2">02/03/2017</td>
+                                                                <td class="col-md-2">16.840.000 ₫</td>
+                                                                <td class="col-md-2">Giao hàng thành công</td>
+
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+
+
+
+                                                </div>
+                                            </div>
+                                            <!-- guest-login -->
+                                            <div class="col-md-4 col-md-offset-8 col-sm-12">
+                                                 <ul class="nav nav-checkout-progress list-unstyled">
+                                                        <li>
+
+                                                            <div class="clearfix"></div>
+                                                            <hr>
+                                                            <div class="clearfix cart-total">
+                                                                <div class="pull-right"><span class="text">Phí vận chuyển : </span><span
+                                                                        class="price">0 VNĐ</span>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="clearfix cart-total">
+                                                                <div class="pull-right"><span class="text"><strong>Thành tiền</strong> : </span><span
+                                                                        class="price">5.00 VNĐ</span>
+                                                                </div>
+                                                            </div>
+
+                                                        </li>
+                                                    </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- panel-body  -->
+
+                                </div><!-- row -->
+                            </div>
+
+
+                        </div><!-- /.checkout-steps -->
+                    </div>
+
+                </div><!-- /.row -->
+            </div><!-- /.checkout-box -->
+        </div><!-- /.container -->
+    </div>
+
+{% endblock content %}

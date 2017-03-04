@@ -147,3 +147,7 @@
 .top-bar .cnt-account ul > li {
     padding: 0px !important;
 }
+
+.table-list-order tr td{
+    padding: 8px !important;
+}
