@@ -33,4 +33,8 @@ def head_search(request):
     categories = Category.objects.filter(active=True)
     return {'categories':categories,'cat':request.GET.get('cat',''),'q':request.GET.get('q','')}
 
+@register.inclusion_tag('theme_lotus/base/inclusion_tags/_user_nav.html')
+def user_nav():
+    return {}
+
 

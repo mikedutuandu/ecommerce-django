@@ -19,10 +19,10 @@
                         <ul class="list-unstyled list-inline">
                             <li class="dropdown dropdown-small">
                                 <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span
-                                        class="value">Chào tuấn,Tài khoản và đơn hàng </span><b class="caret"></b></a>
+                                        class="value">Chào {{ user.username }},Tài khoản và đơn hàng </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{% url 'orders' %}">Đơn hàng của tôi</a></li>
-                                    <li><a href="#">Tài khoản của tôi</a></li>
+                                    <li><a href="{% url 'user_profile' %}">Tài khoản của tôi</a></li>
                                     <li><a href="{% url 'user_address' %}">Địa chỉ của tôi</a></li>
                                     <li>
                                         <a href="{% url 'logout_custom' %}">Thoát tài khoản</a>

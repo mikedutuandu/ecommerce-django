@@ -1,8 +1,9 @@
 from allauth.account.views import LogoutView,LoginView,SignupView
 from django.views.generic import UpdateView
 from .models import UserAddress
-from .forms import UserAddressForm
+from .forms import UserAddressForm,UserProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 
 class LoginCustomView(LoginView):
@@ -18,3 +19,11 @@ class UserAddressView(LoginRequiredMixin,UpdateView):
     success_url = '/dia-chi-cua-toi/'
     def get_object(self, queryset=None):
         return self.request.user.useraddress
+
+class UserProfileView(LoginRequiredMixin,UpdateView):
+    model = User
+    form_class = UserProfileForm
+    template_name = 'theme_lotus/accounts/user_profile.html'
+    success_url = '/thong-tin-tai-khoan/'
+    def get_object(self, queryset=None):
+        return self.request.user
