@@ -6,10 +6,7 @@
             {% for post in posts %}
             <div class="blog-post">
                 <img class="img-responsive" src="{{ post.image_thumb1.url }}" alt="">
-                <h4><a href="blog-details.html">{{ post.title }}</a></h4>
-                <span class="date-time">10/07/16</span>
-                <p>{{ post.short_content|truncatewords:15 }}</p>
-
+                <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
             </div>
             {% endfor %}
         </div>

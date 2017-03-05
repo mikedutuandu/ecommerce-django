@@ -23,14 +23,13 @@
                 <div class="blog-page">
                     <div class="col-md-9">
                         <div class="blog-post wow fadeInUp" style="margin-bottom: 20px">
-                            <img class="img-responsive" src="{{ object.image_thumb1.url }}" alt="">
                             <h1>{{ object.title }}</h1>
                             <span class="author">Đặc sản tây nguyên VN</span>
                             <span class="date-time">18/06/2016 11.30AM</span>
                             {{ object.content|safe }}
 
                             <div class="social-media">
-                                <span>share post:</span>
+                                <span><strong>Share bài viết</strong>:</span>
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
@@ -46,8 +45,7 @@
                             {% latest_post %}
                             <div class="sidebar-widget outer-bottom-xs  product-tag wow fadeInUp">
                                 <h3 class="section-title">Từ khoá nổi bật</h3>
-                                <div class="sidebar-widget-body outer-top-xs">
-                                    <div class="tag-list">
+                                <div class="sidebar-widget-body outer-top-xs">                                  <div class="tag-list">
                                         <a class="item" title="Phone" href="category.html">Phone</a>
                                         <a class="item active" title="Vest" href="category.html">Vest</a>
                                         <a class="item" title="Smartphone" href="category.html">Smartphone</a>
