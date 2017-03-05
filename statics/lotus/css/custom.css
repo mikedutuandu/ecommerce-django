@@ -154,3 +154,17 @@
 .terms-conditions-page{
     margin-bottom: 20px;
 }
+
+.breadcrumb .fa-2 {
+    font-size: 1.5em;
+}
+
+ li.active > a {
+    color: #e40046 !important;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+ .breadcrumb ul li:after {
+    margin-right: 0px !important;
+}
+

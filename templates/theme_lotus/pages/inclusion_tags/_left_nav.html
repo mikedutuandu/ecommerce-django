@@ -4,10 +4,13 @@
     <div class="head"><i class="icon fa fa-bars"></i> Loại sản phẩm</div>
     <nav class="yamm megamenu-horizontal">
         <ul class="nav">
-
             {% for category in categories %}
-                <li class="menu-item"><a href="{{ category.get_absolute_url }}"><i
-                    class="icon fa fa-futbol-o"></i>{{ category.title }}</a>
+                <li class="menu-item {% if 'loai-san-pham' in request.get_full_path and  category.slug in request.get_full_path  %}active{% endif %}">
+                <a href="{{ category.get_absolute_url }}">
+                    <i
+                    class="icon fa fa-chrome" aria-hidden="true"></i>{{ category.title }}
+                </a>
+                </li>
             {% endfor %}
 
         </ul>

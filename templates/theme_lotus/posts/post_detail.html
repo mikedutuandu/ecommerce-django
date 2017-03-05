@@ -7,9 +7,9 @@
         <div class="container">
             <div class="breadcrumb-inner">
                 <ul class="list-inline list-unstyled">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Clothing</a></li>
-                    <li class='active'>Floral Print Buttoned</li>
+                    <li><a href="{% url 'home' %}">Trang chủ</a></li>
+                    <li><a href="{% url 'post_list' %}">Về tây nguyên</a></li>
+                    <li class='active'>{{ object.title }}</li>
                 </ul>
             </div><!-- /.breadcrumb-inner -->
         </div><!-- /.container -->
@@ -40,7 +40,7 @@
 
 
                         <div class="sidebar-module-container">
-                            {% left_nav %}
+                           {% left_nav request %}
                             {% hot_products %}
                             {% latest_post %}
                             <div class="sidebar-widget outer-bottom-xs  product-tag wow fadeInUp">
