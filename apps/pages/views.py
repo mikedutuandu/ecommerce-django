@@ -7,7 +7,7 @@ from .forms import ContactForm
 
 
 class HomeView(View):
-    template_name = "theme_lotus/base/home.html"
+    template_name = "theme_lotus/pages/home.html"
     def get(self, request, *args, **kwargs):
         context = {}
         context['sections'] = []
@@ -19,8 +19,8 @@ class HomeView(View):
 
 
 class IntroductionView(TemplateView):
-    template_name = 'theme_lotus/base/introduction.html'
+    template_name = 'theme_lotus/pages/introduction.html'
 class ContactView(TemplateView):
-    template_name = 'theme_lotus/base/contact.html'
+    template_name = 'theme_lotus/pages/contact.html'
 class PaymentView(TemplateView):
-    template_name = 'theme_lotus/base/payment.html'
+    template_name = 'theme_lotus/pages/payment.html'

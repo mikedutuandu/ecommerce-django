@@ -88,12 +88,23 @@
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw"><a href="{% url "home" %}">Trang chủ </a></li>
-                                <li><a href="{% url "products" %}">Sản phẩm </a></li>
-                                <li><a href="{% url 'base_introduction' %}">Giới thiệu </a></li>
-                                <li><a href="{% url 'post_list' %}">Về tây nguyên</a></li>
-                                <li><a href="{% url 'base_contact' %}">Liên hệ</a></li>
-                                <li><a href="{% url 'base_payment' %}">Thanh toán</a></li>
+                              {% url "home" as home %}
+                                <li {% if request.get_full_path == home %} class="active" {% endif %}><a href="{{ home }}">Trang chủ </a></li>
+
+                                {% url "products" as products %}
+                                <li {% if request.get_full_path == products %} class="active" {% endif %}><a href="{{ products }}">Sản phẩm </a></li>
+
+                            {% url 'base_introduction' as base_introduction %}
+                                <li {% if request.get_full_path == base_introduction %} class="active" {% endif %} ><a href="{{ base_introduction }}">Giới thiệu </a></li>
+
+                             {% url 'post_list' as post_list %}
+                                <li {% if request.get_full_path == post_list %} class="active" {% endif %}><a href="{{ post_list }}">Về tây nguyên</a></li>
+
+                             {% url 'base_contact' as base_contact %}
+                                <li {% if request.get_full_path == base_contact %} class="active" {% endif %}><a href="{{ base_contact }}">Liên hệ</a></li>
+
+                              {% url 'base_payment' as base_payment %}
+                                <li {% if request.get_full_path == base_payment %} class="active" {% endif %}><a href="{{ base_payment }}">Thanh toán</a></li>
 
                             </ul>
                             <!-- /.navbar-nav -->

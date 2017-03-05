@@ -16,7 +16,7 @@ from apps.orders.views import (
     CheckoutView,
     CheckoutFinalView,
 )
-from apps.base.views import (
+from apps.pages.views import (
     HomeView,
     ContactView,
     IntroductionView,
