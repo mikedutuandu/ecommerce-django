@@ -6,7 +6,7 @@
             <div class="top-cart"></div>
 
             <div class="total-price-basket">
-                {% if cart %}
+                {% if cart and cart.cartitem_set.count > 0 %}
                 <span class="lbl">{{ cart.cartitem_set.count }} Sản phẩm /</span>
                 <span class="total-price">
                       <span class="value">{{ cart.subtotal }}</span> </span>
@@ -18,7 +18,7 @@
         </div>
     </a>
 
-        {% if cart %}
+          {% if cart and cart.cartitem_set.count > 0 %}
             <ul class="dropdown-menu">
                 <li>
                     <div class="cart-item product-summary">
@@ -52,7 +52,7 @@
         {% else %}
             <ul class="dropdown-menu">
                 <li>
-                    Không có sản phẩm nào trong giỏ hàng
+                    Giỏ hàng trống !
 
                 </li>
             </ul>

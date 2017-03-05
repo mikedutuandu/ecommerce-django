@@ -48,11 +48,11 @@
 
                     <div class="module-body">
                         <ul class='list-unstyled'>
-                       <li class="first"><a href="#" title="Contact us">Giới thiệu</a></li>
-                            <li><a href="#" title="About us">Về tây nguyên</a></li>
-                            <li><a href="#" title="faq">Liên hệ</a></li>
-                            <li><a href="#" title="Popular Searches">Thanh toán</a></li>
-                            <li class="last"><a href="#" title="Where is my order?">Câu hỏi thường </a></li>
+                       <li class="first"><a href="{% url 'base_introduction' %}" title="Giới thiệu">Giới thiệu</a></li>
+                            <li><a href="{% url 'base_contact' %}" title="Liên hệ">Liên hệ</a></li>
+                            <li><a href="{% url 'base_payment' %}" title="Thanh toán">Thanh toán</a></li>
+                            <li><a href="{% url 'post_list' %}" title="Về tây nguyên">Về tây nguyên</a></li>
+                            <li class="last"><a href="#" title="Câu hỏi thường">Câu hỏi thường </a></li>
                         </ul>
                     </div>
                     <!-- /.module-body -->
@@ -65,11 +65,11 @@
 
                     <div class="module-body">
                         <ul class='list-unstyled'>
-                            <li class="first"><a href="#" title="Contact us">Đăng nhập</a></li>
-                            <li><a href="#" title="About us">Đăng ký</a></li>
+                            <li class="first"><a href="{% url 'login_custom' %}" title="Đăng nhập">Đăng nhập</a></li>
+                            <li><a href="{% url 'signup_custom' %}" title="Đăng ký">Đăng ký</a></li>
                             <li><a href="#" title="faq">Quên mật khẩu</a></li>
-                            <li><a href="#" title="Popular Searches">Giỏ hàng </a></li>
-                            <li class="last"><a href="#" title="Where is my order?">Danh sách ưa thích </a></li>
+                            <li><a href="{% url 'cart' %}" title="Giỏ hàng">Giỏ hàng </a></li>
+                            <li class="last"><a href="#" title="Danh sách ưa thích">Danh sách ưa thích </a></li>
                         </ul>
                     </div>
                     <!-- /.module-body -->
