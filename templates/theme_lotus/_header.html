@@ -90,10 +90,10 @@
                             <ul class="nav navbar-nav">
                                 <li class="active dropdown yamm-fw"><a href="{% url "home" %}">Trang chủ </a></li>
                                 <li><a href="{% url "products" %}">Sản phẩm </a></li>
-                                <li><a href="">Giới thiệu </a></li>
-                                <li><a href="contact.html">Về tây nguyên</a></li>
-                                <li><a href="contact.html">Liên hệ</a></li>
-                                <li><a href="contact.html">Thanh toán</a></li>
+                                <li><a href="{% url 'base_introduction' %}">Giới thiệu </a></li>
+                                <li><a href="{% url 'post_list' %}">Về tây nguyên</a></li>
+                                <li><a href="{% url 'base_contact' %}">Liên hệ</a></li>
+                                <li><a href="{% url 'base_payment' %}">Thanh toán</a></li>
 
                             </ul>
                             <!-- /.navbar-nav -->

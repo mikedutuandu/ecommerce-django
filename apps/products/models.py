@@ -1,6 +1,5 @@
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models.signals import post_save
 from django.utils.safestring import mark_safe
 from imagekit.processors import ResizeToFill, Thumbnail
 from imagekit.models import ImageSpecField

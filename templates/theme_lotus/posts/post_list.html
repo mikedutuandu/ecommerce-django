@@ -1,0 +1,94 @@
+{% extends "theme_lotus/layout.html" %}
+{% load staticfiles %}
+{% load inclusion_tags %}
+{% load el_pagination_tags %}
+{% block breakcrumb %}
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Clothing</a></li>
+                    <li class='active'>Floral Print Buttoned</li>
+                </ul>
+            </div><!-- /.breadcrumb-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb -->
+{% endblock breakcrumb %}
+{% block content %}
+
+    <div class="body-content">
+        <div class="container">
+            <div class="row">
+                {% paginate object_list %}
+                <div class="blog-page">
+                    <div class="col-md-9">
+                        {% for post in object_list %}
+                            <div class="blog-post {% if forloop.counter > 1 %} outer-top-bd {% endif %}  wow fadeInUp">
+                                <a href="{{ post.get_absolute_url }}"><img src="{{ post.image_thumb1.url }}"
+                                                                           alt="{{ post.title }}"></a>
+                                <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                </h1>
+                                <span class="author">Đặc sản tây nguyên VN</span>
+                                <span class="date-time">14/06/2014 11.00AM</span>
+                                <p>{{ post.short_content }}...</p>
+                                <a href="{{ post.get_absolute_url }}" class="btn btn-upper btn-primary read-more">xem thêm</a>
+                            </div>
+                        {% endfor %}
+
+                        <div class="clearfix blog-pagination filters-container  wow fadeInUp"
+                             style="padding:0px; background:none; box-shadow:none; margin-top:15px; border:none">
+
+                            <div class="text-right">
+                                {% get_pages %}
+                                <div class="pagination-container">
+                                    <ul class="list-inline list-unstyled">
+                                        <li class="prev"><a href="{{ pages.previous.path }}"><i
+                                                class="fa fa-angle-left"></i></a></li>
+                                        {% for page in pages %}
+                                            <li {% if page.is_current %}class="active" {% endif %}><a
+                                                    href="{{ page.path }}">{{ page.number }}</a></li>
+                                        {% endfor %}
+                                        <li class="next"><a href="{{ pages.next.path }}"><i
+                                                class="fa fa-angle-right"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 sidebar">
+
+
+                        <div class="sidebar-module-container">
+                            {% left_nav %}
+                            {% hot_products %}
+                             {% latest_post %}
+                            <div class="sidebar-widget outer-bottom-xs  product-tag wow fadeInUp">
+                                <h3 class="section-title">Từ khoá nổi </h3>
+                                <div class="sidebar-widget-body outer-top-xs">
+                                    <div class="tag-list">
+                                        <a class="item" title="Phone" href="category.html">Phone</a>
+                                        <a class="item active" title="Vest" href="category.html">Vest</a>
+                                        <a class="item" title="Smartphone" href="category.html">Smartphone</a>
+                                        <a class="item" title="Furniture" href="category.html">Furniture</a>
+                                        <a class="item" title="T-shirt" href="category.html">T-shirt</a>
+                                        <a class="item" title="Sweatpants" href="category.html">Sweatpants</a>
+                                        <a class="item" title="Sneaker" href="category.html">Sneaker</a>
+                                        <a class="item" title="Toys" href="category.html">Toys</a>
+                                        <a class="item" title="Rose" href="category.html">Rose</a>
+                                    </div><!-- /.tag-list -->
+                                </div><!-- /.sidebar-widget-body -->
+                            </div>
+                            <div class="home-banner outer-top-n outer-bottom-xs">
+                                <img src="http://themesground.com/Lotus/V1/HTML/assets/images/banners/LHS-banner.jpg"
+                                     alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

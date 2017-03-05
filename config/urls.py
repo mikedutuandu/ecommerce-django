@@ -17,13 +17,16 @@ from apps.orders.views import (
     CheckoutFinalView,
 )
 from apps.base.views import (
-    HomeView
+    HomeView,
+    ContactView,
+    IntroductionView,
+    PaymentView
 )
 from apps.comments.views import CreateCommentView
 
 from allauth.account.views import LogoutView
-from apps.accounts.views import LoginCustomView,SignupCustomView,UserAddressView,UserProfileView
-
+from apps.accounts.views import LoginCustomView, SignupCustomView, UserAddressView, UserProfileView
+from apps.posts.views import PostDetailView, PostListView
 
 urlpatterns = [
     # Examples:
@@ -38,10 +41,17 @@ urlpatterns = [
     url(r'^thong-tin-tai-khoan/$', UserProfileView.as_view(), name='user_profile'),
     url(r'^thoat-tai-khoan/$', LogoutView.as_view(), name='logout_custom'),
 
+    url(r'^ve-tay-nguyen/$', PostListView.as_view(), name='post_list'),
+    url(r'^ve-tay-nguyen/(?P<slug>[\w-]+)/$', PostDetailView.as_view(), name='post_detail'),
+
+    url(r'^lien-he/$', ContactView.as_view(), name='base_contact'),
+    url(r'^gioi-thieu/$', IntroductionView.as_view(), name='base_introduction'),
+    url(r'^hinh-thuc-thanh-toan/$', PaymentView.as_view(), name='base_payment'),
+
     url(r'^nhan-xet/$', CreateCommentView.as_view(), name='create_comment'),
 
     url(r'^san-pham/$', ProductListView.as_view(), name='products'),
-    url(r'^san-pham/(?P<slug>\d+)/$', ProductDetailView.as_view(), name='product_detail'),
+    url(r'^san-pham/(?P<slug>[\w-]+)/$', ProductDetailView.as_view(), name='product_detail'),
 
     url(r'^loai-san-pham/(?P<slug>[\w-]+)/$', CategoryDetailView.as_view(), name='category_detail'),
 
@@ -60,6 +70,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     import debug_toolbar
+
     urlpatterns += [
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]

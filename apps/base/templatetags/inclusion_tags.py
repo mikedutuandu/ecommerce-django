@@ -2,6 +2,7 @@
 from django import template
 from apps.products.models import Product,Category
 from apps.carts.models import Cart,CartItem
+from apps.posts.models import Post
 
 register = template.Library()
 
@@ -17,7 +18,8 @@ def left_nav():
 
 @register.inclusion_tag('theme_lotus/base/inclusion_tags/_latest_post.html')
 def latest_post():
-    return {}
+    posts = Post.objects.filter(active=True).order_by('-timestamp')[:3]
+    return {'posts':posts}
 
 @register.inclusion_tag('theme_lotus/base/inclusion_tags/_head_card.html')
 def head_card(request):
