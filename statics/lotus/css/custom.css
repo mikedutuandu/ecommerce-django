@@ -167,4 +167,9 @@
  .breadcrumb ul li:after {
     margin-right: 0px !important;
 }
+ @media (min-width: 992px) {
+.order-list-panel,.terms-conditions-page{
+    min-height: 500px;
+}
+ }
 
