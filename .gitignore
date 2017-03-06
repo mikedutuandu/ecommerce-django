@@ -18,6 +18,7 @@ apps/carts/migrations/
 apps/orders/migrations/
 apps/products/migrations/
 apps/accounts/migrations/
+apps/posts/migrations/
 
 apps/pages/templatetags/__pycache__/
 
@@ -30,3 +31,4 @@ apps/pages/__pycache__/models.cpython-34.pyc
 apps/pages/__pycache__/views.cpython-34.pyc
 apps/comments/__pycache__/
 apps/comments/migrations/
+apps/posts/__pycache__/
