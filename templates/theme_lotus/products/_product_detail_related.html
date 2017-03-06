@@ -1,0 +1,36 @@
+ <section class="section featured-product wow fadeInUp">
+                        <h3 class="section-title">SẢN PHẨM LIÊN QUAN</h3>
+                        <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
+
+                            {% for product in related %}
+                                <div class="item item-carousel">
+                                    <div class="products">
+
+                                        <div class="product">
+                                            <div class="product-image">
+                                                <div class="image">
+                                                    <a href="{{ product.get_absolute_url }}"><img
+                                                            src="{{ product.productimage_set.first.image_thumb5.url }}"
+                                                            alt=""></a>
+                                                </div>
+
+                                                <div class="tag sale"><span>sale</span></div>
+                                            </div>
+
+                                            <div class="product-info text-left">
+                                                <h3 class="name"><a
+                                                        href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                                                </h3>
+                                                <div class="description"></div>
+
+                                                <div class="product-price">
+                                                    {{ product.get_html_price }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </section>
