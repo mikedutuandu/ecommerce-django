@@ -31,6 +31,10 @@ class Post(models.Model):
                                       processors=[ResizeToFill(223, 115)],
                                       format='JPEG',
                                       options={'quality': 100})
+    image_thumb3 = ImageSpecField(source='image',
+                                      processors=[ResizeToFill(379, 201)],
+                                      format='JPEG',
+                                      options={'quality': 100})
     short_content = models.TextField(blank=True, null=True)
     content = RichTextUploadingField()
     active = models.BooleanField(default=False)

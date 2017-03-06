@@ -21,20 +21,40 @@
             <div class="row">
                 {% paginate object_list %}
                 <div class="blog-page">
-                    <div class="col-md-9">
-                        {% for post in object_list %}
-                            <div class="blog-post {% if forloop.counter > 1 %} outer-top-bd {% endif %}  wow fadeInUp">
-                                <a href="{{ post.get_absolute_url }}"><img src="{{ post.image_thumb1.url }}"
-                                                                           alt="{{ post.title }}"></a>
-                                <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-                                </h1>
-                                <span class="author">Đặc sản tây nguyên VN</span>
-                                <span class="date-time">14/06/2014 11.00AM</span>
-                                <p>{{ post.short_content }}...</p>
-                                <a href="{{ post.get_absolute_url }}" class="btn btn-upper btn-primary read-more">xem thêm</a>
-                            </div>
-                        {% endfor %}
 
+                    <div class="col-md-9">
+
+                        <div class="row">
+                            {% for post in object_list %}
+                                <div class="col-md-6" style="margin-bottom: 10px;">
+                                    <div class="item">
+                                        <div class="blog-post">
+                                            <div class="blog-post-image">
+                                                <div class="image"><a href="{{ post.get_absolute_url }}"><img
+                                                        src="{{ post.image_thumb3.url }}" alt="" class="img-responsive"></a>
+                                                </div>
+                                            </div>
+                                            <!-- /.blog-post-image -->
+
+                                            <div class="blog-post-info text-left">
+                                                <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                                </h1>
+                                                <span class="author">Đặc sản tây nguyên VN</span>
+                                                <span class="date-time">14/06/2014</span>
+                                                <p class="text">{{ post.short_content }}...</p>
+                                                <a href="{{ post.get_absolute_url }}" class="lnk btn btn-primary">Xem
+                                                    thêm</a></div>
+                                            <!-- /.blog-post-info -->
+
+                                        </div>
+                                        <!-- /.blog-post -->
+                                    </div>
+                                </div>
+                                {% cycle '' '</div><div class="row">' %}
+                            {% endfor %}
+
+
+                        </div>
                         <div class="clearfix blog-pagination filters-container  wow fadeInUp"
                              style="padding:0px; background:none; box-shadow:none; margin-top:15px; border:none">
 
@@ -60,9 +80,9 @@
 
 
                         <div class="sidebar-module-container">
-                           {% left_nav request %}
+                            {% left_nav request %}
                             {% hot_products %}
-                             {% latest_post %}
+                            {% latest_post %}
                             <div class="sidebar-widget outer-bottom-xs  product-tag wow fadeInUp">
                                 <h3 class="section-title">Từ khoá nổi bật</h3>
                                 <div class="sidebar-widget-body outer-top-xs">
@@ -79,15 +99,10 @@
                                     </div><!-- /.tag-list -->
                                 </div><!-- /.sidebar-widget-body -->
                             </div>
-                            <div class="home-banner outer-top-n outer-bottom-xs">
-                                <img src="http://themesground.com/Lotus/V1/HTML/assets/images/banners/LHS-banner.jpg"
-                                     alt="Image">
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 {% endblock content %}
