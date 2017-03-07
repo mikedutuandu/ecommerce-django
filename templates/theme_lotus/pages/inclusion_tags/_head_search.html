@@ -1,22 +1,10 @@
-<div class="col-xs-12 col-sm-12 col-md-5 top-search-holder">
+<div class="col-xs-12 col-sm-12 col-md-4 top-search-holder">
 
     <div class="search-area" data-search="">
 
         <form method="GET" action="{% url "products" %}">
             <div class="control-group">
-                <ul class="categories-filter animate-dropdown">
-                    <li class="dropdown"><a class="dropdown-toggle cat-choose" data-toggle="dropdown" href="category.html"><span>Tất cả</span>
-                        <b class="caret"></b></a>
-                        <ul class="dropdown-menu" role="menu">
-                             <li role="presentation"><a class="cat-item" data-cat-id="" role="menuitem" tabindex="1" href="#">Tất cả</a></li>
-                            {% for category in categories %}
-                            <li role="presentation"><a id = {{ category.id }} class="cat-item" data-cat-id="{{ category.id }}" role="menuitem" tabindex="1" href="#">{{ category.title }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                </ul>
-                <input type="hidden" class="filter-by-cat" name="cat" value="{{ request.GET.cat }}"/>
-                <input class="search-field" name="q" placeholder="Tìm kiếm sản phẩm..." value="{{ request.GET.q }}"/>
+                <input class="search-field" name="q" placeholder="Tìm kiếm sản phẩm" value="{{ request.GET.q }}"/>
                 <a class="search-button" href="#"></a></div>
         </form>
     </div>
