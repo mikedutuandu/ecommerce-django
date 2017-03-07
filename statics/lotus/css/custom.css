@@ -190,3 +190,6 @@ li.active > a {
 .social-sign-in{
     margin-bottom: 30px;
 }
+.filters-container .pagination-container {
+    margin-bottom: 15px !important;
+}
