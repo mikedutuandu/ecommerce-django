@@ -60,7 +60,7 @@
 }
 
 .success-order {
-    background: #58b712;
+    background: #57b846;
     font-size: 19px;
     color: #fff;
     border: none;
@@ -186,4 +186,7 @@ li.active > a {
 
 .main-header .logo-holder {
     margin-bottom: 12px !important;
+}
+.social-sign-in{
+    margin-bottom: 30px;
 }
