@@ -132,10 +132,10 @@
     font-family: FontAwesome;
 }
 
-.dropdown-menu {
-    min-width: 200px !important;
-    float: right !important;
-}
+/*.dropdown-menu {*/
+    /*min-width: 200px !important;*/
+    /*float: right !important;*/
+/*}*/
 
 .top-bar .cnt-block .list-inline > li {
     margin-right: 0px !important;
@@ -178,4 +178,8 @@ li.active > a {
     .order-list-panel, .terms-conditions-page {
         min-height: 500px;
     }
+}
+
+.body-content .container{
+    margin-bottom: 20px;
 }
