@@ -183,3 +183,7 @@ li.active > a {
 .body-content .container{
     margin-bottom: 20px;
 }
+
+.main-header .logo-holder {
+    margin-bottom: 12px !important;
+}
