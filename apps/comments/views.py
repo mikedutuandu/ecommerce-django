@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class CreateCommentView(LoginRequiredMixin,View):
+    login_url = '/dang-nhap/'
     def post(self,request):
         form = CommentForm(request.POST or None)
         if form.is_valid() and request.user.is_authenticated():

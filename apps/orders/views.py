@@ -25,12 +25,13 @@ class OrderDetail(LoginRequiredMixin, DetailView):
     slug_url_kwarg = 'order_number'
     slug_field = 'order_number'
     template_name = "theme_lotus/orders/order_detail_view.html"
+    login_url = '/dang-nhap/'
 
 
 class OrderList(LoginRequiredMixin, ListView):
     queryset = Order.objects.all().exclude(status='draft')
     template_name = "theme_lotus/orders/order_list_view.html"
-
+    login_url = '/dang-nhap/'
     def get_queryset(self):
         try:
             user_checkout = UserCheckout.objects.get(user=self.request.user)
@@ -84,7 +85,7 @@ class CheckoutView(CartOrderMixin, View):
 class CheckoutFinalView(LoginRequiredMixin,CartOrderMixin, View):
     template_name_confirm = "theme_lotus/orders/checkout_final_view.html"
     template_name_success = "theme_lotus/orders/checkout_success_view.html"
-
+    login_url = '/dang-nhap/'
     def get_context(self):
         context = {}
         user_checkout = UserCheckout.objects.get(user=self.request.user)

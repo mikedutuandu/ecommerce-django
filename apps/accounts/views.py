@@ -17,6 +17,7 @@ class UserAddressView(LoginRequiredMixin,UpdateView):
     form_class = UserAddressForm
     template_name = 'theme_lotus/accounts/user_address.html'
     success_url = '/dia-chi-cua-toi/'
+    login_url = '/dang-nhap/'
     def get_object(self, queryset=None):
         return self.request.user.useraddress
 
@@ -25,5 +26,6 @@ class UserProfileView(LoginRequiredMixin,UpdateView):
     form_class = UserProfileForm
     template_name = 'theme_lotus/accounts/user_profile.html'
     success_url = '/thong-tin-tai-khoan/'
+    login_url = '/dang-nhap/'
     def get_object(self, queryset=None):
         return self.request.user
