@@ -10,7 +10,7 @@
                 <span class="lbl">{{ cart.cartitem_set.count }} Sản phẩm /</span>
                 <span class="total-price">
                       <span class="value">{{ cart.subtotal }}</span> </span>
-                      <span class="sign">VNĐ</span>
+                      <span class="sign">đ</span>
                 {% else %}
                                 <span class="lbl">0 Sản phẩm</span>
                 {% endif %}
@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-xs-7">
                                 <h3 class="name"><a href="{{ cart_item.item.get_absolute_url }}">{{ cart_item.item.title }}</a></h3>
-                                <div class="price">{{ cart_item.line_item_total }} VNĐ</div>
+                                <div class="price">{{ cart_item.line_item_total }} đ</div>
                             </div>
                             <div class="col-xs-1 action"><a href="#"><i class="fa fa-trash"></i></a></div>
                         </div>
@@ -40,7 +40,7 @@
                     <div class="clearfix"></div>
                     <hr>
                     <div class="clearfix cart-total">
-                        <div class="pull-right"><span class="text">Sub Total :</span><span class='price'>{{ cart.subtotal }} VNĐ</span>
+                        <div class="pull-right"><span class="text">Sub Total :</span><span class='price'>{{ cart.subtotal }} đ</span>
                         </div>
                         <div class="clearfix"></div>
                         <a href="{% url "checkout" %}" class="btn btn-upper btn-primary btn-block m-t-20">Thanh toán</a></div>

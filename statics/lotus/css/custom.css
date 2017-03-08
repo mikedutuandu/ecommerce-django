@@ -193,3 +193,6 @@ li.active > a {
 .filters-container .pagination-container {
     margin-bottom: 15px !important;
 }
+.shopping-cart .shopping-cart-table table tbody tr .cart-product-sub-total span, .shopping-cart .shopping-cart-table table tbody tr .cart-product-grand-total span {
+    text-transform: lowercase !important;
+}

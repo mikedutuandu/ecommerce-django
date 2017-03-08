@@ -35,6 +35,9 @@
 
 
                 <div class="offer-text" style="font-size: 13px;">
+
+
+
                 </div>
 
                 <div class="clearfix"></div>
@@ -55,14 +58,14 @@
                         <img src="{% static "lotus/images/logo.png" %}" alt="logo">
                     </a>
                     </div>
-                        <div class="logo"><a href="home.html">
+                    <div class="logo"><a href="home.html">
                         <img src="{% static "lotus/images/hotline.png" %}" alt="logo">
                     </a>
                     </div>
                     <!-- /.logo -->
                     <!-- ============================================================= LOGO : END ============================================================= -->
                 </div>
-                 {% head_search request %}
+                {% head_search request %}
 
                 {% head_card request %}
 
@@ -91,23 +94,29 @@
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                              {% url "home" as home %}
-                                <li {% if request.get_full_path == home %} class="active" {% endif %}><a href="{{ home }}">Trang chủ </a></li>
+                                {% url "home" as home %}
+                                <li {% if request.get_full_path == home %} class="active" {% endif %}><a
+                                        href="{{ home }}">Trang chủ </a></li>
 
                                 {% url "products" as products %}
-                                <li {% if request.get_full_path == products %} class="active" {% endif %}><a href="{{ products }}">Sản phẩm </a></li>
+                                <li {% if request.get_full_path == products %} class="active" {% endif %}><a
+                                        href="{{ products }}">Sản phẩm </a></li>
 
-                            {% url 'base_introduction' as base_introduction %}
-                                <li {% if request.get_full_path == base_introduction %} class="active" {% endif %} ><a href="{{ base_introduction }}">Giới thiệu </a></li>
+                                {% url 'base_introduction' as base_introduction %}
+                                <li {% if request.get_full_path == base_introduction %} class="active" {% endif %} ><a
+                                        href="{{ base_introduction }}">Giới thiệu </a></li>
 
-                             {% url 'post_list' as post_list %}
-                                <li {% if request.get_full_path == post_list %} class="active" {% endif %}><a href="{{ post_list }}">Về tây nguyên</a></li>
+                                {% url 'post_list' as post_list %}
+                                <li {% if request.get_full_path == post_list %} class="active" {% endif %}><a
+                                        href="{{ post_list }}">Về tây nguyên</a></li>
 
-                             {% url 'base_contact' as base_contact %}
-                                <li {% if request.get_full_path == base_contact %} class="active" {% endif %}><a href="{{ base_contact }}">Liên hệ</a></li>
+                                {% url 'base_contact' as base_contact %}
+                                <li {% if request.get_full_path == base_contact %} class="active" {% endif %}><a
+                                        href="{{ base_contact }}">Liên hệ</a></li>
 
-                              {% url 'base_payment' as base_payment %}
-                                <li {% if request.get_full_path == base_payment %} class="active" {% endif %}><a href="{{ base_payment }}">Thanh toán</a></li>
+                                {% url 'base_payment' as base_payment %}
+                                <li {% if request.get_full_path == base_payment %} class="active" {% endif %}><a
+                                        href="{{ base_payment }}">Thanh toán</a></li>
 
                             </ul>
                             <!-- /.navbar-nav -->

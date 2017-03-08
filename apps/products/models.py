@@ -27,9 +27,9 @@ class Product(models.Model):
     slug = models.SlugField(unique=True)
     short_description = models.TextField(blank=True,null=True)
     description = RichTextUploadingField()
-    root_price = models.DecimalField(decimal_places=2, max_digits=20)
-    price = models.DecimalField(decimal_places=2, max_digits=20)
-    sale_price = models.DecimalField(decimal_places=2, max_digits=20, null=True, blank=True)
+    root_price = models.DecimalField(decimal_places=0, max_digits=20)
+    price = models.DecimalField(decimal_places=0, max_digits=20)
+    sale_price = models.DecimalField(decimal_places=0, max_digits=20, null=True, blank=True)
     inventory = models.IntegerField(null=True, blank=True)  # refer none == unlimited amount
     active = models.BooleanField(default=True)
     categories = models.ManyToManyField('Category', blank=True)
@@ -62,17 +62,17 @@ class Product(models.Model):
 
     def get_html_price(self):
         if self.sale_price is not None:
-            html_text = "<span class='price'>%s</span> <span class='price-before-discount'>%s</span>" % (
+            html_text = "<span class='price'>%s đ</span> <span class='price-before-discount'>%s đ</span>" % (
             self.sale_price, self.price)
         else:
-            html_text = "<span class='price'>%s</span>" % (self.price)
+            html_text = "<span class='price'>%s đ</span>" % (self.price)
         return mark_safe(html_text)
     def get_html_price_on_detail(self):
         if self.sale_price is not None:
-            html_text = "<span class='price'>%s</span> <span class='price-strike'>%s</span>" % (
+            html_text = "<span class='price'>%s đ</span> <span class='price-strike'>%s đ</span>" % (
             self.sale_price, self.price)
         else:
-            html_text = "<span class='price'>%s</span>" % (self.price)
+            html_text = "<span class='price'>%s đ</span>" % (self.price)
         return mark_safe(html_text)
 
     def add_to_cart(self):
