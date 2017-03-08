@@ -45,14 +45,13 @@
                                             <!-- already-registered-login -->
                                             <div class="col-md-4 col-sm-12">
                                                 <p><strong><u> PHƯƠNG THỨC VẬN CHUYỂN:</u> </strong></p>
-                                                <p>Dự kiến giao hàng vào Thứ tư, 08/03/2017 - Thứ năm, 09/03/2017: Miễn
-                                                    Phí</p>
+                                                <p>Dự kiến giao hàng sau một ngày kể từ ngày đặt hàng.</p>
                                             </div>
                                             <div class="col-md-4 col-sm-12">
                                                 <p><strong><u> ĐỊA CHỈ NGƯỜI NHẬN:</u> </strong></p>
-                                                <p>dinh van tuan</p>
-                                                <p>Địa chỉ: duong khac tran, phuong 5, phu nhuan hcm</p>
-                                                <p>Điện thoại: 16657918579</p>
+                                                <p><strong>{{ order.order_address.fullname }}</strong></p>
+                                                <p>Địa chỉ: {{ order.order_address.get_address }}</p>
+                                                <p>Điện thoại: {{ order.order_address.phone }}</p>
                                             </div>
                                             <div class="col-md-4 col-sm-12">
                                                 <p><strong><u> PHƯƠNG THỨC THANH TOÁN:</u> </strong></p>
@@ -80,11 +79,11 @@
                                                             <tr>
                                                                 <td class="col-md-6">
                                                                     <img src="{{ cart_item.item.productimage_set.first.image_thumb2.url }}">
-                                                                    <a href="">{{ cart_item.item.title }}</a>
+                                                                    <a href="{{ cart_item.item.get_absolute_url }}">{{ cart_item.item.title }}</a>
                                                                 </td>
-                                                                <td class="col-md-2">02/03/2017</td>
-                                                                <td class="col-md-2">16.840.000 ₫</td>
-                                                                <td class="col-md-2">Giao hàng thành công</td>
+                                                                <td class="col-md-2">{{ cart_item.item.get_price }} đ</td>
+                                                                <td class="col-md-2">{{ cart_item.quantity }}</td>
+                                                                <td class="col-md-2">{{ cart_item.line_item_total }} đ</td>
 
                                                             </tr>
                                                         {% endfor %}
@@ -110,7 +109,7 @@
                                                             <hr>
                                                             <div class="clearfix cart-total">
                                                                 <div class="pull-right"><span class="text"><strong>Thành tiền</strong> : </span><span
-                                                                        class="price">5.00 đ</span>
+                                                                        class="price">{{ order.order_total }} đ</span>
                                                                 </div>
                                                             </div>
 

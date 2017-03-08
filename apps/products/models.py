@@ -35,6 +35,8 @@ class Product(models.Model):
     categories = models.ManyToManyField('Category', blank=True)
     default = models.ForeignKey('Category', related_name='default_category', null=True, blank=True)
     hot = models.BooleanField(default=False)
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+
     objects = ProductManager()
 
     class Meta:

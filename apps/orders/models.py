@@ -90,11 +90,12 @@ class Order(models.Model):
     user_checkout = models.ForeignKey(UserCheckout, null=True)
     cart = models.ForeignKey(Cart)
     order_address = models.OneToOneField(OrderAddress, null=True)
-    shipping_total_price = models.DecimalField(max_digits=50, decimal_places=2, default=5.99)
-    order_total = models.DecimalField(max_digits=50, decimal_places=2, )
+    shipping_total_price = models.DecimalField(max_digits=50, decimal_places=0, default=0)
+    order_total = models.DecimalField(max_digits=50, decimal_places=0, )
     order_id = models.CharField(max_length=20, null=True, blank=True)
     payment_method = models.CharField(max_length=120, choices=PAYMENT_METHOD_CHOICES, default='order')
     order_number = models.IntegerField(unique=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __unicode__(self):
         return "Order_id: %s, Cart_id: %s" % (self.id, self.cart.id)

@@ -164,10 +164,9 @@
     font-size: 1.5em;
 }
 
-li.active > a {
-    color: #e40046 !important;
+.side-menu ul li.active > a {
+       color: #333;
     font-weight: bold;
-    padding-bottom: 15px;
 }
 
 .breadcrumb ul li:after {
@@ -195,4 +194,13 @@ li.active > a {
 }
 .shopping-cart .shopping-cart-table table tbody tr .cart-product-sub-total span, .shopping-cart .shopping-cart-table table tbody tr .cart-product-grand-total span {
     text-transform: lowercase !important;
+}
+.cart-shopping-total {
+    margin-bottom: 20px;
+}
+.special-product .product:first-child {
+    margin-bottom: 0px!important;
+}
+.special-product .product {
+    margin-bottom: 20px!important;
 }
