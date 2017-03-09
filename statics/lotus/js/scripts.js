@@ -182,9 +182,9 @@ jQuery('.homepage-owl-carousel').each(function(){
 });
 
 jQuery(".blog-slider").owlCarousel({
-    items : 2,
-    itemsDesktopSmall :[979,2],
-    itemsDesktop : [1199,2],
+    items : 4,
+    itemsDesktopSmall :[979,4],
+    itemsDesktop : [1199,4],
     navigation : true,
     slideSpeed : 300,
     pagination: false,

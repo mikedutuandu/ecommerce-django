@@ -8,7 +8,7 @@ class PostDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(PostDetailView, self).get_context_data(*args, **kwargs)
         instance = self.get_object()
-        context["related"] = sorted(Post.objects.get_related(instance)[:6], key=lambda x: random.random())
+        context["related"] = sorted(Post.objects.get_related(instance)[:8], key=lambda x: random.random())
         return context
 
 
