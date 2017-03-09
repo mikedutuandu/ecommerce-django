@@ -13,6 +13,10 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class PostManager(models.Manager):
     def active(self, *args, **kwargs):
         return super(PostManager, self).filter(active=True).select_related('user')
+    def get_related(self, instance):
+        posts = super(PostManager, self).filter(categories__in=instance.categories.all(), active=True)
+        qs = posts.exclude(id=instance.id).distinct()
+        return qs
 
 
 def upload_location(instance, filename):
@@ -20,6 +24,7 @@ def upload_location(instance, filename):
 
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    categories = models.ManyToManyField('Category', blank=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to=upload_location)
@@ -63,6 +68,27 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(pre_save_post_receiver, sender=Post)
+
+class Category(models.Model):
+    title = models.CharField(max_length=120, unique=True)
+    slug = models.SlugField(unique=True)
+    description = models.TextField(null=True, blank=True)
+    active = models.BooleanField(default=True)
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+    def __unicode__(self):
+        return self.title
+
+    def __str__(self):
+        return self.title
+
+
+def pre_save_category_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = create_slug(instance)
+
+
+pre_save.connect(pre_save_category_receiver, sender=Category)
 
 
 
