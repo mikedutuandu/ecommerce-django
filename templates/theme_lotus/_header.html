@@ -3,7 +3,7 @@
 <header class="header-style-1">
 
     <!-- ============================================== TOP MENU ============================================== -->
-    <div class="top-bar animate-dropdown">
+    <div class="top-bar animate-dropdown" style="background: rgba(233, 186, 0, 0.54);">
         <div class="container">
             <div class="header-top-inner">
                 {% if not user.is_authenticated %}
@@ -34,9 +34,8 @@
                 {% endif %}
 
 
-                <div class="offer-text" style="font-size: 13px;">
-
-
+                <div class="offer-text">
+                    Hotline SG: <strong>0979 250 109</strong>, HN: <strong>0166 5918 579</strong>
 
                 </div>
 
@@ -51,21 +50,17 @@
     <div class="main-header">
         <div class="container">
             <div class="row">
+                {% head_search request %}
 
                 <div class="col-xs-12 col-sm-12 col-md-4 logo-holder">
-                    <!-- ============================================================= LOGO ============================================================= -->
+
                     <div class="logo"><a href="home.html">
-                        <img src="{% static "lotus/images/logo.png" %}" alt="logo">
+                        <img height="130" src="{% static "lotus/images/logo.png" %}" alt="logo">
                     </a>
                     </div>
-                    <div class="logo"><a href="home.html">
-                        <img src="{% static "lotus/images/hotline.png" %}" alt="logo">
-                    </a>
-                    </div>
-                    <!-- /.logo -->
-                    <!-- ============================================================= LOGO : END ============================================================= -->
+
                 </div>
-                {% head_search request %}
+
 
                 {% head_card request %}
 
