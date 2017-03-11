@@ -214,3 +214,7 @@
 .blog-page .blog-post span {
     color: #666666 !important;
 }
+.blog-page .blog-post-detail img {
+    max-width: 100%;
+    height: auto;
+}
