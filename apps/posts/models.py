@@ -37,7 +37,7 @@ class Post(models.Model):
                                       format='JPEG',
                                       options={'quality': 100})
     image_thumb3 = ImageSpecField(source='image',
-                                      processors=[ResizeToFill(379, 201)],
+                                      processors=[ResizeToFill(408, 201)],
                                       format='JPEG',
                                       options={'quality': 100})
     short_content = models.TextField(blank=True, null=True)
