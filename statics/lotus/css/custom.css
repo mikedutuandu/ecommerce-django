@@ -205,5 +205,8 @@
     margin-bottom: 20px!important;
 }
 .offer-text {
-    color: #333 !important;
+    color: #fff !important;
+}
+.top-bar .cnt-account ul > li a {
+      color: #fff !important;
 }
