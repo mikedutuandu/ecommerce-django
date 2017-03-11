@@ -210,3 +210,7 @@
 .top-bar .cnt-account ul > li a {
       color: #fff !important;
 }
+
+.blog-page .blog-post span {
+    color: #666666 !important;
+}
