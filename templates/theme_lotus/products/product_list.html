@@ -35,15 +35,20 @@
 
                     <div id="category" class="category-carousel hidden-xs">
                         <div class="item">
-                            <div class="image"><img src="{% static "lotus/images/banners/cat-banner-1.jpg" %}" alt=""
+                            <div class="image"><img src="{{ banner.image_thumb2.url }}" alt=""
                                                     class="img-responsive"></div>
                             <div class="container-fluid">
                                 <div class="caption vertical-top text-left">
-                                    <div class="big-text"> Big Sale</div>
-                                    <div class="excerpt hidden-sm hidden-md"> Save up to 49% off</div>
-                                    <div class="excerpt-normal hidden-sm hidden-md"> Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit
+                                    {% if banner.text1 %}
+                                    <div class="big-text">{{ banner.text1 }}</div>
+                                    {% endif %}
+                                {% if banner.text2 %}
+                                    <div class="excerpt hidden-sm hidden-md"> {{ banner.text2 }}</div>
+                                   {% endif %}
+                                {% if banner.text3 %}
+                                    <div class="excerpt-normal hidden-sm hidden-md"> {{ banner.text3 }}
                                     </div>
+                                    {% endif %}
                                 </div>
                                 <!-- /.caption -->
                             </div>
@@ -112,7 +117,7 @@
                                                                         alt=""></a></div>
                                                                 <!-- /.image -->
 
-                                                                <div class="tag sale"><span>sale</span></div>
+                                                                 {{ product.get_html_tag_safe }}
                                                             </div>
                                                             <!-- /.product-image -->
 
@@ -170,7 +175,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="tag sale"><span>sale</span></div>
+                                                         {{ product.get_html_tag_safe }}
                                                     </div>
                                                 </div>
                                             </div>

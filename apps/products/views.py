@@ -10,7 +10,7 @@ from .filters import ProductFilter
 from .forms import  ProductFilterForm
 from .models import Product, Category
 
-
+from apps.pages.models import Banner
 
 
 
@@ -27,6 +27,7 @@ class CategoryDetailView(DetailView):
 		default_products = obj.default_category.all()
 		products = ( product_set | default_products ).distinct()
 		context["object_list"] = products
+		context['banner'] = Banner.objects.filter(active=True, location='product').first()
 		return context
 
 class ProductListView(FilterMixin, ListView):
@@ -41,6 +42,7 @@ class ProductListView(FilterMixin, ListView):
 		context["now"] = timezone.now()
 		context["query"] = self.request.GET.get("q") #None
 		context["filter_form"] = ProductFilterForm(data=self.request.GET or None)
+		context['banner'] = Banner.objects.filter(active=True,location='product').first()
 		return context
 
 	def get_queryset(self, *args, **kwargs):

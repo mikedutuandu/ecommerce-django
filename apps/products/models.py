@@ -61,6 +61,12 @@ class Product(models.Model):
         else:
             return self.price
 
+    def get_html_tag_safe(self):
+        if not self.sale_price:
+            return ''
+        safe = ((self.price-self.sale_price)/self.price) *100
+        html_text = '<div class="tag sale"><span>-%s%s</span></div>' %(safe,'%')
+        return mark_safe(html_text)
     def get_html_price(self):
         if self.sale_price is not None:
             html_text = "<span class='price'>%s đ</span> <span class='price-before-discount'>%s đ</span>" % (

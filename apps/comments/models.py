@@ -43,7 +43,7 @@ class Comment(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
 
     user        = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
-    title     = models.CharField(max_length=250)
+    title     = models.CharField(max_length=250,null=True)
     content     = models.TextField()
     parent      = models.ForeignKey("self", null=True, blank=True)
     timestamp   = models.DateTimeField(auto_now_add=True)

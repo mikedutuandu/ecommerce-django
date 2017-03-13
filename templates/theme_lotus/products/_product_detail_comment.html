@@ -22,12 +22,12 @@
                                                 <p><strong>{{ user.username }}</strong></p>
                                             </div>
                                             <div class="col-md-10 col-sm-10 col-xs-8">
-                                                <div class="review-title"><span
-                                                        class="summary">{{ comment.title }}</span><span
+                                                <div class="review-title">
+                                                    <span
                                                         class="date"><i
                                                         class="fa fa-calendar"></i><span>{{ comment.timestamp|timesince }} ago</span></span>
                                                 </div>
-                                                <div class="text">"{{ comment.content }}"
+                                                <div class="text">{{ comment.content }}
                                                 </div>
                                             </div>
                                         </div>
@@ -56,14 +56,6 @@
                                                 <input type="hidden" name="object_id" value="{{ object_id }}">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="exampleInputName">Tiêu đề: <span
-                                                                class="astk">*</span></label>
-                                                        <input type="text" class="form-control txt"
-                                                               name="title" required="required">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputName">Nội dung: <span
-                                                                class="astk">*</span></label>
                                                         <textarea class="form-control txt txt-review"
                                                                   name="content" rows="4"
                                                                   required="required"></textarea>
