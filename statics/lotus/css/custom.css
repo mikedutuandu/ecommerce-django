@@ -218,3 +218,11 @@
     max-width: 100%;
     height: auto !important;
 }
+.nav .nav-icon{
+    width: 20px;
+    height: 20px;
+    float: left;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    margin-right: 5px;
+}

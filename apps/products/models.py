@@ -8,13 +8,11 @@ from config.utils import create_slug
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.models import ContentType
 from apps.comments.models import Comment
+from django.conf import settings
 
 
 
 class ProductManager(models.Manager):
-    def all(self, *args, **kwargs):
-        return super(ProductManager, self).filter(active=True)
-
     def get_related(self, instance):
         products_one = super(ProductManager, self).filter(categories__in=instance.categories.all(), active=True)
         products_two = super(ProductManager, self).filter(default=instance.default, active=True)
@@ -23,15 +21,16 @@ class ProductManager(models.Manager):
 
 
 class Product(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,default=1)  # not required
     title = models.CharField(max_length=120)
     slug = models.SlugField(unique=True)
     short_description = models.TextField(blank=True,null=True)
     description = RichTextUploadingField()
     root_price = models.DecimalField(decimal_places=0, max_digits=20)
-    price = models.DecimalField(decimal_places=0, max_digits=20)
+    price = models.DecimalField(decimal_places=0, max_digits=20,null=True, blank=True)
     sale_price = models.DecimalField(decimal_places=0, max_digits=20, null=True, blank=True)
     inventory = models.IntegerField(null=True, blank=True)  # refer none == unlimited amount
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=False)
     categories = models.ManyToManyField('Category', blank=True)
     default = models.ForeignKey('Category', related_name='default_category', null=True, blank=True)
     hot = models.BooleanField(default=False)
@@ -154,6 +153,7 @@ class Category(models.Model):
     slug = models.SlugField(unique=True)
     description = models.TextField(null=True, blank=True)
     active = models.BooleanField(default=True)
+    icon = models.ImageField(upload_to='categories')
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __unicode__(self):

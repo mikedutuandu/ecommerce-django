@@ -45,6 +45,11 @@ class ProductListView(FilterMixin, ListView):
 
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ProductListView, self).get_queryset(*args, **kwargs)
+		if self.request.user and (self.request.user.is_superuser or self.request.user.is_staff):
+			pass
+		else:
+			qs.filter(active=True)
+
 		query = self.request.GET.get("q")
 		if query:
 			qs = self.model.objects.filter(
