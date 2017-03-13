@@ -13,11 +13,10 @@ class HomeView(View):
         context['sections'] = []
         categories = Category.objects.filter(active=True)
         for category in categories:
-            products = Product.objects.filter(default=category)[:8]
             if self.request.user and (self.request.user.is_superuser or self.request.user.is_staff):
-                pass
+                products = Product.objects.filter(default=category)[:8]
             else:
-                products.filter(active=True)
+                products = Product.objects.filter(active=True,default=category)[:8]
             context['sections'].append({"cat":category.title,"products":products})
         return render(request,self.template_name,context)
 

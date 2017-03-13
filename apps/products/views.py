@@ -45,21 +45,22 @@ class ProductListView(FilterMixin, ListView):
 
 	def get_queryset(self, *args, **kwargs):
 		qs = super(ProductListView, self).get_queryset(*args, **kwargs)
-		if self.request.user and (self.request.user.is_superuser or self.request.user.is_staff):
-			pass
-		else:
-			qs.filter(active=True)
-
+		if not self.request.user.is_superuser and not self.request.user.is_staff:
+			qs = self.model.objects.filter(active=True)
 		query = self.request.GET.get("q")
 		if query:
 			qs = self.model.objects.filter(
 				Q(title__icontains=query) |
 				Q(description__icontains=query)
 				)
+			if not self.request.user.is_superuser and not self.request.user.is_staff:
+				qs = qs.filter(active=True)
 			try:
 				qs2 = self.model.objects.filter(
 					Q(price=query)
 				)
+				if not self.request.user.is_superuser and not self.request.user.is_staff:
+					qs = qs2.filter(active=True)
 				qs = (qs | qs2).distinct()
 			except:
 				pass
