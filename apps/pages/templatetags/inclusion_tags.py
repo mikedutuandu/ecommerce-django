@@ -36,7 +36,7 @@ def head_search(request):
     return {'categories':categories,'request':request}
 
 @register.inclusion_tag('theme_lotus/pages/inclusion_tags/_user_nav.html')
-def user_nav():
-    return {}
+def user_nav(request):
+    return {'request':request}
 
 

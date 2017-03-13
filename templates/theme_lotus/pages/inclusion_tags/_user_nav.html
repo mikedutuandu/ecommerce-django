@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <div class="col-md-3">
     <!-- checkout-progress-sidebar -->
     <div class="checkout-progress-sidebar ">
@@ -8,9 +9,16 @@
                 </div>
                 <div class="">
                     <ul class="nav nav-checkout-progress list-unstyled">
-                        <li><a href="{% url 'user_profile' %}"><i class="fa fa-chrome" aria-hidden="true"></i> Thông tin tài khoản</a></li>
-                        <li><a href="{% url 'orders' %}"><i class="fa fa-chrome" aria-hidden="true"></i> Đơn hàng của tôi</a></li>
-                        <li><a href="{% url 'user_address' %}"><i class="fa fa-chrome" aria-hidden="true"></i> Địa chỉ của tôi</a></li>
+                        <li class="{% if 'thong-tin-tai-khoan' in request.get_full_path  %}active{% endif %}"><a href="{% url 'user_profile' %}">
+                            <span style="background-image: url({%  static 'lotus/images/user24.png' %})"></span>
+                            Thông tin tài khoản</a></li>
+                              <li class="{% if 'dia-chi-cua-toi' in request.get_full_path  %}active{% endif %}"><a href="{% url 'user_address' %}">
+                                       <span style="background-image: url({%  static 'lotus/images/address24.png' %})"></span>
+                            Địa chỉ của tôi</a></li>
+                        <li class="{% if 'danh-sach-don-hang' in request.get_full_path  %}active{% endif %}"><a href="{% url 'orders' %}">
+                                       <span style="background-image: url({%  static 'lotus/images/order24.png' %})"></span>
+                            Đơn hàng của tôi</a></li>
+
                     </ul>
                 </div>
             </div>
