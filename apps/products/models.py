@@ -154,6 +154,7 @@ class Category(models.Model):
     description = models.TextField(null=True, blank=True)
     active = models.BooleanField(default=True)
     icon = models.ImageField(upload_to='categories')
+    order = models.IntegerField()
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     def __unicode__(self):

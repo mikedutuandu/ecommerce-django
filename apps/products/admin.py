@@ -35,14 +35,19 @@ class ProductAdmin(admin.ModelAdmin):
         if not request.user.is_superuser:
             self.fields = ['title', 'short_description', 'description', 'root_price', 'inventory', 'categories',
                            'default']
-        return super(ProductAdmin,self).get_fields(request, obj)
+        return super(ProductAdmin, self).get_fields(request, obj)
 
     class Meta:
         model = Product
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('title','order')
+    list_editable = ["order"]
+    class Meta:
+        model = Category
+
 
 admin.site.register(Product, ProductAdmin)
 
-
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
