@@ -43,6 +43,37 @@ class Banner(models.Model):
         return str(self.id)
 
 
+PAGE_CHOICES = (
+    ('home','HOME'),
+    ('introduction', 'INTRODUCTION'),
+    ('article', 'ARTICLE'),
+    ('product', 'PRODUCT'),
+    ('contact', 'CONTACT'),
+    ('payment', 'PAYMENT'),
+)
+class Page(models.Model):
+    page = models.CharField(max_length=120, choices=PAGE_CHOICES)
+    title = models.CharField(max_length=250,null=True,blank=True)
+    content = RichTextUploadingField(null=True,blank=True)
+
+    seo_title = models.CharField(max_length=250,null=True,blank=True)
+    seo_description = models.TextField(null=True,blank=True)
+    seo_keyword = models.TextField(max_length=250,null=True,blank=True)
+
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+
+    def __unicode__(self):
+        return self.title
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ["-timestamp", "-updated"]
+
+
 
 
 

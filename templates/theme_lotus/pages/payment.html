@@ -14,74 +14,15 @@
         </div><!-- /.container -->
     </div><!-- /.breadcrumb -->
 {% endblock breakcrumb %}
+{% block seo %}
+    {% seo_page 'payment' %}
+{% endblock seo %}
 {% block content %}
 
     <div class="body-content">
         <div class="container">
             <div class="terms-conditions-page">
-                <div class="row">
-                    <div class="col-md-12 ternditions">
-                        <h2 class="heading-title">Hình thức thanh toán</h2>
-                        <div class="">
-                            <p style="text-align: justify;font-size:14px;">Sau khi các bạn chọn sản phẩm ưng ý
-                                trên website, bạn chọn<strong> Thêm vào giỏ hàng</strong>, nếu
-                                bạn muốn tìm thêm sản phẩm thì bấm vào <strong>Tiếp tục mua
-                                    hàng</strong>, nếu đã chọn hàng xong, bạn bấm vào<strong>
-                                    Thanh toán</strong> và điền các thông tin: <strong>địa chỉ
-                                    thanh toán</strong> <strong>( khách hàng, số điện thoại,
-                                    email…)</strong>. Sau đó các bạn chọn hình thức
-                                thanh toán và <strong>đặt hàng</strong>. Chúng tôi sẽ gửi email
-                                xác nhận đơn hàng của bạn, đồng thời cũng sẽ xác nhận đơn hàng
-                                bằng điện thoại trước khi đi giao hàng.</p>
-                            <p style="text-align: justify;font-size:14px;"><em><strong>Các hình thức thanh toán
-                                của Đặc Sản Tây Nguyên VN:</strong></em></p>
-                            <p style="text-align:justify;font-size:14px;"><span style="color:#008000"><strong><span style="font-size:14px">I. THANH TOÁN TIỀN MẶT</span></strong></span></p>
-                            <p style="text-align: justify;font-size:14px;"><strong>1.Tại cửa hàng
-                                :</strong><br>
-                                Thanh toán tại văn phòng 398 Nguyễn Xí – P.13 – Q.Bình Thạnh –
-                                TpHCM<br><br>
-                                <strong>2. Tại nhà/nơi nhận hàng :</strong><br>
-                                Thanh toán cho nhân viên giao hàng trực tiếp của Đặc Sản Tây Nguyên VN tại nơi nhận hàng.</p>
-                                                        <p style="text-align:justify;font-size:14px;"><span style="color:#008000"><strong><span style="font-size:14px;">II. CHUYỂN KHOẢN:</span></strong></span></p>
-                            <p style="text-align: justify;font-size:14px;">Chuyển khoản qua 1 trong các ngân
-                                hàng cho Đặc Sản Tây Nguyên VN theo thông tin</p>
-                            <p style="text-align: justify;font-size:14px;"><strong>1.Ngân hàng
-                                Vietcombank&nbsp;</strong><br>
-                                Tên ngân hàng: Ngân hàng Vietcombank Chi nhánh Nha Trang<br>
-                                Chủ tài khoản: NGUYỄN THỊ NGỌC OANH<br>
-                                Số tài khoản: &nbsp;0061001064641<br>
-                                Nội dung: Tên khách hàng – Mua sản phẩm – Số điện thoại khách
-                                hàng</p>
-                            <p style="text-align: justify;font-size:14px;"><strong>2. Ngân hàng
-                                ACB</strong><br>
-                                Tên ngân hàng: Ngân hàng ACB Chi nhánh Phú Lâm TpHCM<br>
-                                Chủ tài khoản: ĐỖ THANH TỊNH<br>
-                                Số tài khoản: 141989989<br>
-                                Nội dung: Tên khách hàng – Mua sản phẩm – Số điện thoại khách
-                                hàng</p>
-                            <p style="text-align: justify;font-size:14px;"><strong>3. Ngân hàng
-                                Angribank</strong><br>
-                                Tên ngân hàng: Ngân hàng Angribank Chi nhánh Hiệp Phước
-                                TpHCM<br>
-                                Chủ tài khoản: ĐỖ THANH TỊNH<br>
-                                Số tài khoản: 1940205124920<br>
-                                Nội dung: Tên khách hàng – Mua sản phẩm – Số điện thoại khách
-                                hàng</p>
-                            <p style="text-align: justify;font-size:14px;"><strong>4. Ngân hàng
-                                Sacombank</strong><br>
-                                Tên ngân hàng: Ngân hàng Sacombank Chi nhánh Bình Thạnh
-                                TpHCM<br>
-                                Chủ tài khoản: ĐỖ THANH TỊNH<br>
-                                Số tài khoản: 060110105463<br>
-                                Nội dung: Tên khách hàng – Mua sản phẩm – Số điện thoại khách
-                                hàng</p>
-                            <p style="text-align: justify;">
-
-                            </p>
-
-                        </div>
-                    </div>
-                </div><!-- /.row -->
+                {% page 'payment' %}
             </div><!-- /.sigin-in-->
         </div><!-- /.container -->
     </div>

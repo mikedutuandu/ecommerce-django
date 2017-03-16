@@ -9,9 +9,9 @@
             <div class="breadcrumb-inner">
                 <ul class="list-inline list-unstyled">
                     <li><a href="{% url 'home' %}">Trang chủ</a></li>
-                    {% if object  %}
-                         <li><a href="{{ object.get_absolute_url }}">Loại sản phẩm</a></li>
-                         <li class='active'>{{ object.title }}</li>
+                    {% if object %}
+                        <li><a href="{{ object.get_absolute_url }}">Loại sản phẩm</a></li>
+                        <li class='active'>{{ object.title }}</li>
                     {% else %}
                         <li class='active'>Sản phẩm</li>
                     {% endif %}
@@ -20,6 +20,13 @@
         </div><!-- /.container -->
     </div><!-- /.breadcrumb -->
 {% endblock breakcrumb %}
+{% block seo %}
+    {% if object %}
+        {% seo_post object %}
+    {% else %}
+        {% seo_page 'product' %}
+    {% endif %}
+{% endblock seo %}
 {% block content %}
 
     <div class="body-content outer-top-xs">
@@ -40,14 +47,14 @@
                             <div class="container-fluid">
                                 <div class="caption vertical-top text-left">
                                     {% if banner.text1 %}
-                                    <div class="big-text">{{ banner.text1 }}</div>
+                                        <div class="big-text">{{ banner.text1 }}</div>
                                     {% endif %}
-                                {% if banner.text2 %}
-                                    <div class="excerpt hidden-sm hidden-md"> {{ banner.text2 }}</div>
-                                   {% endif %}
-                                {% if banner.text3 %}
-                                    <div class="excerpt-normal hidden-sm hidden-md"> {{ banner.text3 }}
-                                    </div>
+                                    {% if banner.text2 %}
+                                        <div class="excerpt hidden-sm hidden-md"> {{ banner.text2 }}</div>
+                                    {% endif %}
+                                    {% if banner.text3 %}
+                                        <div class="excerpt-normal hidden-sm hidden-md"> {{ banner.text3 }}
+                                        </div>
                                     {% endif %}
                                 </div>
                                 <!-- /.caption -->
@@ -57,7 +64,7 @@
                     </div>
 
                     {% if object_list.count > 0 %}
-                         {% paginate object_list %}
+                        {% paginate object_list %}
                         <div class="clearfix filters-container m-t-10">
                             <div class="row">
                                 <div class="col col-sm-6 col-md-6">
@@ -86,7 +93,7 @@
                                                     class="fa fa-angle-right"></i></a></li>
                                         </ul>
                                     </div>
-              <!-- /.pagination-container --> </div>
+                                    <!-- /.pagination-container --> </div>
                             </div>
                         </div>
 
@@ -117,7 +124,7 @@
                                                                         alt=""></a></div>
                                                                 <!-- /.image -->
 
-                                                                 {{ product.get_html_tag_safe }}
+                                                                {{ product.get_html_tag_safe }}
                                                             </div>
                                                             <!-- /.product-image -->
 
@@ -175,7 +182,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                         {{ product.get_html_tag_safe }}
+                                                        {{ product.get_html_tag_safe }}
                                                     </div>
                                                 </div>
                                             </div>

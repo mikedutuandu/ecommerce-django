@@ -46,6 +46,11 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
+
+    seo_title = models.CharField(max_length=250,null=True,blank=True)
+    seo_description = models.TextField(null=True,blank=True)
+    seo_keyword = models.TextField(max_length=250,null=True,blank=True)
+
     objects = PostManager()
 
     def __unicode__(self):
@@ -75,6 +80,10 @@ class Category(models.Model):
     description = models.TextField(null=True, blank=True)
     active = models.BooleanField(default=True)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+    seo_title = models.CharField(max_length=250,null=True,blank=True)
+    seo_description = models.TextField(null=True,blank=True)
+    seo_keyword = models.TextField(max_length=250,null=True,blank=True)
 
     def __unicode__(self):
         return self.title

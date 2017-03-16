@@ -3,6 +3,7 @@ from django import template
 from apps.products.models import Product,Category
 from apps.carts.models import Cart,CartItem
 from apps.posts.models import Post
+from apps.pages.models import Page
 
 register = template.Library()
 
@@ -38,5 +39,19 @@ def head_search(request):
 @register.inclusion_tag('theme_lotus/pages/inclusion_tags/_user_nav.html')
 def user_nav(request):
     return {'request':request}
+
+@register.inclusion_tag('theme_lotus/pages/inclusion_tags/_seo.html')
+def seo_page(page):
+    page = Page.objects.filter(page=page).first()
+    return {'object':page}
+
+@register.inclusion_tag('theme_lotus/pages/inclusion_tags/_seo.html')
+def seo_post(object):
+    return {'object':object}
+
+@register.inclusion_tag('theme_lotus/pages/inclusion_tags/_page.html')
+def page(page):
+    page = Page.objects.filter(page=page).first()
+    return {'page':page}
 
 

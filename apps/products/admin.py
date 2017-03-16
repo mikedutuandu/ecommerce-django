@@ -19,7 +19,7 @@ class ProductAdmin(admin.ModelAdmin):
         ProductImageInline,
     ]
     fields = ['title', 'short_description', 'description', 'root_price', 'price', 'sale_price', 'inventory', 'active',
-              'categories', 'default', 'hot']
+              'categories', 'default', 'hot','seo_title','seo_description','seo_keyword']
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user
@@ -34,7 +34,7 @@ class ProductAdmin(admin.ModelAdmin):
     def get_fields(self, request, obj=None):
         if not request.user.is_superuser:
             self.fields = ['title', 'short_description', 'description', 'root_price', 'inventory', 'categories',
-                           'default']
+                           'default','seo_title','seo_description','seo_keyword']
         return super(ProductAdmin, self).get_fields(request, obj)
 
     class Meta:

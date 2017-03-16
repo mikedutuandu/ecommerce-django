@@ -36,6 +36,10 @@ class Product(models.Model):
     hot = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
+    seo_title = models.CharField(max_length=250,null=True,blank=True)
+    seo_description = models.TextField(null=True,blank=True)
+    seo_keyword = models.TextField(max_length=250,null=True,blank=True)
+
     objects = ProductManager()
 
     class Meta:
@@ -162,6 +166,10 @@ class Category(models.Model):
     icon = models.ImageField(upload_to='categories')
     order = models.IntegerField()
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+    seo_title = models.CharField(max_length=250,null=True,blank=True)
+    seo_description = models.TextField(null=True,blank=True)
+    seo_keyword = models.TextField(max_length=250,null=True,blank=True)
 
     def __unicode__(self):
         return self.title

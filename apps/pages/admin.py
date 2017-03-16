@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import Banner
+from .models import Banner,Page
 
 
 class BannerAdmin(admin.ModelAdmin):
@@ -14,3 +14,4 @@ class BannerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Banner, BannerAdmin)
+admin.site.register(Page)
