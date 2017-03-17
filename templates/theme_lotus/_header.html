@@ -35,7 +35,7 @@
 
 
                 <div class="offer-text">
-                    Hotline SG: <strong>0979 250 109</strong> - HN: <strong>0166 5918 579</strong>
+                    Hotline SG: <strong>097 412 8909</strong> - HN: <strong>096 899 2239</strong>
 
                 </div>
 
@@ -103,15 +103,16 @@
 
                                 {% url 'post_list' as post_list %}
                                 <li {% if request.get_full_path == post_list %} class="active" {% endif %}><a
-                                        href="{{ post_list }}">Về tây nguyên</a></li>
+                                        href="{{ post_list }}">Đặc sản tây nguyên</a></li>
 
-                                {% url 'base_contact' as base_contact %}
-                                <li {% if request.get_full_path == base_contact %} class="active" {% endif %}><a
-                                        href="{{ base_contact }}">Liên hệ</a></li>
 
                                 {% url 'base_payment' as base_payment %}
                                 <li {% if request.get_full_path == base_payment %} class="active" {% endif %}><a
-                                        href="{{ base_payment }}">Thanh toán</a></li>
+                                        href="{{ base_payment }}">Chính sách mua hàng và thanh toán</a></li>
+
+                                 {% url 'base_contact' as base_contact %}
+                                <li {% if request.get_full_path == base_contact %} class="active" {% endif %}><a
+                                        href="{{ base_contact }}">Liên hệ</a></li>
 
                             </ul>
                             <!-- /.navbar-nav -->

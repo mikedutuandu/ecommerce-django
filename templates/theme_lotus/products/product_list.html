@@ -159,9 +159,12 @@
                                                         <div class="row product-list-row">
                                                             <div class="col col-sm-4 col-lg-4">
                                                                 <div class="product-image">
-                                                                    <div class="image"><img
+                                                                    <div class="image">
+                                                                        <a
+                                                                        href="{{ product.get_absolute_url }}">
+                                                                        <img
                                                                             src="{{ product.productimage_set.first.image_thumb7.url }}"
-                                                                            alt=""></div>
+                                                                            alt=""></a></div>
                                                                 </div>
                                                                 <!-- /.product-image -->
                                                             </div>
