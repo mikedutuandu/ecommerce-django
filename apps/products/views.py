@@ -23,8 +23,8 @@ class CategoryDetailView(DetailView):
 	def get_context_data(self, *args, **kwargs):
 		context = super(CategoryDetailView, self).get_context_data(*args, **kwargs)
 		obj = self.get_object()
-		product_set = obj.product_set.all()
-		default_products = obj.default_category.all()
+		product_set = obj.product_set.filter(active=True)
+		default_products = obj.default_category.filter(active=True)
 		products = ( product_set | default_products ).distinct()
 		context["object_list"] = products
 		context['banner'] = Banner.objects.filter(active=True, location='product').first()
