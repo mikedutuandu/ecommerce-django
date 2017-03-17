@@ -16,7 +16,7 @@
     </div><!-- /.breadcrumb -->
 {% endblock breakcrumb %}
 {% block seo %}
-        {% seo_post object %}
+    {% seo_post object %}
 {% endblock seo %}
 {% block content %}
 
@@ -31,66 +31,54 @@
                             <span class="date-time">18/06/2016</span>
                             {{ object.content|safe }}
 
-                            <div class="social-media">
-                                <span><strong>Share bài viết</strong>:</span>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </div>
+{#                            <div class="social-media">#}
+{#                                <span><strong>Share bài viết</strong>:</span>#}
+{#                                <a href="#"><i class="fa fa-facebook"></i></a>#}
+{#                                <a href="#"><i class="fa fa-twitter"></i></a>#}
+{#                                <a href="#"><i class="fa fa-linkedin"></i></a>#}
+{#                            </div>#}
                         </div>
-                                <section class="section latest-blog outer-bottom-vs wow fadeInUp">
-          <h3 class="section-title">Bài viết liên quan</h3>
-          <div class="blog-slider-container outer-top-xs">
-            <div class="owl-carousel blog-slider custom-carousel">
-
-                {% for post in related %}
-              <div class="item">
-                <div class="blog-post">
-                  <div class="blog-post-image">
-                    <div class="image"> <a href="{{ post.get_absolute_url }}"><img src="{{ post.image_thumb3.url }}" alt=""></a> </div>
-                  </div>
-                  <!-- /.blog-post-image -->
-
-                  <div class="blog-post-info text-left">
-                    <h3 class="name"><a href="#">{{ post.title }}</a></h3>
-                  </div>
-                  <!-- /.blog-post-info -->
-
-                </div>
-                <!-- /.blog-post -->
-              </div>
-                {% endfor %}
-
-            </div>
-            <!-- /.owl-carousel -->
-          </div>
-          <!-- /.blog-slider-container -->
-        </section>
+                    <div class="row product-tag">
+                                <div class="col-md-12 tag-list">
+                                        <a class="item" title="Phone"><i class="fa fa-tag" aria-hidden="true"></i> Tags</a>
+                                        <a class="item" title="Vest" href="category.html">Mat ong</a>
+                                        <a class="item" title="Smartphone" href="category.html">sua ong chua</a>
+                                        <a class="item" title="Furniture" href="category.html">amakong</a>
+                                        <a class="item" title="T-shirt" href="category.html">nhan long voi</a>
+                                    </div>
                     </div>
-                    <div class="col-md-3 sidebar">
 
+                        <section class="section latest-blog outer-bottom-vs wow fadeInUp">
+                            <h3 class="section-title">Bài viết liên quan</h3>
+                            <div class="blog-slider-container outer-top-xs">
+                                <div class="owl-carousel blog-slider custom-carousel">
 
-                        <div class="sidebar-module-container">
-                           {% left_nav request %}
-                            {% hot_products %}
-                            {% latest_post %}
-                            <div class="sidebar-widget outer-bottom-xs  product-tag wow fadeInUp">
-                                <h3 class="section-title">Từ khoá nổi bật</h3>
-                                <div class="sidebar-widget-body outer-top-xs">                                  <div class="tag-list">
-                                        <a class="item" title="Phone" href="category.html">Phone</a>
-                                        <a class="item active" title="Vest" href="category.html">Vest</a>
-                                        <a class="item" title="Smartphone" href="category.html">Smartphone</a>
-                                        <a class="item" title="Furniture" href="category.html">Furniture</a>
-                                        <a class="item" title="T-shirt" href="category.html">T-shirt</a>
-                                        <a class="item" title="Sweatpants" href="category.html">Sweatpants</a>
-                                        <a class="item" title="Sneaker" href="category.html">Sneaker</a>
-                                        <a class="item" title="Toys" href="category.html">Toys</a>
-                                        <a class="item" title="Rose" href="category.html">Rose</a>
-                                    </div><!-- /.tag-list -->
-                                </div><!-- /.sidebar-widget-body -->
+                                    {% for post in related %}
+                                        <div class="item">
+                                            <div class="blog-post">
+                                                <div class="blog-post-image">
+                                                    <div class="image"><a href="{{ post.get_absolute_url }}"><img
+                                                            src="{{ post.image_thumb3.url }}" alt=""></a></div>
+                                                </div>
+                                                <!-- /.blog-post-image -->
+
+                                                <div class="blog-post-info text-left">
+                                                    <h3 class="name"><a href="#">{{ post.title }}</a></h3>
+                                                </div>
+                                                <!-- /.blog-post-info -->
+
+                                            </div>
+                                            <!-- /.blog-post -->
+                                        </div>
+                                    {% endfor %}
+
+                                </div>
+                                <!-- /.owl-carousel -->
                             </div>
-                        </div>
+                            <!-- /.blog-slider-container -->
+                        </section>
                     </div>
+
                 </div>
             </div>
         </div>
