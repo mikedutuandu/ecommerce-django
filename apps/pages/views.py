@@ -20,7 +20,7 @@ class HomeView(View):
                 products = Product.objects.filter(default=category)[:8]
             else:
                 products = Product.objects.filter(active=True,default=category)[:8]
-            context['sections'].append({"cat":category.title,"products":products})
+            context['sections'].append({"category":category,"products":products})
         return render(request,self.template_name,context)
 
 

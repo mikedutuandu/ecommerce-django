@@ -108,7 +108,7 @@
                     {% for section in sections %}
                         {% if section.products.count %}
                             <section class="section featured-product wow fadeInUp">
-                                <h3 class="section-title">{{ section.cat }}</h3>
+                                <h3 class="section-title"><a href="{{ section.category.get_absolute_url }}">{{ section.category.title }}</a></h3>
                                 <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 
                                     {% for product in section.products %}
