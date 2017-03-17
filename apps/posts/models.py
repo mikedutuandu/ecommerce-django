@@ -7,6 +7,8 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from config.utils import create_slug
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.sitemaps import ping_google
+
 
 
 
@@ -64,6 +66,16 @@ class Post(models.Model):
     
     class Meta:
         ordering = ["-timestamp", "-updated"]
+
+
+    def save(self, force_insert=False, force_update=False):
+        super(Post, self).save(force_insert, force_update)
+        try:
+            ping_google()
+        except Exception:
+            # Bare 'except' because we could get a variety
+            # of HTTP-related exceptions.
+            pass
 
 
 

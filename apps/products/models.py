@@ -9,6 +9,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.models import ContentType
 from apps.comments.models import Comment
 from django.conf import settings
+from django.contrib.sitemaps import ping_google
 
 
 
@@ -34,6 +35,7 @@ class Product(models.Model):
     categories = models.ManyToManyField('Category', blank=True)
     default = models.ForeignKey('Category', related_name='default_category', null=True, blank=True)
     hot = models.BooleanField(default=False)
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     seo_title = models.CharField(max_length=250,null=True,blank=True)
@@ -109,6 +111,15 @@ class Product(models.Model):
         qs = Comment.objects.filter_by_instance(instance)
         return qs
 
+    def save(self, force_insert=False, force_update=False):
+        super(Product, self).save(force_insert, force_update)
+        try:
+            ping_google()
+        except Exception:
+            # Bare 'except' because we could get a variety
+            # of HTTP-related exceptions.
+            pass
+
 
 
 
@@ -171,6 +182,7 @@ class Category(models.Model):
     active = models.BooleanField(default=True)
     icon = models.ImageField(upload_to='categories')
     order = models.IntegerField()
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     seo_title = models.CharField(max_length=250,null=True,blank=True)

@@ -27,6 +27,16 @@ from apps.comments.views import CreateCommentView
 from allauth.account.views import LogoutView
 from apps.accounts.views import LoginCustomView, SignupCustomView, UserAddressView, UserProfileView
 from apps.posts.views import PostDetailView, PostListView
+from django.views.generic import TemplateView
+from django.contrib.sitemaps.views import sitemap
+from apps.pages.views import PostSitemap,ProductSitemap,CategoryProductSitemap,StaticSitemap
+
+sitemaps = {
+    'post':PostSitemap,
+    'product':ProductSitemap,
+    'category-product':CategoryProductSitemap,
+    'static': StaticSitemap,
+}
 
 urlpatterns = [
     # Examples:
@@ -64,13 +74,16 @@ urlpatterns = [
     url(r'^dat-hang/$', CheckoutView.as_view(), name='checkout'),
     url(r'^thanh-toan/$', CheckoutFinalView.as_view(), name='checkout_final'),
 
+    url(r'^robots.txt$', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},name='django.contrib.sitemaps.views.sitemap')
+
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    import debug_toolbar
+import debug_toolbar
 
-    urlpatterns += [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    ]
+urlpatterns += [
+    url(r'^__debug__/', include(debug_toolbar.urls)),
+]
