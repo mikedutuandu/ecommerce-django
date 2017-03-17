@@ -74,7 +74,7 @@ class Product(models.Model):
 
     def get_html_price(self):
         if self.price == None:
-            html_text = "<span class='price'>Liên hệ để đặt hàng</span>"
+            html_text = "<span class='price'>Liên hệ đặt hàng</span>"
         elif self.sale_price is not None:
             html_text = "<span class='price'>%s đ</span> <span class='price-before-discount'>%s đ</span>" % (
             self.sale_price, self.price)
@@ -84,7 +84,7 @@ class Product(models.Model):
 
     def get_html_price_on_detail(self):
         if self.price == None:
-            html_text = "<span class='price'>Liên hệ để đặt hàng</span>"
+            html_text = "<span class='price'>Liên hệ đặt hàng</span>"
         elif self.sale_price is not None:
             html_text = "<span class='price'>%s đ</span> <span class='price-strike'>%s đ</span>" % (
             self.sale_price, self.price)

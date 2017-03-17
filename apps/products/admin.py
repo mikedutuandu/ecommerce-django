@@ -14,7 +14,7 @@ class ProductImageInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['__unicode__', 'price']
+    list_display = ['__unicode__', 'price','active']
     inlines = [
         ProductImageInline,
     ]

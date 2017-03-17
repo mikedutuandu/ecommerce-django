@@ -198,9 +198,7 @@
 .cart-shopping-total {
     margin-bottom: 20px;
 }
-.special-product .product:first-child {
-    margin-bottom: 0px!important;
-}
+
 .special-product .product {
     margin-bottom: 20px!important;
 }
