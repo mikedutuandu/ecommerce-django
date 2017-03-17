@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <div class="product-tabs inner-bottom-xs  wow fadeInUp">
     <div class="row">
 
@@ -17,7 +18,7 @@
                                         <div class="row">
                                             <div class="col-md-2 col-sm-2 col-xs-4" style="text-align: center;">
                                                 <p>
-                                                    <img width="60" style="margin: auto" src="http://themesground.com/Lotus/V1/HTML/assets/images/testimonials/member3.png"
+                                                    <img width="60" style="margin: auto" src="{% static 'lotus/images/no-user-image.gif' %}"
                                                          alt="Responsive image" class="img-rounded img-responsive"></p>
                                                 <p><strong>{{ user.username }}</strong></p>
                                             </div>

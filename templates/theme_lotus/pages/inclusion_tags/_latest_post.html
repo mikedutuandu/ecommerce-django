@@ -5,7 +5,9 @@
         <div class="tab-pane m-t-20" id="recent">
             {% for post in posts %}
             <div class="blog-post">
+            <a href="{{ post.get_absolute_url }}">
                 <img class="img-responsive" src="{{ post.image_thumb1.url }}" alt="">
+            </a>
                 <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
             </div>
             {% endfor %}
