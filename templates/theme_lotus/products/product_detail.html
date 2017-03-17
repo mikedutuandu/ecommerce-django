@@ -110,6 +110,8 @@
 
                                     <div class="quantity-container info-container" data-cart="">
                                         <div class="row">
+
+                                            {% if object.price %}
                                             <form id='add-form' method='GET' action="{% url 'cart' %}">
                                                 <div class="col-sm-2">
                                                     <span class="label">SỐ LƯỢNG :</span>
@@ -139,6 +141,7 @@
 
                                                 </div>
                                             </form>
+                                            {% endif %}
 
                                         </div><!-- /.row -->
                                     </div><!-- /.quantity-container -->

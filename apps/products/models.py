@@ -71,15 +71,21 @@ class Product(models.Model):
         safe = ((self.price-self.sale_price)/self.price) *100
         html_text = '<div class="tag sale"><span>-%s%s</span></div>' %(safe,'%')
         return mark_safe(html_text)
+
     def get_html_price(self):
-        if self.sale_price is not None:
+        if self.price == None:
+            html_text = "<span class='price'>Liên hệ để đặt hàng</span>"
+        elif self.sale_price is not None:
             html_text = "<span class='price'>%s đ</span> <span class='price-before-discount'>%s đ</span>" % (
             self.sale_price, self.price)
         else:
             html_text = "<span class='price'>%s đ</span>" % (self.price)
         return mark_safe(html_text)
+
     def get_html_price_on_detail(self):
-        if self.sale_price is not None:
+        if self.price == None:
+            html_text = "<span class='price'>Liên hệ để đặt hàng</span>"
+        elif self.sale_price is not None:
             html_text = "<span class='price'>%s đ</span> <span class='price-strike'>%s đ</span>" % (
             self.sale_price, self.price)
         else:
