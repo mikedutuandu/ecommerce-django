@@ -9,7 +9,7 @@ register = template.Library()
 
 @register.inclusion_tag('theme_lotus/pages/inclusion_tags/_hot_products.html')
 def hot_products():
-    products = Product.objects.filter(hot=True,active=True)[:5]
+    products = Product.objects.filter(hot=True,active=True)[:6]
     return {'products':products}
 
 @register.inclusion_tag('theme_lotus/pages/inclusion_tags/_left_nav.html')
@@ -19,7 +19,7 @@ def left_nav(request):
 
 @register.inclusion_tag('theme_lotus/pages/inclusion_tags/_latest_post.html')
 def latest_post():
-    posts = Post.objects.filter(active=True).order_by('-timestamp')[:3]
+    posts = Post.objects.filter(active=True).order_by('-timestamp')[:6]
     return {'posts':posts}
 
 @register.inclusion_tag('theme_lotus/pages/inclusion_tags/_head_card.html')
