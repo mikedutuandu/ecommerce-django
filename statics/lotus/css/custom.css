@@ -232,3 +232,7 @@
     letter-spacing: 0.2px;
     border-bottom: 1px #eaeaea solid;
 }
+
+.post-micro-row{
+    margin-right: -5px !important;
+}
