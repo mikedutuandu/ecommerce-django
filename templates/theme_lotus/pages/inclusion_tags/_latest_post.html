@@ -1,16 +1,35 @@
 {% load staticfiles %}
-<div class="sidebar-widget outer-bottom-xs wow fadeInUp latest-blog-sidebar hidden-xs">
+
+<div class="sidebar-widget outer-bottom-small wow fadeInUp hidden-xs">
     <h3 class="section-title">Bài viết mới nhất</h3>
-    <div class="" style="padding-left:0">
-        <div class="tab-pane m-t-20" id="recent">
-            {% for post in posts %}
-            <div class="blog-post">
-            <a href="{{ post.get_absolute_url }}">
-                <img class="img-responsive" src="{{ post.image_thumb1.url }}" alt="">
-            </a>
-                <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+    <div class="sidebar-widget-body outer-top-xs">
+        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+            <div class="item">
+                <div class="products special-product">
+                      {% for post in posts %}
+                        <div class="product">
+                            <div class="product-micro">
+                                <div class="row product-micro-row">
+                                    <div class="col col-xs-5">
+                                        <div class="product-image">
+                                            <div class="image"><a href="{{ post.get_absolute_url }}"> <img
+                                                    src="{{ post.image_thumb2.url }}" alt="">
+                                            </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col col-xs-7">
+                                        <div class="product-info">
+                                            <h3 class="name"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-            {% endfor %}
         </div>
     </div>
 </div>
