@@ -22,7 +22,7 @@ class ProductAdmin(admin.ModelAdmin):
               'categories', 'default', 'hot','seo_title','seo_description','seo_keyword']
 
     def save_model(self, request, obj, form, change):
-        if obj.user != None:
+        if obj.user == None:
             obj.user = request.user
         return super(ProductAdmin, self).save_model(request, obj, form, change)
 
