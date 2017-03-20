@@ -27,6 +27,7 @@ def upload_location(instance, filename):
 class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     categories = models.ManyToManyField('Category', blank=True)
+    tags = models.ManyToManyField('Tag',blank=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to=upload_location)
@@ -110,6 +111,17 @@ def pre_save_category_receiver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(pre_save_category_receiver, sender=Category)
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=120, unique=True)
+    active = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
 
 
 

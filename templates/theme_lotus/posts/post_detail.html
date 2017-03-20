@@ -41,10 +41,9 @@
                     <div class="row product-tag">
                                 <div class="col-md-12 tag-list">
                                         <a class="item" title="Phone"><i class="fa fa-tag" aria-hidden="true"></i> Tags</a>
-                                        <a class="item" title="Vest" href="category.html">Mat ong</a>
-                                        <a class="item" title="Smartphone" href="category.html">sua ong chua</a>
-                                        <a class="item" title="Furniture" href="category.html">amakong</a>
-                                        <a class="item" title="T-shirt" href="category.html">nhan long voi</a>
+                                    {% for tag in post.tags.all %}
+                                        <a class="item" title="{{ tag.name }}" href="{% url 'products' %}?q={{ tag.name }}">{{ tag.name }}</a>
+                                    {% endfor %}
                                     </div>
                     </div>
 
