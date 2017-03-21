@@ -19,9 +19,9 @@ class HomeView(View):
         context['banners'] = banners
         for category in categories:
             if self.request.user and (self.request.user.is_superuser or self.request.user.is_staff):
-                products = Product.objects.filter(default=category)[:8]
+                products = Product.objects.filter(default=category)[:8].order_by('order')
             else:
-                products = Product.objects.filter(active=True,default=category)[:8]
+                products = Product.objects.filter(active=True,default=category)[:8].order_by('order')
             context['sections'].append({"category":category,"products":products})
         return render(request,self.template_name,context)
 
