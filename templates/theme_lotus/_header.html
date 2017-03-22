@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load inclusion_tags %}
+{% load simple_tags %}
 <header class="header-style-1">
 
     <!-- ============================================== TOP MENU ============================================== -->
@@ -35,7 +36,7 @@
 
 
                 <div class="offer-text">
-                    Hotline SG: <strong>097 412 8909</strong> - HN: <strong>096 899 2239</strong>
+                    Hotline SG: <strong>{% get_setting "phone_sg" %}</strong> - HN: <strong>{% get_setting "phone_hn" %}</strong>
 
                 </div>
 
@@ -55,7 +56,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 logo-holder">
 
                     <div class="logo"><a href="home.html">
-                        <img height="130" src="{% static "lotus/images/logo.png" %}" alt="logo">
+                        <img height="130" src="{% get_setting "logo" %}" alt="logo">
                     </a>
                     </div>
 

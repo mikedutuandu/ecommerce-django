@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load simple_tags %}
 <footer id="footer" class="footer color-bg">
     <div class="footer-bottom">
         <div class="container">
@@ -16,14 +17,14 @@
                                 <div class="pull-left"><span class="icon fa-stack fa-lg"> <i
                                         class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span></div>
                                 <div class="media-body">
-                                    <p>TP Buôn Ma Thuột, TP Hồ Chí Minh, TP Hà Nội</p>
+                                    <p>{% get_setting "address" %}</p>
                                 </div>
                             </li>
                                    <li class="media">
                                 <div class="pull-left"><span class="icon fa-stack fa-lg"> <i
                                         class="fa fa-mobile fa-stack-1x fa-inverse"></i> </span></div>
                                 <div class="media-body">
-                                    <p>SG: 097 412 8909 <br>HN: 096 899 2239</p>
+                                    <p>SG: {% get_setting "phone_sg" %} <br>HN: {% get_setting "phone_hn" %}</p>
                                 </div>
                             </li>
 
@@ -31,7 +32,7 @@
                                 <div class="pull-left"><span class="icon fa-stack fa-lg"> <i
                                         class="fa fa-envelope fa-stack-1x fa-inverse"></i> </span></div>
                                 <div class="media-body">
-                                    <span><a href="mailto:mikedutuandu@gmail.com">mikedutuandu@gmail.com</a></span>
+                                    <span><a href="mailto:{% get_setting "email" %}">{% get_setting "email" %}</a></span>
                                 </div>
                             </li>
 
@@ -87,10 +88,10 @@
 
                     <div class="module-body">
                        <div class="nav-other social-conn">
-                        <a rel="nofollow" href="#" target="_blank" title="Facebook">
+                        <a rel="nofollow" href="{% get_setting "facebook" %}" target="_blank" title="Facebook">
                             <img src="{% static 'lotus/images/ic-fb.svg' %}">
                         </a>
-                        <a rel="nofollow" href="#" target="_blank" title="Youtube">
+                        <a rel="nofollow" href="{% get_setting "youtube" %}" target="_blank" title="Youtube">
                             <img src="{% static 'lotus/images/ic-youtube.svg' %}">
                         </a>
 
@@ -106,7 +107,7 @@
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-padding social">
                 <div class="copyright pull-left">
-                    © Copyright 2017 – <strong>dacsantaynguyenvn.com</strong>. All Rights Reserved.
+                    © Copyright 2017 – <strong>{% get_setting "domain" %}</strong>. All Rights Reserved.
                 </div>
             </div>
 

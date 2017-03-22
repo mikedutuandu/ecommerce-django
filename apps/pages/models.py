@@ -73,6 +73,29 @@ class Page(models.Model):
     class Meta:
         ordering = ["-timestamp", "-updated"]
 
+class Setting(models.Model):
+    address = models.CharField(max_length=250,null=True,blank=True)
+    phone_hn = models.CharField(max_length=250,null=True,blank=True)
+    phone_sg = models.CharField(max_length=250,null=True,blank=True)
+    email = models.EmailField(null=True,blank=True)
+    facebook = models.URLField(null=True,blank=True)
+    youtube = models.URLField(null=True,blank=True)
+    logo = models.ImageField(upload_to='logo/')
+    domain = models.CharField(max_length=250,null=True,blank=True)
+
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+
+    def __unicode__(self):
+        return str(self.id)
+
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        ordering = ["-timestamp", "-updated"]
+
 
 
 
