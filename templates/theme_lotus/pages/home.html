@@ -1,6 +1,7 @@
 {% extends "theme_lotus/layout.html" %}
 {% load staticfiles %}
 {% load inclusion_tags %}
+{% load simple_tags %}
 {% block content %}
     <div class="body-content outer-top-xs" id="top-banner-and-menu">
         <div class="container">
@@ -53,7 +54,7 @@
                       <h4 class="info-box-heading green"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Đổi trả miễn phí</h4>
                     </div>
                   </div>
-                    <h6 class="text"><a href="{% url 'base_payment' %}">Trong vòng 7 ngày</a></h6>
+                    <h6 class="text"><a href="{% url 'base_payment' %}">{% get_setting "text1" %}</a></h6>
                 </div>
               </div>
               <!-- .col -->
@@ -65,7 +66,7 @@
                       <h4 class="info-box-heading green"><i class="fa fa-truck" aria-hidden="true"></i> Miễn phí giao hàng</h4>
                     </div>
                   </div>
-                    <h6 class="text"><a href="{% url 'base_payment' %}">Trong nội thành SG, HN</a></h6>
+                    <h6 class="text"><a href="{% url 'base_payment' %}">{% get_setting "text2" %}</a></h6>
                 </div>
               </div>
               <!-- .col -->
@@ -77,7 +78,7 @@
                       <h4 class="info-box-heading green"><i class="fa fa-star" aria-hidden="true"></i> Special Sale</h4>
                     </div>
                   </div>
-                    <h6 class="text"><a href="{% url 'base_payment' %}">Giảm 20% cho đơn hàng > 1TR</a></h6>
+                    <h6 class="text"><a href="{% url 'base_payment' %}">{% get_setting "text3" %}</a></h6>
                 </div>
               </div>
               <div class="col-md-6 col-sm-6 col-lg-3">
@@ -87,7 +88,7 @@
                       <h4 class="info-box-heading green"><i class="fa fa-life-ring" aria-hidden="true"></i> TƯ VẤN ONLINE</h4>
                     </div>
                   </div>
-                  <h6 class="text"><a href="skype:lelinh204?chat">Skype: <img width="15" src="{% static "lotus/images/skype.png" %}"/></a></h6>
+                  <h6 class="text"><a href="skype:{% get_setting "skype" %}?chat">Skype: <img width="15" src="{% static "lotus/images/skype.png" %}"/></a></h6>
                 </div>
               </div>
               <!-- .col -->

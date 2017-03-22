@@ -71,6 +71,7 @@ class Product(models.Model):
         if not self.sale_price:
             return ''
         safe = ((self.price-self.sale_price)/self.price) *100
+        safe = round(safe,0)
         html_text = '<div class="tag sale"><span>-%s%s</span></div>' %(safe,'%')
         return mark_safe(html_text)
 

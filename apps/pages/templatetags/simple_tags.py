@@ -28,4 +28,12 @@ def get_setting(name):
             return setting.logo.url
         if name == 'address':
             return setting.address
+        if name == 'skype':
+            return setting.skype
+        if name == 'text1':
+            return setting.text1
+        if name == 'text2':
+            return setting.text2
+        if name == 'text3':
+            return setting.text3
     return ''

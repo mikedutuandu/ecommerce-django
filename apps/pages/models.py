@@ -81,7 +81,13 @@ class Setting(models.Model):
     facebook = models.URLField(null=True,blank=True)
     youtube = models.URLField(null=True,blank=True)
     logo = models.ImageField(upload_to='logo/')
+    skype = models.CharField(max_length=250, null=True, blank=True)
+    text1 = models.CharField(max_length=250, null=True, blank=True)
+    text2 = models.CharField(max_length=250, null=True, blank=True)
+    text3 = models.CharField(max_length=250, null=True, blank=True)
     domain = models.CharField(max_length=250,null=True,blank=True)
+
+
 
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
