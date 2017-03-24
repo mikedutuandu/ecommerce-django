@@ -85,6 +85,7 @@ class Setting(models.Model):
     text1 = models.CharField(max_length=250, null=True, blank=True)
     text2 = models.CharField(max_length=250, null=True, blank=True)
     text3 = models.CharField(max_length=250, null=True, blank=True)
+    google_analytics = models.TextField(null=True,blank=True)
     domain = models.CharField(max_length=250,null=True,blank=True)
 
 
