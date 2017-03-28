@@ -216,7 +216,7 @@
     max-width: 100%;
     height: auto !important;
 }
-.nav .nav-icon,.nav-checkout-progress span{
+.nav .nav-icon,.user-menu span{
     width: 20px;
     height: 20px;
     float: left;

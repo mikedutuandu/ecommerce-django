@@ -8,7 +8,7 @@
                     <h4 class="unicase-checkout-title">Tài khoản của tôi</h4>
                 </div>
                 <div class="">
-                    <ul class="nav nav-checkout-progress list-unstyled">
+                    <ul class="nav nav-checkout-progress user-menu list-unstyled">
                         <li class="{% if 'thong-tin-tai-khoan' in request.get_full_path  %}active{% endif %}"><a href="{% url 'user_profile' %}">
                             <span style="background-image: url({%  static 'lotus/images/user24.png' %})"></span>
                             Thông tin tài khoản</a></li>
